@@ -5,7 +5,7 @@
      事実: 確定した公開予定日は未取得のため Upcoming は「近日発表」。Recent = Off Sync, Here 日本ツアー2026（offsynchere.takahiroizumikawa.com）。
      ▼ TODO (HASHIRA):
        1. 確定した公演があれば <div class="release"> を Upcoming に追加（日付・会場・チケットリンク）
-       2. 透かし写真を足す場合: about/music と同じ手順（IMG番号指定→焼込みWebP→.watermark有効化）。CSSは下に用意済み(コメント)
+       2. 透かし写真=406A2069（Rockwood・縦型クロップ・© Stephanie Han）実装済。差し替え時は about/music と同じ手順（左端フェード焼込みWebP → assets/shows-portrait-fade.webp を上書き）
        3. 公開時に noindex,nofollow を外す
 -->
 <html lang="en">
@@ -37,12 +37,15 @@ body::before{
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.91 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
 }
 
-/* ── watermark portrait（写真を足すときに有効化: 下の <div class="watermark"> を出す） ── */
+/* ── watermark portrait (透かし・右／フェード焼込み・縞なし・about/music と共通手法)・406A2069(Rockwood・縦型クロップ) ── */
 .watermark{
   position:fixed;inset:0;
   background:url('assets/shows-portrait-fade.webp') no-repeat right center;
   background-size:auto 100%;
   opacity:.42;z-index:0;pointer-events:none;
+}
+@media (max-width:820px){
+  .watermark{width:100%;opacity:.1;background-position:right 14%}
 }
 main,.signup,footer{position:relative;z-index:1}
 
@@ -106,9 +109,7 @@ footer a:hover{color:var(--dim)}
 </head>
 <body>
 
-<!-- 写真を足すときに有効化（about/music と同じ手順で assets/shows-portrait-fade.webp を焼く）
 <div class="watermark"></div>
--->
 
 <nav class="top">
   <a class="wordmark" href="index.html">takahiro izumikawa</a>
@@ -173,6 +174,8 @@ footer a:hover{color:var(--dim)}
   <a href="https://www.instagram.com/takahiro_izumikawa/" target="_blank" rel="noopener">instagram&nbsp;↗</a>
   <a href="https://mubo.taka808.com/about/" target="_blank" rel="noopener">mubo&nbsp;↗</a>
 </footer>
+
+<p style="position:fixed;right:clamp(12px,2vw,22px);bottom:clamp(9px,1.6vh,15px);z-index:4;margin:0;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:.1em;color:rgba(245,240,232,.3);pointer-events:none">photo · Stephanie Han</p>
 
 <script>
 (function(){
