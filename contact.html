@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- takahiroizumikawa.com — Contact (contact.html) ★下書き v1
+     方式: Web3Forms（静的サイト対応・無料・スパム対策）。fetch送信でページ遷移なし。
+     ⚠️ 必須設定: 下の access_key を実キーに差し替える。
+        取得手順(HASHIRA): https://web3forms.com/ で takahiroizumikawa0@gmail.com（実在の受信箱）を入力→メールでaccess key受領→value="..." に貼る。通知はそのGmailに届き、reply-toが送信者なので「返信」で直接やり取りできる。
+     ▼ TODO: ①access_key 差し替え ②公開時 noindex 解除 -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Takahiro Izumikawa</title>
+<meta name="description" content="Get in touch with Takahiro Izumikawa — booking, press, and collaboration.">
+<meta property="og:title" content="Contact — Takahiro Izumikawa">
+<meta property="og:description" content="Booking, press, and collaboration.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://takahiroizumikawa.com/contact">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#161616; --text:#f5f0e8;
+  --dim:rgba(245,240,232,.55); --faint:rgba(245,240,232,.32);
+  --accent:#db2626; --rule:rgba(245,240,232,.14);
+  --font:'Poppins',sans-serif;
+  --gutter:clamp(24px,5vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:300;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;letter-spacing:.02em}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.08;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.91 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
+}
+
+/* ── background (Rockwood Music Hall・撮影 Stephanie Han)・写真は右・左は暗くしてフォームを読みやすく ── */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:url('assets/contact-bg.webp') center center / cover no-repeat
+}
+.bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(22,22,22,.96) 0%,rgba(22,22,22,.9) 30%,rgba(22,22,22,.6) 62%,rgba(22,22,22,.42) 100%)
+}
+main,footer{position:relative;z-index:1}
+
+nav.top{
+  position:relative;z-index:3;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:clamp(18px,2.6vh,28px) var(--gutter)
+}
+nav.top .wordmark{font-size:13px;letter-spacing:.36em;text-transform:lowercase;color:var(--text);font-weight:500;text-decoration:none}
+nav.top .links{display:flex;gap:clamp(14px,2.4vw,26px)}
+nav.top .links a{font-size:12px;letter-spacing:.1em;text-transform:lowercase;color:rgba(245,240,232,.6);text-decoration:none;transition:color .4s}
+nav.top .links a:hover{color:var(--accent)}
+
+main{flex:1;padding:clamp(40px,8vh,88px) var(--gutter)}
+.wrap{max-width:520px;margin-right:auto;margin-left:0;width:100%}
+.name-head{font-size:clamp(30px,5vw,52px);font-weight:500;letter-spacing:.005em;line-height:1.1;color:var(--text);margin-bottom:20px;text-transform:lowercase}
+.intro{font-size:clamp(14.5px,1.6vw,16px);line-height:1.75;color:var(--dim);max-width:44ch;margin-bottom:clamp(32px,5vh,48px)}
+
+.cform{max-width:480px}
+.cfield{border-bottom:1px solid var(--rule);margin-bottom:22px}
+.cfield input,.cfield textarea{
+  width:100%;background:transparent;border:0;color:var(--text);font-family:var(--font);
+  font-size:15px;padding:12px 0;outline:none;resize:vertical
+}
+.cfield input::placeholder,.cfield textarea::placeholder{color:rgba(245,240,232,.56)}
+.cfield textarea{min-height:120px;line-height:1.65}
+.csend{
+  background:transparent;border:1px solid var(--rule);color:var(--text);font-family:var(--font);
+  font-weight:400;font-size:12px;letter-spacing:.16em;text-transform:lowercase;padding:13px 30px;cursor:pointer;
+  transition:border-color .4s,color .4s
+}
+.csend:hover{border-color:var(--accent);color:var(--accent)}
+.csend:disabled{opacity:.45;cursor:default}
+.cmsg{margin-top:18px;font-size:13px;letter-spacing:.02em;color:var(--dim)}
+.cmsg:empty{display:none}
+.cmsg.err{color:#c46b6b}
+.cnote{margin-top:26px;font-size:12px;color:var(--faint)}
+.cnote a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s}
+.cnote a:hover{color:var(--accent);border-color:var(--accent)}
+
+footer{
+  display:flex;justify-content:center;gap:clamp(18px,2.4vw,32px);
+  padding:clamp(16px,2.5vh,24px) var(--gutter) clamp(28px,4vh,40px);
+  border-top:1px solid var(--rule);flex-wrap:wrap
+}
+footer a{font-size:10px;letter-spacing:.28em;text-transform:lowercase;color:var(--faint);text-decoration:none;transition:color .4s}
+footer a:hover{color:var(--dim)}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<nav class="top">
+  <a class="wordmark" href="index.html">takahiro izumikawa</a>
+  <div class="links">
+    <a href="about.html">about</a>
+    <a href="music.html">music</a>
+    <a href="shows.html">shows</a>
+    <a href="contact.html" aria-current="page">contact</a>
+    <a href="https://mubo.taka808.com/about/" target="_blank" rel="noopener">学ぶ ↗</a>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+
+    <h1 class="name-head">contact</h1>
+    <p class="intro">For booking, press, collaboration, or just to say hello.</p>
+
+    <!-- Web3Forms。access_key を実キーに差し替えるまでは送信できません -->
+    <form class="cform" id="contact-form">
+      <input type="hidden" name="access_key" value="881a32c7-74e4-4aa2-b9e6-6ced2094defb">
+      <input type="hidden" name="subject" value="Contact from takahiroizumikawa.com">
+      <input type="hidden" name="from_name" value="takahiroizumikawa.com">
+      <!-- honeypot（スパムbot対策・人間には非表示） -->
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <div class="cfield"><input type="text" name="name" placeholder="name" autocomplete="name" required></div>
+      <div class="cfield"><input type="email" name="email" placeholder="email" autocomplete="email" required></div>
+      <div class="cfield"><textarea name="message" placeholder="message" required></textarea></div>
+      <button type="submit" class="csend">send</button>
+      <p class="cmsg" id="cmsg"></p>
+    </form>
+
+  </div>
+</main>
+
+<footer>
+  <a href="contact.html">contact</a>
+  <a href="https://www.instagram.com/takahiro_izumikawa/" target="_blank" rel="noopener">instagram&nbsp;↗</a>
+  <a href="https://mubo.taka808.com/about/" target="_blank" rel="noopener">mubo&nbsp;↗</a>
+</footer>
+
+<p style="position:fixed;right:clamp(12px,2vw,22px);bottom:clamp(9px,1.6vh,15px);z-index:4;margin:0;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:.1em;color:rgba(245,240,232,.3);pointer-events:none">photo · Stephanie Han</p>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  var form = e.target;
+  var btn = form.querySelector('.csend');
+  var msg = document.getElementById('cmsg');
+  msg.className='cmsg'; msg.textContent='';
+  btn.disabled = true; btn.textContent = 'sending…';
+  fetch('https://api.web3forms.com/submit', { method:'POST', body: new FormData(form) })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d.success){
+        form.reset();
+        btn.textContent = 'sent';
+        msg.textContent = 'Thank you — your message is on its way.';
+      } else { throw new Error(d.message || 'error'); }
+    })
+    .catch(function(){
+      btn.disabled = false; btn.textContent = 'send';
+      msg.className = 'cmsg err';
+      msg.textContent = 'Something went wrong. Please try again in a moment.';
+    });
+});
+</script>
+
+</body>
+</html>
