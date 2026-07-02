@@ -66,13 +66,13 @@ main{flex:1;padding:clamp(40px,8vh,88px) var(--gutter)}
 .meta .ttl{font-size:clamp(15px,1.9vw,18px);font-weight:400;color:var(--text)}
 .meta .ttl .sub{display:block;font-size:11px;letter-spacing:.06em;color:var(--faint);margin-top:2px}
 .meta .yr{font-size:11px;letter-spacing:.08em;color:var(--faint)}
-.links{flex:0 0 auto;display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
-.links a{font-size:11px;letter-spacing:.08em;text-transform:lowercase;color:var(--dim);text-decoration:none;white-space:nowrap;transition:color .4s}
-.links a:hover{color:var(--accent)}
+.release .links{flex:0 0 auto;display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+.release .links a{font-size:11px;letter-spacing:.08em;text-transform:lowercase;color:var(--dim);text-decoration:none;white-space:nowrap;transition:color .4s}
+.release .links a:hover{color:var(--accent)}
 .release.secondary .meta .ttl{color:var(--dim)}
 @media (max-width:520px){
   .release{flex-wrap:wrap}
-  .links{flex-basis:100%;justify-content:flex-start;margin-top:6px;padding-left:calc(clamp(48px,12vw,64px) + clamp(12px,2.6vw,18px))}
+  .release .links{flex-basis:100%;justify-content:flex-start;margin-top:6px;padding-left:calc(clamp(48px,12vw,64px) + clamp(12px,2.6vw,18px))}
 }
 
 .signup{padding:clamp(40px,7vh,72px) var(--gutter);text-align:center}
