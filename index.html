@@ -139,6 +139,16 @@ footer a{
   color:var(--faint);text-decoration:none;transition:color .4s
 }
 footer a:hover{color:var(--dim)}
+
+/* ── mobile: 写真は元サイズ(85svh)のまま、登録フォームを写真下部にオーバーレイして同一画面に収める ── */
+@media (max-width:640px){
+  .band .name{display:none} /* 上部wordmarkと重複＋フォームと衝突するため非表示 */
+  .capture{
+    position:relative;z-index:2;
+    margin-top:-42svh; /* 写真の下部に重ねる */
+    background:linear-gradient(to top,var(--bg) 60%,rgba(22,22,22,0)) /* 下地を暗くして可読性確保・上へフェード */
+  }
+}
 </style>
 </head>
 <body>
