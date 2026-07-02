@@ -152,10 +152,10 @@ footer a:hover{color:var(--dim)}
 @media (max-width:640px){
   .band .name{display:none} /* 上部wordmarkと重複＋フォームと衝突するため非表示 */
   .band img{object-position:center 82%} /* ピアノ(画像最下部)を見せるため下寄りクロップ */
-  .credit{bottom:17svh} /* クレジットをPIANISTとstatementの間の高さへ（フォーム上被り回避・右位置は維持） */
+  .credit{bottom:27svh} /* クレジットをPIANISTとstatementの間の高さへ（フォーム上被り回避・右位置は維持） */
   .capture{
     position:relative;z-index:2;
-    margin-top:-28svh; /* 写真下部のピアノを見せつつ登録を重ねる */
+    margin-top:-38svh; /* 登録ブロックを写真上部寄りに引き上げ */
     background:linear-gradient(to top,var(--bg) 60%,rgba(22,22,22,0)) /* 下地を暗くして可読性確保・上へフェード */
   }
 }
