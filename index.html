@@ -148,15 +148,11 @@ footer a{
 }
 footer a:hover{color:var(--dim)}
 
-/* ── mobile: 写真は元サイズ(85svh)のまま、登録フォームを写真下部にオーバーレイして同一画面に収める ── */
+/* ── mobile: 上の余白をトリミングしてバンドを短縮→メーリングリストを初期表示に（写真の下=ピアノは切らない） ── */
 @media (max-width:640px){
-  .band .name{display:none} /* 上部wordmarkと重複＋フォームと衝突するため非表示 */
-  .band img{object-position:center 82%} /* ピアノ(画像最下部)を見せるため下寄りクロップ */
-  .capture{
-    position:relative;z-index:2;
-    margin-top:-38svh; /* 登録ブロックを写真上部寄りに引き上げ */
-    background:linear-gradient(to top,var(--bg) 60%,rgba(22,22,22,0)) /* 下地を暗くして可読性確保・上へフェード */
-  }
+  .band{height:60svh}
+  .band .name{display:none} /* 上部wordmarkと重複するため非表示 */
+  .band img{transform:scale(1.18);transform-origin:center bottom} /* 上をトリミングしピアニストを大きく・ピアノ(下)は保持 */
 }
 </style>
 </head>
