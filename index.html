@@ -73,12 +73,12 @@ nav.top{
   text-shadow:0 1px 10px rgba(0,0,0,.65)
 }
 
-/* photo credit（写真右下・旧インラインstyleをクラス化） */
+/* photo credit（フッター線の直上・右寄せ） */
 .credit{
-  position:absolute;right:clamp(12px,2vw,22px);bottom:clamp(9px,1.6vh,15px);
-  z-index:4;margin:0;font-family:'Poppins',sans-serif;
+  margin:0;text-align:right;padding:0 var(--gutter) 10px;
+  font-family:'Poppins',sans-serif;
   font-size:9px;font-weight:400;letter-spacing:.1em;
-  color:rgba(245,240,232,.3);pointer-events:none
+  color:rgba(245,240,232,.3)
 }
 
 /* ── capture block (the star) ── */
@@ -152,7 +152,6 @@ footer a:hover{color:var(--dim)}
 @media (max-width:640px){
   .band .name{display:none} /* 上部wordmarkと重複＋フォームと衝突するため非表示 */
   .band img{object-position:center 82%} /* ピアノ(画像最下部)を見せるため下寄りクロップ */
-  .credit{bottom:27svh} /* クレジットをPIANISTとstatementの間の高さへ（フォーム上被り回避・右位置は維持） */
   .capture{
     position:relative;z-index:2;
     margin-top:-38svh; /* 登録ブロックを写真上部寄りに引き上げ */
@@ -182,7 +181,6 @@ footer a:hover{color:var(--dim)}
     <a href="contact.html">contact</a>
     <a href="https://mubo.taka808.com/about/" target="_blank" rel="noopener">学ぶ ↗&#xFE0E;</a>
   </nav>
-  <p class="credit">photo · Stephanie Han</p>
 </section>
 
 <section class="capture" id="subscribe">
@@ -215,6 +213,7 @@ footer a:hover{color:var(--dim)}
   </div>
 </section>
 
+<p class="credit">photo · Stephanie Han</p>
 <footer>
   <!-- TODO (HASHIRA): contact先メールアドレスを確定して mailto: に更新 -->
   <a href="contact.html">contact</a>
