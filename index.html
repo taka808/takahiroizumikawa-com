@@ -150,10 +150,11 @@ footer a:hover{color:var(--dim)}
 
 /* ── mobile: 上の余白をトリミングしてバンドを短縮→メーリングリストを初期表示に（写真の下=ピアノは切らない） ── */
 @media (max-width:640px){
-  .band{height:60svh}
+  .band{height:57svh}
   .band .name{display:none} /* 上部wordmarkと重複するため非表示 */
   .band img{transform:scale(1.18);transform-origin:center bottom} /* 上をトリミングしピアニストを大きく・ピアノ(下)は保持 */
   .side-nav{right:auto;left:var(--gutter);text-align:left} /* スマホは顔(右)を避けナビを左へ。PC(≥641px)は右のまま */
+  .capture{padding-top:clamp(18px,2.8vh,30px)} /* PIANIST以下を少し上げメール登録を一目に */
 }
 </style>
 </head>
