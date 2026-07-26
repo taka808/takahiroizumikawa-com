@@ -160,13 +160,17 @@ footer a:hover{color:var(--dim)}
 
 /* ── mobile: 上の余白をトリミングしてバンドを短縮→メーリングリストを初期表示に（写真の下=ピアノは切らない） ── */
 @media (max-width:640px){
-  .band{height:44svh}
+  /* 絶対要件: メール登録フォームはSafariのURLバーあり初期表示（SE実測~550px）でノースクロール表示（2026-07-26 HASHIRA再指摘） */
+  .band{height:36svh}
   .band img{transform:scale(1.18);transform-origin:center bottom} /* 上をトリミングしピアニストを大きく・ピアノ(下)は保持 */
   .side-nav{right:auto;left:var(--gutter);text-align:left} /* スマホは顔(右)を避けナビを左へ。PC(≥641px)は右のまま */
-  .capture{padding-top:clamp(18px,2.8vh,30px);position:relative;z-index:2;margin-top:-10svh;background:linear-gradient(to top,var(--bg) 52%,rgba(22,22,22,0))} /* 登録ブロックを写真にオーバーレイして上げる（引用先行シーケンス化でコンテンツが増えたため-22svh→-10svhに調整） */
-  .quote{font-size:14px}
-  .name-line{font-size:clamp(26px,7.7vw,34px)}
+  .capture{padding-top:16px;position:relative;z-index:2;margin-top:-16svh;background:linear-gradient(to top,var(--bg) 58%,rgba(22,22,22,0))} /* 登録ブロックを写真にオーバーレイして上げる */
+  .quote{font-size:13px;line-height:1.6} /* 13px=引用が2行に収まり登録フォームがSE級の初期表示にも入る */
+  .divider{margin:10px auto}
+  .name-line{font-size:clamp(26px,7.7vw,34px);margin-bottom:6px}
   .role{font-size:12px;letter-spacing:.18em} /* 390px幅で1行に収める（.3emだと345px>342pxで溢れる） */
+  .offer{margin:16px 0 12px}
+  .note{margin-top:8px}
 }
 </style>
 </head>
