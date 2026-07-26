@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://takahiroizumikawa.com/">
 <meta property="og:image" content="https://takahiroizumikawa.com/assets/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<!-- font: Poppins 1書体統一（セリフ・斜体・装飾体禁止） -->
+<!-- font: Poppins 1書体統一（斜体は引用/ステートメントのみ可・装飾体禁止 — Alayaフィードバック2026-07-26） -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -39,22 +39,25 @@ nav.top{
   display:flex;justify-content:space-between;align-items:center;
   padding:clamp(18px,2.6vh,28px) var(--gutter)
 }
-.wordmark{font-size:13px;letter-spacing:.36em;text-transform:lowercase;color:var(--text);font-weight:500}
+/* 左上=機能スロット（©表記）。名前の重複を避けヒーローを主役に（Alaya提案1） */
+.wordmark{font-size:12px;letter-spacing:.14em;color:var(--dim);font-weight:400}
 /* ── side nav (写真右側・縦積み) ── */
 .side-nav{
   position:absolute;right:clamp(48px,7vw,96px);top:clamp(28px,5vh,56px);
   z-index:3;display:flex;flex-direction:column;gap:clamp(14px,2vh,22px);
   text-align:right
 }
+/* navはTitle Case+高コントラスト（Alaya提案2。全小文字はロゴ/ワードマークの法則でUIラベルは対象外） */
 .side-nav a{
-  font-size:14px;letter-spacing:.1em;text-transform:lowercase;
-  color:rgba(245,240,232,.7);text-decoration:none;transition:color .4s;
+  font-size:14px;letter-spacing:.1em;
+  color:rgba(245,240,232,.92);text-decoration:none;transition:color .4s;
   text-shadow:0 1px 6px rgba(0,0,0,.5)
 }
 .side-nav a:hover{color:var(--accent)}
 
 /* ── photo band (全面) ── */
-.band{position:relative;height:85svh;min-height:400px;overflow:hidden}
+/* 62svh: 引用先行シーケンス（Alaya alt layout）の冒頭がファーストビューに入る高さ */
+.band{position:relative;height:62svh;min-height:360px;overflow:hidden}
 .band img{
   width:100%;height:100%;object-fit:cover;
   object-position:center 72%;
@@ -64,13 +67,6 @@ nav.top{
 .band::after{
   content:'';position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg,rgba(22,22,22,.92) 0%,rgba(22,22,22,0) 10%,rgba(22,22,22,.0) 46%,rgba(22,22,22,.65) 76%,rgba(22,22,22,.98) 100%)
-}
-.band .name{
-  position:absolute;z-index:2;
-  left:0;right:0;bottom:clamp(22px,4vh,40px);
-  text-align:center;
-  font-size:clamp(28px,4.6vw,52px);font-weight:500;letter-spacing:.005em;
-  text-shadow:0 1px 10px rgba(0,0,0,.65)
 }
 
 /* photo credit（フッター線の直上・右寄せ） */
@@ -87,13 +83,27 @@ nav.top{
   padding:clamp(40px,7vh,72px) var(--gutter) clamp(28px,4vh,40px);
   text-align:center
 }
-.role{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:20px}
+/* ── hero sequence: 引用 → 赤ライン → 名前 → 肩書き → CTA（Alaya alt layout 2026-07-26） ── */
+.quote{
+  font-size:clamp(15px,1.7vw,19px);font-weight:300;font-style:italic;line-height:1.75;
+  color:rgba(245,240,232,.72);max-width:44ch;margin:0 auto
+}
+.divider{width:26px;height:2px;background:var(--accent);margin:clamp(24px,3.6vh,36px) auto}
+.name-line{
+  font-size:clamp(30px,4.6vw,52px);font-weight:500;letter-spacing:.005em;
+  margin:0 0 10px
+}
+.role{font-size:13px;font-weight:300;letter-spacing:.3em;color:var(--dim)}
 .role b{color:var(--accent);font-weight:500}
 .statement{
   font-size:clamp(13px,1.4vw,15px);font-weight:300;line-height:1.7;
   color:var(--text);max-width:47ch;margin:0 auto 30px
 }
-.offer{font-size:13px;color:var(--dim);margin-bottom:14px;text-transform:uppercase;letter-spacing:.14em}
+.offer{
+  font-size:13px;color:var(--accent);font-weight:500;
+  margin:clamp(36px,5.5vh,56px) 0 16px;
+  text-transform:uppercase;letter-spacing:.22em
+}
 .form{max-width:460px;margin:0 auto;text-align:left}
 .email-row{
   display:flex;
@@ -150,18 +160,20 @@ footer a:hover{color:var(--dim)}
 
 /* ── mobile: 上の余白をトリミングしてバンドを短縮→メーリングリストを初期表示に（写真の下=ピアノは切らない） ── */
 @media (max-width:640px){
-  .band{height:57svh}
-  .band .name{display:none} /* 上部wordmarkと重複するため非表示 */
+  .band{height:44svh}
   .band img{transform:scale(1.18);transform-origin:center bottom} /* 上をトリミングしピアニストを大きく・ピアノ(下)は保持 */
   .side-nav{right:auto;left:var(--gutter);text-align:left} /* スマホは顔(右)を避けナビを左へ。PC(≥641px)は右のまま */
-  .capture{padding-top:clamp(18px,2.8vh,30px);position:relative;z-index:2;margin-top:-22svh;background:linear-gradient(to top,var(--bg) 52%,rgba(22,22,22,0))} /* 登録ブロックを写真にオーバーレイして上げる（メール登録を一目に・可読性の下地） */
+  .capture{padding-top:clamp(18px,2.8vh,30px);position:relative;z-index:2;margin-top:-10svh;background:linear-gradient(to top,var(--bg) 52%,rgba(22,22,22,0))} /* 登録ブロックを写真にオーバーレイして上げる（引用先行シーケンス化でコンテンツが増えたため-22svh→-10svhに調整） */
+  .quote{font-size:14px}
+  .name-line{font-size:clamp(26px,7.7vw,34px)}
+  .role{font-size:12px;letter-spacing:.18em} /* 390px幅で1行に収める（.3emだと345px>342pxで溢れる） */
 }
 </style>
 </head>
 <body>
 
 <nav class="top">
-  <div class="wordmark">takahiro izumikawa</div>
+  <div class="wordmark">© Takahiro Izumikawa</div>
 </nav>
 
 <section class="band">
@@ -171,22 +183,23 @@ footer a:hover{color:var(--dim)}
     loading="eager"
     fetchpriority="high"
   >
-  <h1 class="name">Takahiro Izumikawa</h1>
   <nav class="side-nav">
-    <a href="about.html">about</a>
-    <a href="music.html">music</a>
-    <a href="shows.html">shows</a>
-    <a href="contact.html">contact</a>
+    <a href="about.html">About</a>
+    <a href="music.html">Music</a>
+    <a href="shows.html">Shows</a>
+    <a href="contact.html">Contact</a>
     <a href="https://mubo.taka808.com/about/" target="_blank" rel="noopener">学ぶ ↗&#xFE0E;</a>
   </nav>
 </section>
 
 <section class="capture" id="subscribe">
-  <div id="capture-inner">
-    <p class="role"><b>pianist</b></p>
+  <!-- hero sequence: 引用 → 名前 → 肩書き（Alaya alt layout・引用先行 2026-07-26 HASHIRA承認） -->
+  <p class="quote">&ldquo;Made up in the moment.<br>You don't need to know it&nbsp;&mdash; come to be moved.&rdquo;</p>
+  <div class="divider" aria-hidden="true"></div>
+  <h1 class="name-line">Takahiro Izumikawa</h1>
+  <p class="role">Pianist&nbsp;&nbsp;/&nbsp;&nbsp;Composer&nbsp;&nbsp;/&nbsp;&nbsp;Producer</p>
 
-    <!-- TODO (HASHIRA): 最終コピーに差し替え。ガイドライン: JTBDジョブ × 潜在ニーズ × 32ch以内 -->
-    <p class="statement">Made up in the moment.<br>You don't need to know it&nbsp;— come to be moved.</p>
+  <div id="capture-inner">
     <p class="offer">Join the mailing list</p>
 
     <!-- Kit form（fetch送信＝ページ遷移なし。Kit側の成功画面/広告は出ない）
@@ -265,7 +278,7 @@ function submitWithLang(lang){
   });
 }
 
-// 成功表示: capture 内容を言語別メッセージへ差し替え（LP内で完結）
+// 成功表示: CTA+フォーム部分（#capture-inner）のみ言語別メッセージへ差し替え（引用・名前・肩書きは残る）
 function showSuccess(lang){
   var jp = (lang === 'website JP');
   var h = jp ? 'ありがとうございます' : 'thank you';
@@ -273,7 +286,7 @@ function showSuccess(lang){
     ? '確認のメールをお送りしました。受信箱をご確認ください。'
     : 'Check your email to confirm. New shows and recordings will come straight to you.';
   document.getElementById('capture-inner').innerHTML =
-    '<p class="role"><b>' + h + '</b></p><p class="statement">' + b + '</p>';
+    '<p class="offer">' + h + '</p><p class="statement">' + b + '</p>';
 }
 </script>
 

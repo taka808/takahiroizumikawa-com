@@ -45,9 +45,11 @@ nav.top{
   display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
   padding:clamp(18px,2.6vh,28px) var(--gutter)
 }
-nav.top .wordmark{font-size:13px;letter-spacing:.36em;text-transform:lowercase;color:var(--text);font-weight:500;text-decoration:none}
+/* 左上=機能スロット（©表記・Alaya提案1） */
+nav.top .wordmark{font-size:12px;letter-spacing:.14em;color:var(--dim);font-weight:400;text-decoration:none}
 nav.top .links{display:flex;gap:clamp(14px,2.4vw,26px)}
-nav.top .links a{font-size:12px;letter-spacing:.1em;text-transform:lowercase;color:rgba(245,240,232,.6);text-decoration:none;transition:color .4s}
+/* navはTitle Case+高コントラスト（Alaya提案2） */
+nav.top .links a{font-size:12px;letter-spacing:.1em;color:rgba(245,240,232,.85);text-decoration:none;transition:color .4s}
 nav.top .links a:hover{color:var(--accent)}
 
 main{flex:1;padding:clamp(40px,8vh,88px) var(--gutter)}
@@ -91,12 +93,12 @@ footer a:hover{color:var(--dim)}
 <div class="watermark"></div>
 
 <nav class="top">
-  <a class="wordmark" href="index.html">takahiro izumikawa</a>
+  <a class="wordmark" href="index.html">© Takahiro Izumikawa</a>
   <div class="links">
-    <a href="about.html">about</a>
-    <a href="music.html">music</a>
-    <a href="shows.html">shows</a>
-    <a href="contact.html" aria-current="page">contact</a>
+    <a href="about.html">About</a>
+    <a href="music.html">Music</a>
+    <a href="shows.html">Shows</a>
+    <a href="contact.html" aria-current="page">Contact</a>
     <a href="https://mubo.taka808.com/about/" target="_blank" rel="noopener">学ぶ ↗&#xFE0E;</a>
   </div>
 </nav>
