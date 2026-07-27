@@ -70,39 +70,35 @@ body::before{
 }
 .side-nav a:hover{color:var(--accent)}
 
-/* ── scrim box（名前・引用の後ろの半透明ダーク・可読性） ── */
-.scrim{
-  background:rgba(15,15,15,.46);
-  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
-  padding:clamp(16px,2.4vh,28px) clamp(26px,4vw,56px);
-  max-width:760px;margin:0 auto;text-align:center
-}
+/* スクリム箱は廃止（mockupの黒四角はレイアウト参照マークでデザインではない・2026-07-27 HASHIRA）。
+   文字は写真に直接。可読性は .hero::after 暗幕グラデ + 各テキストの text-shadow で担保 */
 
-/* name block（左上・左寄せ大きく。©ワードマークの跡地） */
+/* name block（左上・左寄せ。©ワードマークの跡地。箱なし＝写真に直接） */
 .name-block{align-self:flex-start;margin:0;text-align:left;max-width:min(92vw,880px)}
 .name-line{
-  font-size:clamp(32px,5vw,60px);font-weight:500;letter-spacing:.005em;
-  margin:0 0 8px;line-height:1.05;text-shadow:0 2px 20px rgba(0,0,0,.4)
+  font-size:clamp(30px,4.6vw,52px);font-weight:500;letter-spacing:.005em;
+  margin:0 0 10px;line-height:1.05;text-shadow:0 2px 16px rgba(0,0,0,.85)
 }
-.role{font-size:13px;font-weight:300;letter-spacing:.3em;color:rgba(245,240,232,.78)}
+/* 肩書きは名前ブロック(=名前幅に収縮)内で中央寄せ＝名前の中心に揃う（2026-07-27 HASHIRA） */
+.role{font-size:13px;font-weight:300;letter-spacing:.3em;color:rgba(245,240,232,.72);text-shadow:0 1px 8px rgba(0,0,0,.75);text-align:center}
 .role b{color:var(--accent);font-weight:500}
 
-/* quote block: PC=顔を避け下部（Join the mailing list の直上）へ。margin-top:auto で下寄せ、left/right auto(.scrim由来)で横中央を維持 */
-.quote-block{margin-top:auto;margin-bottom:clamp(22px,3.4vh,42px)}
+/* quote block: 箱なし・写真に直接。PC=顔を避け下部（Join the mailing list の直上）へ margin-top:auto で下寄せ、left/right auto で横中央 */
+.quote-block{margin:auto auto clamp(22px,3.4vh,42px);max-width:760px;text-align:center}
 .quote{
   font-size:clamp(16px,1.9vw,21px);font-weight:300;font-style:italic;line-height:1.7;
-  color:var(--text);max-width:44ch;margin:0 auto;text-shadow:0 2px 18px rgba(0,0,0,.5)
+  color:var(--text);max-width:44ch;margin:0 auto;text-shadow:0 1px 3px rgba(0,0,0,.9),0 2px 20px rgba(0,0,0,.75)
 }
 .divider{width:34px;height:2px;background:var(--accent);margin:clamp(18px,2.4vh,26px) auto 0}
 
-/* form block（下） */
-.form-block{text-align:center}
+/* form block: PC=人物(中央右)を避け左下へ左寄せ（2026-07-27 HASHIRA「人物と被って見づらい」）。モバイルは中央下（後述） */
+.form-block{text-align:left;align-self:flex-start}
 .offer{
   font-size:13px;color:var(--accent);font-weight:500;
   margin:0 0 14px;
   text-transform:uppercase;letter-spacing:.22em;text-shadow:0 1px 8px rgba(0,0,0,.5)
 }
-.form{max-width:460px;margin:0 auto;text-align:left}
+.form{max-width:460px;margin:0;text-align:left}
 .email-row{
   display:flex;
   border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
@@ -123,7 +119,7 @@ body::before{
   padding:13px 0;cursor:pointer;transition:border-color .4s,color .4s,background .4s
 }
 .lang-btn:hover{border-color:var(--accent);color:var(--accent)}
-.note{margin-top:12px;font-size:11px;color:rgba(245,240,232,.55);text-align:center;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.note{margin-top:12px;font-size:11px;color:rgba(245,240,232,.55);text-align:left;text-shadow:0 1px 6px rgba(0,0,0,.5)}
 /* form error / submitting */
 .form-error{margin:12px 0 0;font-size:12px;letter-spacing:.04em;color:#e08a8a;text-align:center}
 .form-error:empty{display:none}
@@ -149,17 +145,21 @@ footer{
   border-top:1px solid var(--rule);
   flex-wrap:wrap
 }
+/* SNSはモノクロ・ロゴアイコン（会社色=赤単一/ミニマル準拠。IGグラデ・YT赤塗りは使わない）。淡色→ホバーで赤（赤は最小面積・ホバーのみ・ガイドライン§2.1準拠） */
 footer a{
-  font-size:10px;letter-spacing:.28em;text-transform:lowercase;
-  color:var(--faint);text-decoration:none;transition:color .4s
+  color:var(--dim);text-decoration:none;transition:color .4s;
+  display:inline-flex;align-items:center;justify-content:center
 }
-footer a:hover{color:var(--dim)}
+footer a:hover{color:var(--accent)}
+footer a svg{width:23px;height:23px;fill:currentColor;display:block}
 
 /* ── mobile: 全面写真の上にテキストを重ねたまま1画面に収める ── */
 @media (max-width:640px){
-  /* モバイルは引用を中央のまま（mockup 12628）＝PCの下寄せグルーピングを解除 */
-  .hero{padding:clamp(26px,4.5vh,40px) var(--gutter) clamp(22px,3vh,32px);justify-content:space-between}
-  .quote-block{margin-top:0;margin-bottom:0}
+  /* モバイル: 引用を「Join the mailing list」の直上（下部）へ＝quote margin-top:autoで引用+フォームを下部にまとめる。これで学ぶとも完全に離れる（2026-07-27 HASHIRA「引用はJoin直上」） */
+  .hero{padding:clamp(26px,4.5vh,40px) var(--gutter) clamp(22px,3vh,32px);justify-content:flex-start}
+  .quote-block{margin:auto auto clamp(16px,2.4vh,26px)}
+  .form-block{align-self:center;text-align:center}
+  .form{margin:0 auto}
   .hero-bg{object-position:center 58%}
   /* スマホ: 名前=左上大きく → その直下に縦積みナビを左寄せ（mockup 12628） */
   .side-nav{
@@ -169,13 +169,13 @@ footer a:hover{color:var(--dim)}
     gap:clamp(11px,1.7vh,17px)
   }
   .side-nav a{font-size:13px;letter-spacing:.08em}
-  .scrim{padding:clamp(12px,1.6vh,16px) clamp(16px,4vw,22px);max-width:100%}
+  .quote-block{max-width:100%}
   .name-line{font-size:clamp(22px,6.6vw,30px);line-height:1.1}
   .role{font-size:10px;letter-spacing:.14em}
   .quote{font-size:13px;line-height:1.62}
   .divider{margin:12px auto 0}
   .offer{margin-bottom:12px}
-  .note{margin-top:8px}
+  .note{margin-top:8px;text-align:center}
 }
 </style>
 </head>
@@ -199,13 +199,13 @@ footer a:hover{color:var(--dim)}
   </nav>
 
   <!-- ① 名前ブロック（上） -->
-  <div class="name-block scrim">
+  <div class="name-block">
     <h1 class="name-line">Takahiro Izumikawa</h1>
     <p class="role">Pianist&nbsp;&nbsp;/&nbsp;&nbsp;Composer&nbsp;&nbsp;/&nbsp;&nbsp;Producer</p>
   </div>
 
   <!-- ② 引用ブロック（中央） -->
-  <div class="quote-block scrim">
+  <div class="quote-block">
     <p class="quote">&ldquo;Made up in the moment.<br>You don't need to know it&nbsp;&mdash; come to be moved.&rdquo;</p>
     <div class="divider" aria-hidden="true"></div>
   </div>
@@ -238,10 +238,12 @@ footer a:hover{color:var(--dim)}
 
 <p class="credit">photo · Stephanie Han</p>
 <footer>
-  <!-- TODO (HASHIRA): contact先メールアドレスを確定して mailto: に更新 -->
-  <a href="contact.html">contact</a>
-  <a href="https://www.instagram.com/takahiro_izumikawa/" target="_blank" rel="noopener">instagram&nbsp;↗&#xFE0E;</a>
-  <a href="https://mubo.taka808.com/about/" target="_blank" rel="noopener">mubo&nbsp;↗&#xFE0E;</a>
+  <a href="https://www.instagram.com/taka808/" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+  </a>
+  <a href="https://www.youtube.com/channel/UCv0JvLmONVRgBrc9qu9AZrA" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12z"/></svg>
+  </a>
 </footer>
 
 <script>
