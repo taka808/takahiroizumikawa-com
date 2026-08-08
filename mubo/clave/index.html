@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>クラーベ・パルス早見表</title>
+<style>
+:root{
+  --paper:#F7F5F0; --ink:#26282C; --sub:#6B6E75;
+  --withbg:#E2EFE5; --counterbg:#F6E7DB;
+  --with:#2F7D4C; --counter:#C2542A;
+  --blue:#3D5A8F; --rust:#A8542F;
+  --line:#D8D5CD; --beatline:#B9B5AB;
+  --cell:#FFFFFF; --accent:#B5462A;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#16181C; --ink:#E8E6E1; --sub:#9A9DA5;
+    --withbg:#1D2E23; --counterbg:#33241B;
+    --with:#74C393; --counter:#E08B63;
+    --blue:#7C9CD6; --rust:#D08760;
+    --line:#33363C; --beatline:#4A4E56;
+    --cell:#1D2025; --accent:#E08B63;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#16181C; --ink:#E8E6E1; --sub:#9A9DA5;
+  --withbg:#1D2E23; --counterbg:#33241B;
+  --with:#74C393; --counter:#E08B63;
+  --blue:#7C9CD6; --rust:#D08760;
+  --line:#33363C; --beatline:#4A4E56;
+  --cell:#1D2025; --accent:#E08B63;
+}
+:root[data-theme="light"]{
+  --paper:#F7F5F0; --ink:#26282C; --sub:#6B6E75;
+  --withbg:#E2EFE5; --counterbg:#F6E7DB;
+  --with:#2F7D4C; --counter:#C2542A;
+  --blue:#3D5A8F; --rust:#A8542F;
+  --line:#D8D5CD; --beatline:#B9B5AB;
+  --cell:#FFFFFF; --accent:#B5462A;
+}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+  line-height:1.6; margin:0; padding:2.5rem 1.25rem 4rem;
+}
+main{max-width:1060px; margin:0 auto;}
+h1{
+  font-family:"Avenir Next",system-ui,sans-serif;
+  font-size:1.55rem; font-weight:600; letter-spacing:.01em;
+  margin:0 0 .3rem; text-wrap:balance;
+}
+.lede{color:var(--sub); font-size:.92rem; margin:0 0 2.2rem;}
+h2{
+  font-size:1.02rem; font-weight:600; margin:2.6rem 0 .9rem;
+  padding-bottom:.35rem; border-bottom:1px solid var(--line);
+}
+h2 small{color:var(--sub); font-weight:400; font-size:.8rem; margin-left:.6em;}
+p.note{color:var(--sub); font-size:.85rem; margin:.7rem 0 0; max-width:62rem;}
+p.note b{color:var(--ink);}
+.scroll{overflow-x:auto;}
+table.matrix{
+  border-collapse:collapse; table-layout:fixed;
+  font-variant-numeric:tabular-nums; width:100%; min-width:1000px;
+}
+caption{caption-side:bottom; text-align:left; color:var(--sub); font-size:.8rem; padding-top:.6rem;}
+th,td{border:1px solid var(--line); text-align:center; padding:.4rem .1rem; font-size:.84rem; overflow:hidden;}
+th.rowlabel{
+  text-align:left; padding-left:.7rem; padding-right:.7rem;
+  font-weight:600; background:var(--cell); white-space:nowrap;
+}
+th.rowlabel span{display:block; font-weight:400; font-size:.7rem; color:var(--sub); line-height:1.45;}
+thead th{background:var(--cell); font-weight:600;}
+thead .beat th{font-size:.9rem;}
+tr.sides th{font-size:.82rem; letter-spacing:.06em; color:var(--sub); background:var(--cell);}
+tr.pulse th{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.8rem; font-weight:500; color:var(--sub);
+  background:var(--cell);
+}
+tr.pulse th.down{color:var(--ink); font-weight:700;}
+td.wcell{background:var(--withbg);}
+td.ccell{background:var(--counterbg);}
+td.hit{font-size:1.02rem; line-height:1;}
+.b2{border-left:2px solid var(--beatline);}
+.mid{border-left:3px double var(--ink);}
+.dot{color:var(--ink);}
+.ring{color:var(--sub); font-weight:700; font-size:.85em;}
+.bombo{color:var(--blue); font-weight:700; font-size:.78rem;}
+.ponche{color:var(--rust); font-weight:700; font-size:.78rem;}
+.fk{color:var(--with); font-weight:700;}
+.fq{color:var(--counter); font-weight:700;}
+.fb{color:var(--counter);}
+.fd{color:var(--blue); font-weight:700;}
+.fe{color:var(--sub); opacity:.75; font-weight:700;}
+table.cellfig{border-collapse:collapse; font-variant-numeric:tabular-nums; margin-top:.4rem; min-width:560px;}
+table.cellfig th, table.cellfig td{border:1px solid var(--line); text-align:center; padding:.5rem .75rem; font-size:.92rem;}
+table.cellfig th.rowlabel{text-align:left; font-weight:600; white-space:nowrap; background:var(--cell);}
+table.cellfig th.rowlabel span{font-weight:400; font-size:.72rem; color:var(--sub); margin-left:.4em;}
+table.cellfig thead th{background:var(--cell); font-family:ui-monospace,Menlo,monospace; color:var(--sub); font-weight:600;}
+table.cellfig thead th.dn{color:var(--ink); font-weight:700;}
+table.cellfig td.wcell span{color:var(--ink); font-weight:700;}
+table.cellfig td.ccell span{color:var(--counter); font-weight:700;}
+tr.block th{
+  text-align:left; background:var(--paper); border-left:none; border-right:none;
+  padding:.9rem .2rem .35rem; font-size:.92rem;
+}
+tr.block th small{color:var(--sub); font-weight:400; margin-left:.6em;}
+tr.gdiv th{text-align:left; background:var(--cell); border-left:none; border-right:none; border-top:2px solid var(--beatline); padding:.7rem .2rem .3rem 1.4rem; font-size:.84rem; font-weight:700; color:var(--ink);}
+tr.gdiv th b{color:var(--counter); margin-right:.35em;}
+tr.gdiv th small{color:var(--sub); font-weight:400; margin-left:.6em; font-size:.72rem;}
+tr.ggap td{height:.5rem; padding:0; background:var(--paper); border:none;}
+tr.blockgap td{height:1rem; padding:0; background:var(--paper); border:none;}
+tr.ground th.rowlabel{font-weight:500;}
+.legend{
+  display:flex; flex-wrap:wrap; gap:1.1rem; align-items:center;
+  font-size:.82rem; color:var(--sub); margin-top:1rem;
+}
+.legend .sw{display:inline-block; width:.95em; height:.95em; border:1px solid var(--line); vertical-align:-.12em; margin-right:.4em;}
+.legend .sw.wc{background:var(--withbg);}
+.legend .sw.cc{background:var(--counterbg);}
+.legend b{color:var(--ink); font-weight:600;}
+.defs{
+  display:grid; grid-template-columns:auto 1fr; gap:.35rem 1.1rem;
+  font-size:.9rem; max-width:42rem;
+}
+.defs dt{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-weight:700; text-align:center; background:var(--cell);
+  border:1px solid var(--line); border-radius:3px; padding:0 .55em;
+}
+.defs dd{margin:0;}
+.defs dd small{color:var(--sub);}
+
+
+/* ===== レスポンシブ切替 ===== */
+.view-phone{display:none;}
+@media (max-width:720px){
+  body{padding:1.1rem .8rem 3rem;}
+  h1{font-size:1.25rem;}
+  main{max-width:560px;}
+  .view-desktop{display:none;}
+  .view-phone{display:block;}
+}
+/* ===== スマホビュー（縦積み） ===== */
+.view-phone .key{font-size:.8rem; color:var(--sub); background:var(--cell); border:1px solid var(--line); border-radius:8px; padding:.6rem .7rem; margin:.4rem 0 1.2rem;}
+.view-phone .key b{color:var(--ink);}
+.view-phone .blockhd{font-size:.98rem; font-weight:700; margin:1.4rem 0 .5rem; padding-bottom:.25rem; border-bottom:2px solid var(--beatline);}
+.view-phone .blockhd span{color:var(--sub); font-weight:400; font-size:.72rem; margin-left:.5em;}
+.view-phone .blockspace{height:1.4rem;}
+.view-phone .sideline{display:flex; font-size:.66rem; color:var(--sub); margin-bottom:.15rem;}
+.view-phone .sideline span{flex:1; text-align:center;}
+.view-phone .sideline span:last-child{border-left:2px solid var(--ink);}
+.view-phone .gdiv{font-size:.82rem; font-weight:700; margin:1rem 0 .35rem; color:var(--ink);}
+.view-phone .gdiv b{color:var(--accent); margin-right:.3em;}
+.view-phone .prow{margin:0 0 .5rem;}
+.view-phone .plabel{font-size:.82rem; font-weight:600; margin-bottom:.12rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.view-phone .strip{display:grid; gap:0; border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+.view-phone .strip.s12{grid-template-columns:repeat(12,1fr);}
+.view-phone .strip.s16{grid-template-columns:repeat(16,1fr);}
+.view-phone .strip .c{min-height:1.85em; display:flex; align-items:center; justify-content:center; font-size:.9rem; line-height:1; border-right:1px solid var(--line); overflow:hidden;}
+.view-phone .strip .c:last-child{border-right:none;}
+.view-phone .strip .c.bs{border-left:1px solid var(--beatline);}
+.view-phone .strip .c.md{border-left:2px solid var(--ink);}
+.view-phone .strip .c.w{background:var(--withbg);}
+.view-phone .strip .c.kk{background:var(--counterbg);}
+.view-phone .strip .hd{background:var(--cell); color:var(--sub); font-size:.68rem; font-family:ui-monospace,Menlo,monospace; min-height:1.5em;}
+.view-phone .strip .hd.bn{color:var(--ink); font-weight:800;}
+.view-phone .legend{display:block; font-size:.74rem; color:var(--sub); margin-top:1.4rem; border-top:1px solid var(--line); padding-top:.8rem;}
+.view-phone .legend div{margin:.2rem 0;}
+.view-phone .legend .sw{display:inline-block; width:.85em; height:.85em; border:1px solid var(--line); vertical-align:-.1em; margin-right:.35em; border-radius:2px;}
+.view-phone .sw.w{background:var(--withbg);}
+.view-phone .sw.k{background:var(--counterbg);}
+</style>
+</head>
+<body>
+<main>
+<h1>クラーベ・パルス早見表</h1>
+<p class="lede">12/8と4/4のクラーベ系パターンを一望する早見表。各パターンをセル（2拍）単位で<b style="color:var(--with)">ウィズ・クラーベ（緑）</b>／<b style="color:var(--counter)">カウンター・クラーベ（橙）</b>に色分け。<span style="opacity:.7">（画面幅で表示が自動で切り替わります）</span></p>
+<div class="view-desktop">
+<h2>記号の読み方</h2>
+<dl class="defs">
+  <dt>1 2 3 4</dt><dd>メインビート（拍の頭）<small>— 両構造で共通</small></dd>
+  <dt>12/8</dt><dd>1拍 = 3パルス: <b>1・+・a</b></dd>
+  <dt>4/4</dt><dd>1拍 = 4パルス: <b>1・e・+・a</b></dd>
+</dl>
+
+<div class="scroll">
+<table class="matrix">
+  <colgroup><col style="width:20em"><col span="48"></colgroup>
+  <thead>
+    <tr class="sides">
+      <th class="rowlabel"></th>
+      <th colspan="24">3サイド（緊張）</th>
+      <th colspan="24" class="mid">2サイド（解決）</th>
+    </tr>
+    <tr class="beat">
+      <th class="rowlabel"></th>
+      <th colspan="12">1拍目</th>
+      <th colspan="12" class="b2">2拍目</th>
+      <th colspan="12" class="mid">3拍目</th>
+      <th colspan="12" class="b2">4拍目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="block"><th colspan="49">12/8 基本形<small>1拍の箱を3分割（1・+・a）</small></th></tr>
+<tr class="pulse">
+      <th class="rowlabel"></th>
+      <th colspan="4" class="down">1</th>
+      <th colspan="4">+</th>
+      <th colspan="4">a</th>
+      <th colspan="4" class="down b2">2</th>
+      <th colspan="4">+</th>
+      <th colspan="4">a</th>
+      <th colspan="4" class="down mid">3</th>
+      <th colspan="4">+</th>
+      <th colspan="4">a</th>
+      <th colspan="4" class="down b2">4</th>
+      <th colspan="4">+</th>
+      <th colspan="4">a</th>
+    </tr>
+    <tr class="gdiv"><th colspan="49"><b>①</b> リズムの基礎</th></tr>
+    <tr class="ground">
+      <th class="rowlabel">メインビート</th>
+      <td colspan="4" class="hit"><span class="ring">○</span></td>
+      <td colspan="4"></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="b2 hit"><span class="ring">○</span></td>
+      <td colspan="4"></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="mid hit"><span class="ring">○</span></td>
+      <td colspan="4"></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="b2 hit"><span class="ring">○</span></td>
+      <td colspan="4"></td>
+      <td colspan="4"></td>
+    </tr>
+    <tr class="ggap"><td colspan="49"></td></tr>
+    <tr>
+      <th class="rowlabel">+のオフビート</th>
+      <td colspan="4"></td>
+      <td colspan="4" class="hit"><span class="dot">●</span></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="b2"></td>
+      <td colspan="4" class="hit"><span class="dot">●</span></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="mid"></td>
+      <td colspan="4" class="hit"><span class="dot">●</span></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="b2"></td>
+      <td colspan="4" class="hit"><span class="dot">●</span></td>
+      <td colspan="4"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">aのオフビート</th>
+      <td colspan="4"></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2"></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="hit"><span class="dot">●</span></td>
+      <td colspan="4" class="mid"></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2"></td>
+      <td colspan="4"></td>
+      <td colspan="4" class="hit"><span class="dot">●</span></td>
+    </tr>
+    <tr class="gdiv"><th colspan="49"><b>②</b> クロスリズム<small>2に3をぶつける</small></th></tr>
+    <tr>
+      <th class="rowlabel">6ビートサイクル（セカンダリービート）</th>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2 wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="mid ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2 ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">ボンボ／ポンチェ</th>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="bombo">ボ₁</span></td>
+      <td colspan="4" class="b2 wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="ponche">ポ₁</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="mid ccell"></td>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="bombo">ボ₂</span></td>
+      <td colspan="4" class="b2 ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="ponche">ポ₂</span></td>
+      <td colspan="4" class="ccell"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">3:2コンポジット</th>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="mid ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2 ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">オフビート6</th>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="b2 ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="mid wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+    </tr>
+    <tr class="gdiv"><th colspan="49"><b>③</b> 実践ガイドライン<small>キーパターン</small></th></tr>
+    <tr>
+      <th class="rowlabel">スタンダードパターン</th>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2 wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="mid wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">ソン・クラーベ</th>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2 wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="mid wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">ルンバ・クラーベ</th>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2 wcell"></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="mid wcell"></td>
+      <td colspan="4" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="wcell"></td>
+      <td colspan="4" class="wcell"></td>
+    </tr>
+    <tr class="gdiv"><th colspan="49"><b>④</b> リード楽器<small>カウンタークラーベ</small></th></tr>
+    <tr>
+      <th class="rowlabel">クイント（コロンビア）</th>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="b2 ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="mid ccell"></td>
+      <td colspan="4" class="ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="b2 ccell"></td>
+      <td colspan="4" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="4" class="ccell"></td>
+    </tr>
+
+    <tr class="blockgap"><td colspan="49"></td></tr>
+    <tr class="block"><th colspan="49">4/4（変化形）<small>1拍の箱を4分割（1・e・+・a）</small></th></tr>
+<tr class="pulse">
+      <th class="rowlabel"></th>
+      <th colspan="3" class="down">1</th>
+      <th colspan="3">e</th>
+      <th colspan="3">+</th>
+      <th colspan="3">a</th>
+      <th colspan="3" class="down b2">2</th>
+      <th colspan="3">e</th>
+      <th colspan="3">+</th>
+      <th colspan="3">a</th>
+      <th colspan="3" class="down mid">3</th>
+      <th colspan="3">e</th>
+      <th colspan="3">+</th>
+      <th colspan="3">a</th>
+      <th colspan="3" class="down b2">4</th>
+      <th colspan="3">e</th>
+      <th colspan="3">+</th>
+      <th colspan="3">a</th>
+    </tr>
+    <tr class="gdiv"><th colspan="49"><b>①</b> リズムの基礎</th></tr>
+    <tr class="ground">
+      <th class="rowlabel">メインビート</th>
+      <td colspan="3" class="hit"><span class="ring">○</span></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="b2 hit"><span class="ring">○</span></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="mid hit"><span class="ring">○</span></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="b2 hit"><span class="ring">○</span></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+    </tr>
+    <tr class="ground">
+      <th class="rowlabel">通常の4分音符カウント</th>
+      <td colspan="3" class="hit"><span class="ring">1</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="ring">2</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="b2 hit"><span class="ring">3</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="ring">4</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="mid hit"><span class="ring">1</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="ring">2</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="b2 hit"><span class="ring">3</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="ring">4</span></td>
+      <td colspan="3"></td>
+    </tr>
+    <tr class="ggap"><td colspan="49"></td></tr>
+    <tr>
+      <th class="rowlabel">eのオフビート</th>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="b2"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="mid"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="b2"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">+のオフビート</th>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="b2"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="mid"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="b2"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">aのオフビート</th>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2"></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3" class="mid"></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2"></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td colspan="3" class="hit"><span class="dot">●</span></td>
+    </tr>
+    <tr class="gdiv"><th colspan="49"><b>②</b> クロスリズム<small>2に3をぶつける</small></th></tr>
+    <tr>
+      <th class="rowlabel">トレシージョ</th>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="mid ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">ボンボ／ポンチェ</th>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="bombo">ボ₁</span></td>
+      <td colspan="3" class="b2 wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="ponche">ポ₁</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="mid ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="bombo">ボ₂</span></td>
+      <td colspan="3" class="b2 ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="ponche">ポ₂</span></td>
+      <td colspan="3" class="ccell"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">ハバネラ／3:2コンポジット</th>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="mid ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">変位トレシージョ</th>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="b2 ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="mid wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">オンビート・エイト</th>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="b2 ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="mid wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">オフビート・エイト</th>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="mid ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+    </tr>
+    <tr class="gdiv"><th colspan="49"><b>③</b> 実践ガイドライン<small>キーパターン</small></th></tr>
+    <tr>
+      <th class="rowlabel">スタンダードパターン</th>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="mid wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">ソン・クラーベ</th>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="mid wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+    </tr>
+    <tr>
+      <th class="rowlabel">ルンバ・クラーベ</th>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="mid wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="b2 wcell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+      <td colspan="3" class="wcell"></td>
+    </tr>
+    <tr class="gdiv"><th colspan="49"><b>④</b> リード楽器<small>カウンタークラーベ</small></th></tr>
+    <tr>
+      <th class="rowlabel">クイント（グアグアンコー）</th>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="b2 ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="mid ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="b2 ccell"></td>
+      <td colspan="3" class="ccell hit"><span class="dot">●</span></td>
+      <td colspan="3" class="ccell"></td>
+      <td colspan="3" class="ccell"></td>
+    </tr>
+
+    <tr class="block"><th colspan="49">まとめ — 16マスの機能マップ<small>3-2ソン・クラーベ＋クイント（各打点の直後）＋反対サイドからの借用＋両用点で、16マスすべてに役割がある</small></th></tr>
+    <tr>
+      <th class="rowlabel">全マスの機能</th>
+      <td colspan="3" class="hit"><span class="fk">●</span></td>
+      <td colspan="3" class="hit"><span class="fq">▲</span></td>
+      <td colspan="3" class="hit"><span class="fb">■</span></td>
+      <td colspan="3" class="hit"><span class="fk">●</span></td>
+      <td colspan="3" class="b2 hit"><span class="fq">▲</span><span class="fb">■</span></td>
+      <td colspan="3" class="hit"><span class="fe">×</span></td>
+      <td colspan="3" class="hit"><span class="fk">●</span></td>
+      <td colspan="3" class="hit"><span class="fq">▲</span><span class="fb">■</span><span class="fd">◆</span></td>
+      <td colspan="3" class="mid hit"><span class="fb">■</span></td>
+      <td colspan="3" class="hit"><span class="fe">×</span></td>
+      <td colspan="3" class="hit"><span class="fk">●</span></td>
+      <td colspan="3" class="hit"><span class="fq">▲</span><span class="fb">■</span></td>
+      <td colspan="3" class="b2 hit"><span class="fk">●</span></td>
+      <td colspan="3" class="hit"><span class="fq">▲</span></td>
+      <td colspan="3" class="hit"><span class="fb">■</span></td>
+      <td colspan="3" class="hit"><span class="fd">◆</span></td>
+    </tr>
+  </tbody>
+  
+</table>
+</div>
+<div class="legend">
+  <span><span class="sw wc"></span><b>ウィズ・クラーベ</b>のセル</span>
+  <span><span class="sw cc"></span><b>カウンター・クラーベ</b>のセル</span>
+  <span>無色 = 土台・素材</span>
+  <span>○・数字 = 基準ビート ／ ● = 打点 ／ <span class="bombo">ボ</span>=ボンボ・<span class="ponche">ポ</span>=ポンチェ</span>
+  <span>機能マップ: <span class="fk">●</span>クラーベ ／ <span class="fq">▲</span>クイント＝クラーベの直後 ／ <span class="fb">■</span>借用カウンター ／ <span class="fd">◆</span>両用 ／ <span class="fe">×</span>空き</span>
+</div>
+</div>
+<div class="view-phone">
+<div class="key"><b>記号</b> — 数字＝拍アタマ／+・a・e＝拍の中の位置。●＝打点、○＝基準ビート、<span class="bombo">ボ</span>＝ボンボ・<span class="ponche">ポ</span>＝ポンチェ。各帯は左＝1拍目〜、太い縦線が3サイド／2サイドの境界。</div>
+<div class="blockhd">12/8 基本形<span>1拍を3分割</span></div>
+<div class="sideline"><span>3サイド（緊張）</span><span>2サイド（解決）</span></div>
+<div class="strip s12"><div class="c bs hd bn">1</div><div class="c hd">+</div><div class="c hd">a</div><div class="c bs hd bn">2</div><div class="c hd">+</div><div class="c hd">a</div><div class="c bs md hd bn">3</div><div class="c hd">+</div><div class="c hd">a</div><div class="c bs hd bn">4</div><div class="c hd">+</div><div class="c hd">a</div></div>
+<div class="gdiv"><b>①</b> リズムの基礎</div>
+<div class="prow"><div class="plabel">メインビート</div><div class="strip s12"><div class="c bs"><span class="ring">○</span></div><div class="c"></div><div class="c"></div><div class="c bs"><span class="ring">○</span></div><div class="c"></div><div class="c"></div><div class="c bs md"><span class="ring">○</span></div><div class="c"></div><div class="c"></div><div class="c bs"><span class="ring">○</span></div><div class="c"></div><div class="c"></div></div></div>
+<div class="prow"><div class="plabel">+のオフビート</div><div class="strip s12"><div class="c bs"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c bs"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c bs md"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c bs"></div><div class="c"><span class="dot">●</span></div><div class="c"></div></div></div>
+<div class="prow"><div class="plabel">aのオフビート</div><div class="strip s12"><div class="c bs"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c bs"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c bs md"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c bs"></div><div class="c"></div><div class="c"><span class="dot">●</span></div></div></div>
+<div class="gdiv"><b>②</b> クロスリズム　2に3をぶつける</div>
+<div class="prow"><div class="plabel">6ビートサイクル（セカンダリービート）</div><div class="strip s12"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs md kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div></div></div>
+<div class="prow"><div class="plabel">ボンボ／ポンチェ</div><div class="strip s12"><div class="c bs w"></div><div class="c w"></div><div class="c w"><span class="bombo">ボ₁</span></div><div class="c bs w"></div><div class="c w"><span class="ponche">ポ₁</span></div><div class="c w"></div><div class="c bs md kk"></div><div class="c kk"></div><div class="c kk"><span class="bombo">ボ₂</span></div><div class="c bs kk"></div><div class="c kk"><span class="ponche">ポ₂</span></div><div class="c kk"></div></div></div>
+<div class="prow"><div class="plabel">3:2コンポジット</div><div class="strip s12"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs md kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs kk"><span class="dot">●</span></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div></div></div>
+<div class="prow"><div class="plabel">オフビート6</div><div class="strip s12"><div class="c bs kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c bs kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs md w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div></div></div>
+<div class="gdiv"><b>③</b> 実践ガイドライン　キーパターン</div>
+<div class="prow"><div class="plabel">スタンダードパターン</div><div class="strip s12"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"><span class="dot">●</span></div><div class="c bs md w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div></div></div>
+<div class="prow"><div class="plabel">ソン・クラーベ</div><div class="strip s12"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs md w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div></div></div>
+<div class="prow"><div class="plabel">ルンバ・クラーベ</div><div class="strip s12"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs md w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div></div></div>
+<div class="gdiv"><b>④</b> リード楽器　カウンタークラーベ</div>
+<div class="prow"><div class="plabel">クイント（コロンビア）</div><div class="strip s12"><div class="c bs kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c bs kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs md kk"></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div></div></div><div class="blockspace"></div><div class="blockhd">4/4（変化形）<span>1拍を4分割</span></div>
+<div class="sideline"><span>3サイド（緊張）</span><span>2サイド（解決）</span></div>
+<div class="strip s16"><div class="c bs hd bn">1</div><div class="c hd">e</div><div class="c hd">+</div><div class="c hd">a</div><div class="c bs hd bn">2</div><div class="c hd">e</div><div class="c hd">+</div><div class="c hd">a</div><div class="c bs md hd bn">3</div><div class="c hd">e</div><div class="c hd">+</div><div class="c hd">a</div><div class="c bs hd bn">4</div><div class="c hd">e</div><div class="c hd">+</div><div class="c hd">a</div></div>
+<div class="gdiv"><b>①</b> リズムの基礎</div>
+<div class="prow"><div class="plabel">メインビート</div><div class="strip s16"><div class="c bs"><span class="ring">○</span></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c bs"><span class="ring">○</span></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c bs md"><span class="ring">○</span></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c bs"><span class="ring">○</span></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+<div class="prow"><div class="plabel">通常の4分音符カウント</div><div class="strip s16"><div class="c bs"><span class="ring">1</span></div><div class="c"></div><div class="c"><span class="ring">2</span></div><div class="c"></div><div class="c bs"><span class="ring">3</span></div><div class="c"></div><div class="c"><span class="ring">4</span></div><div class="c"></div><div class="c bs md"><span class="ring">1</span></div><div class="c"></div><div class="c"><span class="ring">2</span></div><div class="c"></div><div class="c bs"><span class="ring">3</span></div><div class="c"></div><div class="c"><span class="ring">4</span></div><div class="c"></div></div></div>
+<div class="prow"><div class="plabel">eのオフビート</div><div class="strip s16"><div class="c bs"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c"></div><div class="c bs"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c"></div><div class="c bs md"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c"></div><div class="c bs"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c"></div></div></div>
+<div class="prow"><div class="plabel">+のオフビート</div><div class="strip s16"><div class="c bs"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c bs"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c bs md"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c"></div><div class="c bs"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c"></div></div></div>
+<div class="prow"><div class="plabel">aのオフビート</div><div class="strip s16"><div class="c bs"></div><div class="c"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c bs"></div><div class="c"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c bs md"></div><div class="c"></div><div class="c"></div><div class="c"><span class="dot">●</span></div><div class="c bs"></div><div class="c"></div><div class="c"></div><div class="c"><span class="dot">●</span></div></div></div>
+<div class="gdiv"><b>②</b> クロスリズム　2に3をぶつける</div>
+<div class="prow"><div class="plabel">トレシージョ</div><div class="strip s16"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs md kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs kk"></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div></div></div>
+<div class="prow"><div class="plabel">ボンボ／ポンチェ</div><div class="strip s16"><div class="c bs w"></div><div class="c w"></div><div class="c w"></div><div class="c w"><span class="bombo">ボ₁</span></div><div class="c bs w"></div><div class="c w"></div><div class="c w"><span class="ponche">ポ₁</span></div><div class="c w"></div><div class="c bs md kk"></div><div class="c kk"></div><div class="c kk"></div><div class="c kk"><span class="bombo">ボ₂</span></div><div class="c bs kk"></div><div class="c kk"></div><div class="c kk"><span class="ponche">ポ₂</span></div><div class="c kk"></div></div></div>
+<div class="prow"><div class="plabel">ハバネラ／3:2コンポジット</div><div class="strip s16"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs md kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div></div></div>
+<div class="prow"><div class="plabel">変位トレシージョ</div><div class="strip s16"><div class="c bs kk"></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c bs kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs md w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div></div></div>
+<div class="prow"><div class="plabel">オンビート・エイト</div><div class="strip s16"><div class="c bs kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c bs kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c bs md w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div></div></div>
+<div class="prow"><div class="plabel">オフビート・エイト</div><div class="strip s16"><div class="c bs w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs md kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div></div></div>
+<div class="gdiv"><b>③</b> 実践ガイドライン　キーパターン</div>
+<div class="prow"><div class="plabel">スタンダードパターン</div><div class="strip s16"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"><span class="dot">●</span></div><div class="c bs md w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div></div></div>
+<div class="prow"><div class="plabel">ソン・クラーベ</div><div class="strip s16"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs md w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div><div class="c w"></div></div></div>
+<div class="prow"><div class="plabel">ルンバ・クラーベ</div><div class="strip s16"><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs w"></div><div class="c w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c bs md w"></div><div class="c w"></div><div class="c w"><span class="dot">●</span></div><div class="c w"></div><div class="c bs w"><span class="dot">●</span></div><div class="c w"></div><div class="c w"></div><div class="c w"></div></div></div>
+<div class="gdiv"><b>④</b> リード楽器　カウンタークラーベ</div>
+<div class="prow"><div class="plabel">クイント（グアグアンコー）</div><div class="strip s16"><div class="c bs kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"></div><div class="c bs kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs md kk"></div><div class="c kk"></div><div class="c kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c bs kk"></div><div class="c kk"><span class="dot">●</span></div><div class="c kk"></div><div class="c kk"></div></div></div><div class="blockspace"></div><div class="blockhd">まとめ — 16マスの機能マップ<span>16マスすべてに役割がある</span></div><div class="prow"><div class="plabel">全マスの機能</div><div class="strip s16"><div class="c bs"><span class="fk">●</span></div><div class="c"><span class="fq">▲</span></div><div class="c"><span class="fb">■</span></div><div class="c"><span class="fk">●</span></div><div class="c bs"><span class="fq">▲</span><span class="fb">■</span></div><div class="c"><span class="fe">×</span></div><div class="c"><span class="fk">●</span></div><div class="c"><span class="fq">▲</span><span class="fb">■</span><span class="fd">◆</span></div><div class="c bs md"><span class="fb">■</span></div><div class="c"><span class="fe">×</span></div><div class="c"><span class="fk">●</span></div><div class="c"><span class="fq">▲</span><span class="fb">■</span></div><div class="c bs"><span class="fk">●</span></div><div class="c"><span class="fq">▲</span></div><div class="c"><span class="fb">■</span></div><div class="c"><span class="fd">◆</span></div></div></div>
+<div class="legend">
+  <div><span class="sw w"></span><b>ウィズ・クラーベ</b>のセル ／ <span class="sw k"></span><b>カウンター・クラーベ</b>のセル ／ 無色＝土台・素材</div>
+  <div>機能マップ: <span class="fk">●</span>クラーベ ／ <span class="fq">▲</span>クイント＝クラーベの直後 ／ <span class="fb">■</span>借用カウンター ／ <span class="fd">◆</span>両用 ／ <span class="fe">×</span>空き</div>
+</div>
+</div>
+</main>
+</body>
+</html>
