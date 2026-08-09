@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking — Takahiro Izumikawa</title>
+<meta name="description" content="Booking one-sheet for Takahiro Izumikawa — Off Sync live.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Booking — Takahiro Izumikawa">
+<meta property="og:description" content="Off Sync live — booking one-sheet.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://takahiroizumikawa.com/booking/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#161616; --text:#f5f0e8;
+  --dim:rgba(245,240,232,.55); --faint:rgba(245,240,232,.32);
+  --accent:#db2626; --rule:rgba(245,240,232,.14);
+  --font:'Poppins',sans-serif;
+  --gutter:clamp(24px,5vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:300;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;letter-spacing:.02em}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.08;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.91 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
+}
+
+nav.top{
+  position:relative;z-index:3;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:clamp(18px,2.6vh,28px) var(--gutter)
+}
+nav.top .wordmark{font-size:12px;letter-spacing:.14em;color:var(--dim);font-weight:400;text-decoration:none}
+nav.top .links{display:flex;gap:clamp(14px,2.4vw,26px)}
+nav.top .links a{font-size:12px;letter-spacing:.1em;color:rgba(245,240,232,.85);text-decoration:none;transition:color .4s}
+nav.top .links a:hover{color:var(--accent)}
+
+main{flex:1;padding:clamp(40px,7vh,72px) var(--gutter)}
+.wrap{max-width:600px;margin:0 auto;width:100%}
+
+.eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:22px}
+.name-head{font-size:clamp(30px,5vw,52px);font-weight:500;letter-spacing:.005em;line-height:1.1;color:var(--text);margin-bottom:10px}
+.lead{font-size:clamp(19px,2.4vw,25px);font-weight:300;line-height:1.5;color:var(--text);max-width:26ch;margin-bottom:clamp(22px,3.5vh,32px)}
+.lead .mark{color:var(--accent)}
+.body p{font-size:clamp(14.5px,1.55vw,16px);font-weight:300;line-height:1.85;color:rgba(245,240,232,.86);margin-bottom:1.5em;max-width:60ch}
+.body p .ttl{font-style:normal;color:var(--text);font-weight:400}
+.body a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s}
+.body a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* contact row — 上下2箇所（EPK定石: 連絡先は常に見える位置に） */
+.contact-row{display:flex;gap:clamp(16px,3vw,30px);flex-wrap:wrap;align-items:baseline;margin-bottom:clamp(10px,2vh,16px)}
+.contact-row a{font-size:clamp(13px,1.5vw,15px);letter-spacing:.06em;color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s;font-weight:400}
+.contact-row a:hover{color:var(--accent);border-color:var(--accent)}
+.contact-row .lbl{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+
+/* sections */
+section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);padding-top:clamp(26px,4.5vh,38px)}
+
+/* video */
+.video-frame{position:relative;aspect-ratio:16/9;background:rgba(245,240,232,.04);border:1px solid var(--rule)}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.caption{font-size:11px;letter-spacing:.08em;color:var(--faint);margin-top:10px}
+
+/* spotify */
+.spotify-frame{border-radius:12px;overflow:hidden;background:rgba(245,240,232,.04)}
+.spotify-frame iframe{display:block;width:100%;height:352px;border:0}
+.after-link{margin-top:14px}
+.after-link a{font-size:12px;letter-spacing:.1em;text-transform:lowercase;color:var(--dim);text-decoration:none;transition:color .4s}
+.after-link a:hover{color:var(--accent)}
+
+/* record row (cover + text) */
+.record-row{display:flex;gap:clamp(14px,3vw,22px);align-items:flex-start}
+.record-row .cover{flex:0 0 auto;width:clamp(72px,16vw,110px);aspect-ratio:1;object-fit:cover;border:1px solid var(--rule);background:rgba(245,240,232,.05)}
+@media (max-width:480px){.record-row{flex-direction:column}}
+
+/* band */
+.band-line{font-size:clamp(14.5px,1.55vw,16px);line-height:1.85;color:rgba(245,240,232,.86);margin-bottom:1.1em;max-width:60ch}
+.band-line .who{color:var(--text);font-weight:400}
+
+/* stages list */
+.stages{list-style:none}
+.stages li{font-size:clamp(13.5px,1.5vw,15px);line-height:1.7;color:rgba(245,240,232,.86);padding:10px 0;border-bottom:1px solid var(--rule)}
+.stages li:last-child{border-bottom:0}
+.stages .up{color:var(--text);font-weight:400}
+.stages .up .dot{color:var(--accent)}
+
+/* press photos */
+.press-grid{display:flex;gap:clamp(12px,2.5vw,18px);margin-top:6px}
+.press-grid figure{flex:1 1 0;min-width:0}
+.press-grid img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border:1px solid var(--rule);filter:brightness(.92);transition:filter .3s}
+.press-grid a:hover img{filter:brightness(1.02)}
+.press-grid figcaption{margin-top:8px}
+.press-grid figcaption a{font-size:11px;letter-spacing:.08em;text-transform:lowercase;color:var(--dim);text-decoration:none;transition:color .4s}
+.press-grid figcaption a:hover{color:var(--accent)}
+.photo-credit{font-size:10px;letter-spacing:.1em;color:var(--faint);margin-top:10px}
+
+/* book the show */
+.book-cta .big-mail{display:inline-block;font-size:clamp(17px,2.4vw,23px);font-weight:400;letter-spacing:.02em;color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s;margin-top:6px;word-break:break-all}
+.book-cta .big-mail:hover{color:var(--accent);border-color:var(--accent)}
+
+footer{
+  display:flex;justify-content:center;gap:clamp(18px,2.4vw,32px);
+  padding:clamp(16px,2.5vh,24px) var(--gutter) clamp(28px,4vh,40px);
+  border-top:1px solid var(--rule);flex-wrap:wrap
+}
+footer a{font-size:10px;letter-spacing:.28em;text-transform:lowercase;color:var(--faint);text-decoration:none;transition:color .4s}
+footer a:hover{color:var(--dim)}
+
+/* reveal (off-sync-here LP と同パターン) */
+.reveal{opacity:0;transform:translateY(10px);animation:fade-up 1.4s cubic-bezier(0.16,1,0.3,1) forwards}
+.r-1{animation-delay:.10s}.r-2{animation-delay:.24s}.r-3{animation-delay:.40s}.r-4{animation-delay:.58s}
+@keyframes fade-up{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;animation:none}}
+
+/* PDFワンシート書き出し（成約後に会場へ渡す用） */
+@media print{
+  body::before{display:none}
+  body{background:#fff;color:#111}
+  nav.top,.video-frame,.spotify-frame,footer{display:none}
+  .caption,.after-link{display:none}
+  section.block{border-color:#ddd;margin-top:22px;padding-top:16px}
+  .eyebrow,.contact-row .lbl{color:#888}
+  .lead,.name-head,.body p,.band-line,.stages li{color:#111}
+  .lead .mark{color:#b51f1f}
+  .contact-row a,.body a,.book-cta .big-mail{color:#111;border-color:#bbb}
+  .stages li{border-color:#e5e5e5}
+  .press-grid img{filter:none}
+  .photo-credit,.press-grid figcaption a{color:#888}
+}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="wordmark" href="../index.html">© Takahiro Izumikawa</a>
+  <div class="links">
+    <a href="../about.html">About</a>
+    <a href="../music.html">Music</a>
+    <a href="../shows.html">Shows</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+
+    <!-- ── header ── -->
+    <p class="eyebrow reveal r-1">Booking</p>
+    <h1 class="name-head reveal r-1">Takahiro Izumikawa</h1>
+    <p class="lead reveal r-2">A pianist and keyboardist, born in <span class="mark">Japan</span> and based in New York.</p>
+    <div class="body reveal r-3">
+      <p><span class="ttl">Off Sync</span> (2024) — recorded with Chris Dave on drums throughout the album — was built on a single idea: to make a work of literature out of music. The conversation recorded on the album is still going. The live show is where it continues.</p>
+    </div>
+    <div class="contact-row reveal r-4">
+      <span class="lbl">Booking</span>
+      <a href="mailto:takahiroizumikawa0@gmail.com">takahiroizumikawa0@gmail.com</a>
+      <a href="https://takahiroizumikawa.com" target="_blank" rel="noopener">takahiroizumikawa.com ↗&#xFE0E;</a>
+    </div>
+
+    <!-- ── live video（Vimeoクリップ受領後に有効化。それまで非表示）──
+    <section class="block">
+      <p class="eyebrow">Live</p>
+      <div class="video-frame">
+        <iframe src="https://player.vimeo.com/video/XXXXXXXXXX?h=XXXXXXXX&dnt=1&title=0&byline=0&portrait=0"
+                loading="lazy" referrerpolicy="strict-origin"
+                allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="caption">Live at TOKYO COTTON CLUB — June 15, 2026</p>
+    </section>
+    -->
+
+    <!-- ── listen ── -->
+    <section class="block">
+      <p class="eyebrow">Listen</p>
+      <div class="spotify-frame">
+        <iframe src="https://open.spotify.com/embed/album/1rCzNaIjAyFXWlTqUEfpsn?theme=0"
+                loading="lazy" allow="encrypted-media; clipboard-write; picture-in-picture"
+                title="Spotify — Off Sync"></iframe>
+      </div>
+      <p class="after-link"><a href="https://ffm.to/offsync" target="_blank" rel="noopener">all platforms ↗&#xFE0E;</a></p>
+    </section>
+
+    <!-- ── the record ── -->
+    <section class="block">
+      <p class="eyebrow">The Record</p>
+      <div class="record-row">
+        <img class="cover" src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5e/a9/f4/5ea9f4cb-fd44-2213-f771-5f0e78e2a6e0/artwork.jpg/200x200bb.jpg" alt="Off Sync album cover" loading="lazy">
+        <div class="body">
+          <p>He mixes Japan's history into New York's music and ensemble playing, shaping it experiment by experiment on his own projects. <span class="ttl">Off Sync</span> (2024), on his own label access art studio, was recorded with Chris Dave on drums throughout the album — a work of literature made out of music.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── the band ── -->
+    <section class="block">
+      <p class="eyebrow">The Band</p>
+      <p class="band-line">On the record: <span class="who">Chris Dave</span> — drums, throughout the album.</p>
+      <p class="band-line">On stage, <span class="who">Off Sync</span> is performed as solo piano, trio, or full band. Recent full-band shows: TOKYO COTTON CLUB, June 2026.</p>
+    </section>
+
+    <!-- ── venue-only vinyl ── -->
+    <section class="block">
+      <p class="eyebrow">The Venue-Only Vinyl</p>
+      <div class="body">
+        <p>The musical conversation recorded on <span class="ttl">Off Sync</span> is still going. A 12-inch pressing of the album — 100 copies, venue-only — is now complete. It is never sold online. It can only be found in the room, on the night — something only the venue can offer.</p>
+      </div>
+    </section>
+
+    <!-- ── selected stages ── -->
+    <section class="block">
+      <p class="eyebrow">Selected Stages</p>
+      <ul class="stages">
+        <li>The Blue Note · Java, New Orleans, and Montreal jazz festivals</li>
+        <li>Band tours through China, Taiwan, and Japan</li>
+        <li>Jazz Re:freshed, London</li>
+        <li>Off Sync, Here — Japan Tour 2026: OSAKA BLUE YARD · SAPPORO D-Bop · TOKYO COTTON CLUB (full band)</li>
+        <li class="up"><span class="dot">●</span> Upcoming — Joe's Pub, New York · September 29, 2026</li>
+      </ul>
+    </section>
+
+    <!-- ── about + press photos ── -->
+    <section class="block">
+      <p class="eyebrow">About</p>
+      <div class="body">
+        <p>Takahiro's music begins with the foundation of bebop — playing and recording with Vincent Herring, Cyrus Chestnut, Russell Malone, Carl Allen, and Eric Alexander. Years of gospel in New York's churches followed, and a meeting with Maurice Brown opened the door to the hip-hop world: stages with Talib Kweli, Smif-N-Wessun, Black Moon, and Kool Keith, and ensemble playing beside Anderson .Paak, Chris Dave, Keyon Harrold, Isaiah Sharkey, Jermaine Holmes, and MonoNeon. He is an Ableton, Sequential, and Hammond artist.</p>
+        <p><a href="https://takahiroizumikawa.com/about" target="_blank" rel="noopener">Full bio ↗&#xFE0E;</a></p>
+      </div>
+      <div class="press-grid">
+        <figure>
+          <a href="press-01.jpg" download="TakahiroIzumikawa-press-01.jpg"><img src="press-01-thumb.jpg" alt="Takahiro Izumikawa — press photo (red)" loading="lazy"></a>
+          <figcaption><a href="press-01.jpg" download="TakahiroIzumikawa-press-01.jpg">download high-res ↓</a></figcaption>
+        </figure>
+        <figure>
+          <a href="press-02.jpg" download="TakahiroIzumikawa-press-02.jpg"><img src="press-02-thumb.jpg" alt="Takahiro Izumikawa — press photo (monochrome)" loading="lazy"></a>
+          <figcaption><a href="press-02.jpg" download="TakahiroIzumikawa-press-02.jpg">download high-res ↓</a></figcaption>
+        </figure>
+      </div>
+      <p class="photo-credit">photo · Alaya Lee</p>
+    </section>
+
+    <!-- ── yatara ── -->
+    <section class="block">
+      <p class="eyebrow">What's Next — YATARA</p>
+      <div class="body">
+        <p>If a jazz pianist lived in 1600s Japan. Takahiro is researching a new genre — <span class="ttl">YATARA</span> — that replaces the African rhythm at the deepest foundation of New York's music with the rhythms of 1600s Japan, using the clave as a shared key. It is already on stage: the band premiered the first YATARA piece at TOKYO COTTON CLUB in June 2026, with the audience carrying a sung part and a clapping part. The experiment continues live next year — with room for venues that want to host it.</p>
+      </div>
+    </section>
+
+    <!-- ── book the show ── -->
+    <section class="block book-cta">
+      <p class="eyebrow">Book the Show</p>
+      <a class="big-mail" href="mailto:takahiroizumikawa0@gmail.com">takahiroizumikawa0@gmail.com</a>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <a href="mailto:takahiroizumikawa0@gmail.com">email</a>
+  <a href="https://www.instagram.com/takahiro_izumikawa/" target="_blank" rel="noopener">instagram&nbsp;↗&#xFE0E;</a>
+  <a href="https://takahiroizumikawa.com" target="_blank" rel="noopener">takahiroizumikawa.com</a>
+</footer>
+
+</body>
+</html>
