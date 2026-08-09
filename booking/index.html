@@ -10,6 +10,8 @@
 <meta property="og:description" content="Off Sync live — booking one-sheet.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://takahiroizumikawa.com/booking/">
+<meta property="og:image" content="https://takahiroizumikawa.com/booking/press-01.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -42,7 +44,7 @@ nav.top .links a:hover{color:var(--accent)}
 main{flex:1;padding:clamp(40px,7vh,72px) var(--gutter)}
 .wrap{max-width:600px;margin:0 auto;width:100%}
 
-.eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:22px}
+.eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:22px;font-weight:300}
 .name-head{font-size:clamp(30px,5vw,52px);font-weight:500;letter-spacing:.005em;line-height:1.1;color:var(--text);margin-bottom:10px}
 .lead{font-size:clamp(19px,2.4vw,25px);font-weight:300;line-height:1.5;color:var(--text);max-width:26ch;margin-bottom:clamp(22px,3.5vh,32px)}
 .lead .mark{color:var(--accent)}
@@ -55,7 +57,7 @@ main{flex:1;padding:clamp(40px,7vh,72px) var(--gutter)}
 .contact-row{display:flex;gap:clamp(16px,3vw,30px);flex-wrap:wrap;align-items:baseline;margin-bottom:clamp(10px,2vh,16px)}
 .contact-row a{font-size:clamp(13px,1.5vw,15px);letter-spacing:.06em;color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s;font-weight:400}
 .contact-row a:hover{color:var(--accent);border-color:var(--accent)}
-.contact-row .lbl{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+.contact-row .lbl{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
 
 /* sections */
 section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);padding-top:clamp(26px,4.5vh,38px)}
@@ -119,9 +121,13 @@ footer a:hover{color:var(--dim)}
 /* PDFワンシート書き出し（成約後に会場へ渡す用） */
 @media print{
   body::before{display:none}
-  body{background:#fff;color:#111}
+  html,body{background:#fff;color:#111}
   nav.top,.video-frame,.spotify-frame,footer{display:none}
-  .caption,.after-link{display:none}
+  .caption,.press-grid figcaption{display:none}
+  /* 印刷では音源リンクをURL明記で残す（LISTEN見出しを孤児にしない） */
+  .after-link a{color:#111;border:0}
+  .after-link a::after{content:" — ffm.to/offsync";letter-spacing:.02em;text-transform:none}
+  .body a[href^="https://takahiroizumikawa.com/about"]::after{content:" (takahiroizumikawa.com/about)"}
   section.block{border-color:#ddd;margin-top:22px;padding-top:16px}
   .eyebrow,.contact-row .lbl{color:#888}
   .lead,.name-head,.body p,.band-line,.stages li{color:#111}
@@ -129,7 +135,7 @@ footer a:hover{color:var(--dim)}
   .contact-row a,.body a,.book-cta .big-mail{color:#111;border-color:#bbb}
   .stages li{border-color:#e5e5e5}
   .press-grid img{filter:none}
-  .photo-credit,.press-grid figcaption a{color:#888}
+  .photo-credit{color:#888}
 }
 </style>
 </head>
@@ -153,20 +159,20 @@ footer a:hover{color:var(--dim)}
     <h1 class="name-head reveal r-1">Takahiro Izumikawa</h1>
     <p class="lead reveal r-2">A pianist and keyboardist, born in <span class="mark">Japan</span> and based in New York.</p>
     <div class="body reveal r-3">
-      <p><span class="ttl">Off Sync</span> (2024) — recorded with Chris Dave on drums throughout the album — was built on a single idea: to make a work of literature out of music. The conversation recorded on the album is still going. The live show is where it continues.</p>
+      <p><span class="ttl">Off Sync</span> (2024) — recorded with Chris Dave on drums throughout the album — was built on a single idea: to make a work of literature out of music. The live show is where the album's conversation continues.</p>
     </div>
     <div class="contact-row reveal r-4">
       <span class="lbl">Booking</span>
-      <a href="mailto:takahiroizumikawa0@gmail.com">takahiroizumikawa0@gmail.com</a>
+      <a href="mailto:takahiroizumikawa0@gmail.com?subject=Booking%20inquiry%20-%20Takahiro%20Izumikawa">takahiroizumikawa0@gmail.com</a>
       <a href="https://takahiroizumikawa.com" target="_blank" rel="noopener">takahiroizumikawa.com ↗&#xFE0E;</a>
     </div>
 
     <!-- ── live video（Vimeoクリップ受領後に有効化。それまで非表示）──
     <section class="block">
-      <p class="eyebrow">Live</p>
+      <h2 class="eyebrow">Live</h2>
       <div class="video-frame">
         <iframe src="https://player.vimeo.com/video/XXXXXXXXXX?h=XXXXXXXX&dnt=1&title=0&byline=0&portrait=0"
-                loading="lazy" referrerpolicy="strict-origin"
+                loading="lazy" referrerpolicy="strict-origin" title="Live — Takahiro Izumikawa"
                 allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
       <p class="caption">Live at TOKYO COTTON CLUB — June 15, 2026</p>
@@ -175,7 +181,7 @@ footer a:hover{color:var(--dim)}
 
     <!-- ── listen ── -->
     <section class="block">
-      <p class="eyebrow">Listen</p>
+      <h2 class="eyebrow">Listen</h2>
       <div class="spotify-frame">
         <iframe src="https://open.spotify.com/embed/album/1rCzNaIjAyFXWlTqUEfpsn?theme=0"
                 loading="lazy" allow="encrypted-media; clipboard-write; picture-in-picture"
@@ -186,56 +192,56 @@ footer a:hover{color:var(--dim)}
 
     <!-- ── the record ── -->
     <section class="block">
-      <p class="eyebrow">The Record</p>
+      <h2 class="eyebrow">The Record</h2>
       <div class="record-row">
-        <img class="cover" src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5e/a9/f4/5ea9f4cb-fd44-2213-f771-5f0e78e2a6e0/artwork.jpg/200x200bb.jpg" alt="Off Sync album cover" loading="lazy">
+        <img class="cover" src="cover-offsync.jpg" alt="Off Sync album cover" loading="lazy">
         <div class="body">
-          <p>He mixes Japan's history into New York's music and ensemble playing, shaping it experiment by experiment on his own projects. <span class="ttl">Off Sync</span> (2024), on his own label access art studio, was recorded with Chris Dave on drums throughout the album — a work of literature made out of music.</p>
+          <p>Into the style he built on the bandstand, Takahiro brings the history of Japan. That long history holds a deep spirituality and ideas, melodies all its own, and rhythms and dances strikingly close to the folk music of Africa. <span class="ttl">Off Sync</span> (2024) was released on his own label, access art studio.</p>
         </div>
       </div>
     </section>
 
     <!-- ── the band ── -->
     <section class="block">
-      <p class="eyebrow">The Band</p>
-      <p class="band-line">On the record: <span class="who">Chris Dave</span> — drums, throughout the album.</p>
-      <p class="band-line">On stage, <span class="who">Off Sync</span> is performed as solo piano, trio, or full band. Recent full-band shows: TOKYO COTTON CLUB, June 2026.</p>
+      <h2 class="eyebrow">The Band</h2>
+      <p class="band-line">On the record: <span class="who">Chris Dave</span> — drums throughout the album.</p>
+      <p class="band-line">On stage, <span class="who">Off Sync</span> takes three forms: solo piano, trio, or full band. Most recent full-band show: Cotton Club, Tokyo — June 2026.</p>
     </section>
 
     <!-- ── venue-only vinyl ── -->
     <section class="block">
-      <p class="eyebrow">The Venue-Only Vinyl</p>
+      <h2 class="eyebrow">The Venue-Only Vinyl</h2>
       <div class="body">
-        <p>The musical conversation recorded on <span class="ttl">Off Sync</span> is still going. A 12-inch pressing of the album — 100 copies, venue-only — is now complete. It is never sold online. It can only be found in the room, on the night — something only the venue can offer.</p>
+        <p>A 12-inch pressing of <span class="ttl">Off Sync</span> — 100 copies, venue-only. Takahiro brings the records to the show. They are never sold online and can only be found the night of the show — something for the room that exists nowhere else.</p>
       </div>
     </section>
 
     <!-- ── selected stages ── -->
     <section class="block">
-      <p class="eyebrow">Selected Stages</p>
+      <h2 class="eyebrow">Selected Stages</h2>
       <ul class="stages">
-        <li>The Blue Note · Java, New Orleans, and Montreal jazz festivals</li>
-        <li>Band tours through China, Taiwan, and Japan</li>
+        <li class="up"><span class="dot" aria-hidden="true">●</span> Upcoming — Joe's Pub, New York · September 29, 2026</li>
+        <li>Blue Note · Java, New Orleans &amp; Montreal jazz festivals</li>
+        <li>His own band's tours through China, Taiwan, and Japan</li>
         <li>Jazz Re:freshed, London</li>
-        <li>Off Sync, Here — Japan Tour 2026: OSAKA BLUE YARD · SAPPORO D-Bop · TOKYO COTTON CLUB (full band)</li>
-        <li class="up"><span class="dot">●</span> Upcoming — Joe's Pub, New York · September 29, 2026</li>
+        <li>Off Sync, Here — Japan Tour 2026: Blue Yard, Osaka · D-Bop Jazz Club, Sapporo · Cotton Club, Tokyo (full band)</li>
       </ul>
     </section>
 
     <!-- ── about + press photos ── -->
     <section class="block">
-      <p class="eyebrow">About</p>
+      <h2 class="eyebrow">About</h2>
       <div class="body">
         <p>Takahiro's music begins with the foundation of bebop — playing and recording with Vincent Herring, Cyrus Chestnut, Russell Malone, Carl Allen, and Eric Alexander. Years of gospel in New York's churches followed, and a meeting with Maurice Brown opened the door to the hip-hop world: stages with Talib Kweli, Smif-N-Wessun, Black Moon, and Kool Keith, and ensemble playing beside Anderson .Paak, Chris Dave, Keyon Harrold, Isaiah Sharkey, Jermaine Holmes, and MonoNeon. He is an Ableton, Sequential, and Hammond artist.</p>
         <p><a href="https://takahiroizumikawa.com/about" target="_blank" rel="noopener">Full bio ↗&#xFE0E;</a></p>
       </div>
       <div class="press-grid">
         <figure>
-          <a href="press-01.jpg" download="TakahiroIzumikawa-press-01.jpg"><img src="press-01-thumb.jpg" alt="Takahiro Izumikawa — press photo (red)" loading="lazy"></a>
+          <a href="press-01.jpg" target="_blank" rel="noopener"><img src="press-01-thumb.jpg" alt="Takahiro Izumikawa — press photo (red)" loading="lazy"></a>
           <figcaption><a href="press-01.jpg" download="TakahiroIzumikawa-press-01.jpg">download high-res ↓</a></figcaption>
         </figure>
         <figure>
-          <a href="press-02.jpg" download="TakahiroIzumikawa-press-02.jpg"><img src="press-02-thumb.jpg" alt="Takahiro Izumikawa — press photo (monochrome)" loading="lazy"></a>
+          <a href="press-02.jpg" target="_blank" rel="noopener"><img src="press-02-thumb.jpg" alt="Takahiro Izumikawa — press photo (monochrome)" loading="lazy"></a>
           <figcaption><a href="press-02.jpg" download="TakahiroIzumikawa-press-02.jpg">download high-res ↓</a></figcaption>
         </figure>
       </div>
@@ -244,23 +250,23 @@ footer a:hover{color:var(--dim)}
 
     <!-- ── yatara ── -->
     <section class="block">
-      <p class="eyebrow">What's Next — YATARA</p>
+      <h2 class="eyebrow">What's Next — YATARA</h2>
       <div class="body">
-        <p>If a jazz pianist lived in 1600s Japan. Takahiro is researching a new genre — <span class="ttl">YATARA</span> — that replaces the African rhythm at the deepest foundation of New York's music with the rhythms of 1600s Japan, using the clave as a shared key. It is already on stage: the band premiered the first YATARA piece at TOKYO COTTON CLUB in June 2026, with the audience carrying a sung part and a clapping part. The experiment continues live next year — with room for venues that want to host it.</p>
+        <p>If a jazz pianist lived in 1600s Japan. Takahiro is researching a new genre — <span class="ttl">YATARA</span> — that replaces the African rhythms at the deepest foundation of New York's music with the rhythms of 1600s Japan, using the clave as a shared key. It is already on stage: the band premiered the first YATARA piece at Cotton Club, Tokyo in June 2026, with the audience singing one part and clapping another. The experiment continues on stage — with room in the calendar for venues that want to host it.</p>
       </div>
     </section>
 
     <!-- ── book the show ── -->
     <section class="block book-cta">
-      <p class="eyebrow">Book the Show</p>
-      <a class="big-mail" href="mailto:takahiroizumikawa0@gmail.com">takahiroizumikawa0@gmail.com</a>
+      <h2 class="eyebrow">Book the Show</h2>
+      <a class="big-mail" href="mailto:takahiroizumikawa0@gmail.com?subject=Booking%20inquiry%20-%20Takahiro%20Izumikawa">takahiroizumikawa0@gmail.com</a>
     </section>
 
   </div>
 </main>
 
 <footer>
-  <a href="mailto:takahiroizumikawa0@gmail.com">email</a>
+  <a href="mailto:takahiroizumikawa0@gmail.com?subject=Booking%20inquiry%20-%20Takahiro%20Izumikawa">email</a>
   <a href="https://www.instagram.com/takahiro_izumikawa/" target="_blank" rel="noopener">instagram&nbsp;↗&#xFE0E;</a>
   <a href="https://takahiroizumikawa.com" target="_blank" rel="noopener">takahiroizumikawa.com</a>
 </footer>
