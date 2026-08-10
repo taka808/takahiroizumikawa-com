@@ -67,9 +67,10 @@ main{flex:1;padding:clamp(40px,7vh,72px) var(--gutter)}
 
 .eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:22px;font-weight:300}
 .name-head{font-size:clamp(30px,5vw,52px);font-weight:500;letter-spacing:.005em;line-height:1.1;color:var(--text);margin-bottom:10px}
-.lead{font-size:clamp(19px,2.4vw,25px);font-weight:300;line-height:1.5;color:var(--text);max-width:26ch;margin-bottom:clamp(22px,3.5vh,32px)}
-html[data-lang="ja"] .lead{line-height:1.65;max-width:30ch}
-.lead .mark{color:var(--accent)}
+.lead{font-size:clamp(19px,2.4vw,25px);font-weight:300;line-height:1.5;color:var(--text);max-width:34ch;margin-bottom:clamp(22px,3.5vh,32px)}
+html[data-lang="ja"] .lead{line-height:1.65;max-width:26ch}
+/* アクセント句は途中で改行させない（"live shows"／「ライブ」が割れるのを防ぐ） */
+.lead .mark{color:var(--accent);white-space:nowrap}
 .body p{font-size:clamp(14.5px,1.55vw,16px);font-weight:300;line-height:1.85;color:rgba(245,240,232,.86);margin-bottom:1.5em;max-width:60ch}
 .body p .ttl{font-style:normal;color:var(--text);font-weight:400}
 .body a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s}
