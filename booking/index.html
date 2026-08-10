@@ -104,6 +104,12 @@ section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);p
 /* band */
 .band-line{font-size:clamp(14.5px,1.55vw,16px);line-height:1.85;color:rgba(245,240,232,.86);margin-bottom:1.1em;max-width:60ch}
 .band-line .who{color:var(--text);font-weight:400}
+/* credits — about.html の .credits 型をスライド（役割/名前の2カラム） */
+.credits{margin:clamp(18px,3vh,26px) 0 clamp(22px,3.5vh,30px)}
+.credits .grp{display:flex;gap:clamp(12px,3vw,24px);margin-bottom:16px;flex-wrap:wrap}
+.credits .role{flex:0 0 84px;font-size:11px;letter-spacing:.06em;color:var(--faint);padding-top:3px}
+.credits .names{flex:1 1 260px;font-size:13.5px;line-height:1.8;color:var(--dim)}
+.credits .names .l-en,.credits .names .l-ja{color:inherit}
 
 /* stages list */
 .stages{list-style:none}
@@ -190,8 +196,8 @@ footer a:hover{color:var(--dim)}
       <span class="l-ja"><span class="mark">ライブ</span>のブッキングのための情報ページです。</span>
     </p>
     <div class="body reveal r-3">
-      <p class="l-en">Pianist and keyboardist from Japan, based in New York. Latest album: <span class="ttl">Off Sync</span> (2024), recorded with Chris Dave on drums throughout.</p>
-      <p class="l-ja">日本に生まれ、ニューヨークを拠点に活動するピアニスト／キーボーディスト。最新アルバムは『<span class="ttl">Off Sync</span>』(2024)、全曲でChris Daveがドラムを演奏。</p>
+      <p class="l-en">Pianist and keyboardist from Japan, based in New York. Latest album: <span class="ttl">Off Sync</span> (2024), with Chris Dave on drums.</p>
+      <p class="l-ja">日本に生まれ、ニューヨークを拠点に活動するピアニスト／キーボーディスト。最新アルバムは『<span class="ttl">Off Sync</span>』(2024)、ドラムはChris Dave。</p>
     </div>
     <div class="contact-row reveal r-4">
       <span class="lbl"><span class="l-en">Booking</span><span class="l-ja">ブッキング</span></span>
@@ -236,7 +242,12 @@ footer a:hover{color:var(--dim)}
     <!-- ── the band ── -->
     <section class="block">
       <h2 class="eyebrow"><span class="l-en">The Band</span><span class="l-ja">バンド</span></h2>
-      <p class="band-line"><span class="l-en">On the record: <span class="who">Chris Dave</span> — drums throughout the album.</span><span class="l-ja">アルバムでは <span class="who">Chris Dave</span> が全曲でドラムを演奏。</span></p>
+      <p class="band-line"><span class="l-en"><span class="ttl">Off Sync</span> (2024) — album credits.</span><span class="l-ja">『<span class="ttl">Off Sync</span>』(2024) クレジット。</span></p>
+      <div class="credits">
+        <div class="grp"><span class="role"><span class="l-en">Leader</span><span class="l-ja">リーダー</span></span><span class="names"><span class="l-en">Takahiro Izumikawa — piano, vocal, bass, synth, songwriting, programming</span><span class="l-ja">泉川貴広 — ピアノ、ボーカル、ベース、シンセ、作詞、作曲、プログラミング</span></span></div>
+        <div class="grp"><span class="role"><span class="l-en">Featuring</span><span class="l-ja">参加</span></span><span class="names"><span class="l-en">Chris Dave — drums, percussion<br>Daniel Winshall — bass<br>Jenny Hong — vocal<br>Oswin Benjamin — rap<br>Takafumi Nikaido — percussion<br>Yasunobu — Japanese chorus</span><span class="l-ja">クリス・デイヴ — ドラム、パーカッション<br>ダニエル・ウィンシャル — ベース<br>ジェニー・ホン — ボーカル<br>オスウィン・ベンジャミン — ラップ<br>二階堂貴文 — パーカッション<br>康伸 — 日本語ボーカル</span></span></div>
+        <div class="grp"><span class="role"><span class="l-en">Studio</span><span class="l-ja">制作</span></span><span class="names"><span class="l-en">Recorded, mixed and produced by Takahiro Izumikawa at Access Art Studio · Mastered by Joel Kerr</span><span class="l-ja">レコーディング・ミックス・プロデュース: 泉川貴広（Access Art Studio）／マスタリング: ジョエル・カー</span></span></div>
+      </div>
       <p class="band-line"><span class="l-en">On stage, <span class="who">Off Sync</span> takes three forms: solo piano, trio, or full band. Most recent full-band show: Cotton Club, Tokyo — June 2026.</span><span class="l-ja">ライブは、ピアノソロ／トリオ／フルバンドの3つの編成。直近のフルバンド公演: Cotton Club（東京）— 2026年6月。</span></p>
     </section>
 
@@ -244,8 +255,8 @@ footer a:hover{color:var(--dim)}
     <section class="block">
       <h2 class="eyebrow"><span class="l-en">The Venue-Only Vinyl</span><span class="l-ja">会場限定レコード</span></h2>
       <div class="body">
-        <p class="l-en">The musical conversation recorded on <span class="ttl">Off Sync</span> is still going. A 12-inch pressing of the album — 100 copies, venue-only. Takahiro brings the records to the show. They are never sold online and can only be found the night of the show — something for the room that exists nowhere else.</p>
-        <p class="l-ja">アルバム "Off Sync" に記録された音楽の会話は今も続いている。会場限定100枚のOff Syncレコードが完成しました。レコードは本人が会場へ持参します。オンラインには存在せず、公演の夜、その会場でだけ出会えます。</p>
+        <p class="l-en">Now booking shows around the venue-only <span class="ttl">Off Sync</span> vinyl: a 12-inch pressing, 100 copies, available at the show only. Takahiro brings the records to each date. They are not sold online, so the venue has something to announce that exists nowhere else.</p>
+        <p class="l-ja">会場限定の『<span class="ttl">Off Sync</span>』レコード発売ライブをブッキング中。12インチ・100枚限定で、会場でのみ手に入ります。レコードは公演ごとに本人が持参します。オンラインでは販売しないため、会場だけが告知できる要素になります。</p>
       </div>
     </section>
 
@@ -286,8 +297,8 @@ footer a:hover{color:var(--dim)}
     <section class="block">
       <h2 class="eyebrow"><span class="l-en">What's Next — YATARA</span><span class="l-ja">次の実験 — YATARA</span></h2>
       <div class="body">
-        <p class="l-en">If a jazz pianist lived in 1600s Japan. Takahiro is researching a new genre — <span class="ttl">YATARA</span> — that replaces the African rhythms at the deepest foundation of New York's music with the rhythms of 1600s Japan, using the clave as a shared key. It is already on stage: the band premiered the first YATARA piece at Cotton Club, Tokyo in June 2026, with the audience singing one part and clapping another. The experiment continues on stage — with room in the calendar for venues that want to host it.</p>
-        <p class="l-ja">If a jazz pianist lived in 1600s Japan. NYの音楽スタイルの最も土台になっているアフリカのリズムを、クラーベを基準に日本の1600年代のリズムに置き換えて演奏する新しいジャンル『<span class="ttl">YATARA</span>』を研究し、ライブで少しずつ形にし始めている。2026年6月、Cotton Club（東京）でバンド初演奏。客席が歌うパートと手拍子のパートも一緒に演奏した。実験はライブで続いていく — その場となる会場を探している。</p>
+        <p class="l-en">If a jazz pianist lived in 1600s Japan. Takahiro is researching a new genre — <span class="ttl">YATARA</span> — that replaces the African rhythms at the deepest foundation of New York's music with the rhythms of 1600s Japan, using the clave as a shared key. It is already on stage: the band premiered the first YATARA piece at Cotton Club, Tokyo in June 2026, with the audience singing one part and clapping another.</p>
+        <p class="l-ja">If a jazz pianist lived in 1600s Japan. NYの音楽スタイルの最も土台になっているアフリカのリズムを、クラーベを基準に日本の1600年代のリズムに置き換えて演奏する新しいジャンル『<span class="ttl">YATARA</span>』を研究し、ライブで少しずつ形にし始めている。2026年6月、Cotton Club（東京）でバンド初演奏。客席が歌うパートと手拍子のパートも一緒に演奏した。</p>
       </div>
     </section>
 
