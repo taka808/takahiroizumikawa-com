@@ -68,9 +68,11 @@ main{flex:1;padding:clamp(40px,7vh,72px) var(--gutter)}
 .eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:22px;font-weight:300}
 .name-head{font-size:clamp(30px,5vw,52px);font-weight:500;letter-spacing:.005em;line-height:1.1;color:var(--text);margin-bottom:10px}
 .lead{font-size:clamp(19px,2.4vw,25px);font-weight:300;line-height:1.5;color:var(--text);max-width:34ch;margin-bottom:clamp(22px,3.5vh,32px)}
-html[data-lang="ja"] .lead{line-height:1.65;max-width:26ch}
+html[data-lang="ja"] .lead{line-height:1.65;max-width:100%}
 /* アクセント句は途中で改行させない（"live shows"／「ライブ」が割れるのを防ぐ） */
 .lead .mark{color:var(--accent);white-space:nowrap}
+/* 和文は文節単位でしか改行させない（「情報ページ」等が語中で割れるのを防ぐ） */
+.lead .nb{display:inline-block}
 .body p{font-size:clamp(14.5px,1.55vw,16px);font-weight:300;line-height:1.85;color:rgba(245,240,232,.86);margin-bottom:1.5em;max-width:60ch}
 .body p .ttl{font-style:normal;color:var(--text);font-weight:400}
 .body a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s}
@@ -194,7 +196,7 @@ footer a:hover{color:var(--dim)}
     <h1 class="name-head reveal r-1">Takahiro Izumikawa</h1>
     <p class="lead reveal r-2">
       <span class="l-en">Booking information for <span class="mark">live shows</span>.</span>
-      <span class="l-ja"><span class="mark">ライブ</span>のブッキングのための情報ページです。</span>
+      <span class="l-ja"><span class="nb"><span class="mark">ライブ</span>のブッキングのための</span><span class="nb">情報ページです。</span></span>
     </p>
     <div class="body reveal r-3">
       <p class="l-en">Pianist and keyboardist from Japan, based in New York. Latest album: <span class="ttl">Off Sync</span> (2024), made with drummer Chris Dave.</p>
