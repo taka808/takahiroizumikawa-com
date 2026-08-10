@@ -15,6 +15,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+/* 言語の初期適用は first paint 前に行う（?lang=ja 入場時の英語フラッシュ防止） */
+(function(){
+  var q = new URLSearchParams(location.search).get('lang');
+  var saved = null; try{saved = localStorage.getItem('booking-lang');}catch(e){}
+  var l = (q === 'ja' || q === 'en') ? q : (saved === 'ja' ? 'ja' : 'en');
+  document.documentElement.setAttribute('data-lang', l);
+  document.documentElement.setAttribute('lang', l === 'ja' ? 'ja' : 'en');
+})();
+</script>
 <style>
 :root{
   --bg:#161616; --text:#f5f0e8;
@@ -208,7 +218,7 @@ footer a:hover{color:var(--dim)}
                 loading="lazy" allow="encrypted-media; clipboard-write; picture-in-picture"
                 title="Spotify — Off Sync"></iframe>
       </div>
-      <p class="after-link"><a href="https://ffm.to/offsync" target="_blank" rel="noopener"><span class="l-en">all platforms ↗&#xFE0E;</span><span class="l-ja">全プラットフォーム ↗&#xFE0E;</span></a></p>
+      <p class="after-link"><a href="https://ffm.to/offsync" target="_blank" rel="noopener"><span class="l-en">all platforms ↗&#xFE0E;</span><span class="l-ja">各配信サービス ↗&#xFE0E;</span></a></p>
     </section>
 
     <!-- ── the record ── -->
@@ -226,7 +236,7 @@ footer a:hover{color:var(--dim)}
     <!-- ── the band ── -->
     <section class="block">
       <h2 class="eyebrow"><span class="l-en">The Band</span><span class="l-ja">バンド</span></h2>
-      <p class="band-line"><span class="l-en">On the record: <span class="who">Chris Dave</span> — drums throughout the album.</span><span class="l-ja">レコード: <span class="who">Chris Dave</span> — 全曲ドラム。</span></p>
+      <p class="band-line"><span class="l-en">On the record: <span class="who">Chris Dave</span> — drums throughout the album.</span><span class="l-ja">アルバムでは <span class="who">Chris Dave</span> が全曲でドラムを演奏。</span></p>
       <p class="band-line"><span class="l-en">On stage, <span class="who">Off Sync</span> takes three forms: solo piano, trio, or full band. Most recent full-band show: Cotton Club, Tokyo — June 2026.</span><span class="l-ja">ライブは、ピアノソロ／トリオ／フルバンドの3つの編成。直近のフルバンド公演: Cotton Club（東京）— 2026年6月。</span></p>
     </section>
 
@@ -277,7 +287,7 @@ footer a:hover{color:var(--dim)}
       <h2 class="eyebrow"><span class="l-en">What's Next — YATARA</span><span class="l-ja">次の実験 — YATARA</span></h2>
       <div class="body">
         <p class="l-en">If a jazz pianist lived in 1600s Japan. Takahiro is researching a new genre — <span class="ttl">YATARA</span> — that replaces the African rhythms at the deepest foundation of New York's music with the rhythms of 1600s Japan, using the clave as a shared key. It is already on stage: the band premiered the first YATARA piece at Cotton Club, Tokyo in June 2026, with the audience singing one part and clapping another. The experiment continues on stage — with room in the calendar for venues that want to host it.</p>
-        <p class="l-ja">NYの音楽スタイルの最も土台になっているアフリカのリズムを、クラーベを基準に日本の1600年代のリズムに置き換えて演奏する新しいジャンル "<span class="ttl">YATARA</span>" を研究し、ライブで少しずつ形にし始めている。2026年6月、Cotton Club（東京）でバンド初演奏。客席が歌うパートと手拍子のパートも一緒に演奏した。実験はライブで続いていく — その場となる会場を探している。</p>
+        <p class="l-ja">If a jazz pianist lived in 1600s Japan. NYの音楽スタイルの最も土台になっているアフリカのリズムを、クラーベを基準に日本の1600年代のリズムに置き換えて演奏する新しいジャンル『<span class="ttl">YATARA</span>』を研究し、ライブで少しずつ形にし始めている。2026年6月、Cotton Club（東京）でバンド初演奏。客席が歌うパートと手拍子のパートも一緒に演奏した。実験はライブで続いていく — その場となる会場を探している。</p>
       </div>
     </section>
 
@@ -305,9 +315,8 @@ footer a:hover{color:var(--dim)}
     document.getElementById('sw-en').classList.toggle('on', l !== 'ja');
     document.getElementById('sw-ja').classList.toggle('on', l === 'ja');
   }
-  var q = new URLSearchParams(location.search).get('lang');
-  var saved = null; try{saved = localStorage.getItem('booking-lang');}catch(e){}
-  setLang(q === 'ja' || q === 'en' ? q : (saved === 'ja' ? 'ja' : 'en'));
+  /* 初期言語は<head>のブートストラップが適用済み — ここではボタン状態の同期のみ */
+  setLang(document.documentElement.getAttribute('data-lang') === 'ja' ? 'ja' : 'en');
   document.getElementById('sw-en').addEventListener('click', function(e){e.preventDefault(); setLang('en');});
   document.getElementById('sw-ja').addEventListener('click', function(e){e.preventDefault(); setLang('ja');});
 })();
