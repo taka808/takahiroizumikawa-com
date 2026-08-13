@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Takahiro Izumikawa</title>
+<!--
+  短縮リンク（流入元の記録用）。訪問者にはトップページがそのまま表示される。
+  使い方: takahiroizumikawa.com/ig            → source = "ig"
+          takahiroizumikawa.com/ig?v=m1       → source = "ig-m1"（動画ごとに分ける場合）
+  仕組み: ここで値を sessionStorage に置き、URLに何も付けずトップへ送る。
+          トップ側（index.html / about.html / shows.html）の登録フォームが
+          ?src= が無ければ sessionStorage を見て Kit の fields[source] に入れる。
+  正本: 12_プロジェクト/Takahiro Izumikawa/メインサイト/ig/index.html（2026-08-13新設）
+-->
+<script>
+(function(){
+  try{
+    var v = new URLSearchParams(location.search).get('v');
+    sessionStorage.setItem('ren_src', 'ig' + (v ? '-' + v : ''));
+  }catch(e){}
+  location.replace('/');
+})();
+</script>
+<meta http-equiv="refresh" content="0;url=/">
+</head>
+<body><p style="font:14px/1.6 system-ui;padding:24px">移動しています… <a href="/">takahiroizumikawa.com</a></p></body>
+</html>

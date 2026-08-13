@@ -202,6 +202,7 @@ footer a:hover{color:var(--dim)}
 <script>
 (function(){
   var src = new URLSearchParams(location.search).get('src');
+  if(!src){ try{ src = sessionStorage.getItem('ren_src') || ''; }catch(e){} }  // /yt・/ig 経由（2026-08-13追加）
   if(src) document.getElementById('field-source').value = src;
   fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(d){
     document.getElementById('field-country').value = d.country_code || '';

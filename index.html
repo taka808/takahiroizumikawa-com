@@ -249,7 +249,9 @@ footer a svg{width:23px;height:23px;fill:currentColor;display:block}
 <script>
 (function(){
   // 流入元タグ: ?src= → Kit fields[source]
+  // 短縮リンク（/yt・/ig）経由の場合は ?src= が付かないので sessionStorage を見る（2026-08-13追加）
   var src = new URLSearchParams(location.search).get('src');
+  if(!src){ try{ src = sessionStorage.getItem('ren_src') || ''; }catch(e){} }
   if(src) document.getElementById('field-source').value = src;
 
   // 国情報: ipapi.co silent fetch → Kit fields[country]
