@@ -135,6 +135,29 @@ section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);p
 .book-cta .big-mail{display:inline-block;font-size:clamp(17px,2.4vw,23px);font-weight:400;letter-spacing:.02em;color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s;margin-top:6px;word-break:break-all}
 .book-cta .big-mail:hover{color:var(--accent);border-color:var(--accent)}
 
+/* contact form — contact.html の .cform 型をスライド（メールを書きたくない相手の受け皿） */
+.or-line{margin:clamp(26px,4vh,36px) 0 18px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+.cform{max-width:480px}
+.cfield{border-bottom:1px solid var(--rule);margin-bottom:22px}
+.cfield input,.cfield textarea{
+  width:100%;background:transparent;border:0;color:var(--text);font-family:var(--font);
+  font-size:15px;padding:12px 0;outline:none;resize:vertical
+}
+.cfield input::placeholder,.cfield textarea::placeholder{color:rgba(245,240,232,.56)}
+.cfield textarea{min-height:110px;line-height:1.65}
+.csend{
+  background:transparent;border:1px solid var(--rule);color:var(--text);font-family:var(--font);
+  font-weight:400;font-size:12px;letter-spacing:.16em;text-transform:lowercase;padding:13px 30px;cursor:pointer;
+  transition:border-color .4s,color .4s
+}
+.csend:hover{border-color:var(--accent);color:var(--accent)}
+.csend:disabled{opacity:.45;cursor:default}
+.cmsg{margin-top:18px;font-size:13px;letter-spacing:.02em;color:var(--dim);line-height:1.7}
+.cmsg:empty{display:none}
+.cmsg.err{color:#c46b6b}
+.cmsg a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule)}
+.cmsg a:hover{color:var(--accent);border-color:var(--accent)}
+
 footer{
   display:flex;justify-content:center;gap:clamp(18px,2.4vw,32px);
   padding:clamp(16px,2.5vh,24px) var(--gutter) clamp(28px,4vh,40px);
@@ -307,6 +330,20 @@ footer a:hover{color:var(--dim)}
     <section class="block book-cta">
       <h2 class="eyebrow"><span class="l-en">Book the Show</span><span class="l-ja">ブッキングのご連絡</span></h2>
       <a class="big-mail" href="mailto:takahiroizumikawa0@gmail.com?subject=Booking%20inquiry%20-%20Takahiro%20Izumikawa">takahiroizumikawa0@gmail.com</a>
+
+      <p class="or-line"><span class="l-en">or send a message here</span><span class="l-ja">またはこちらから</span></p>
+      <form class="cform" id="booking-form">
+        <input type="hidden" name="access_key" value="881a32c7-74e4-4aa2-b9e6-6ced2094defb">
+        <input type="hidden" name="subject" value="Booking inquiry — takahiroizumikawa.com/booking">
+        <input type="hidden" name="from_name" value="takahiroizumikawa.com/booking">
+        <!-- honeypot（スパムbot対策・人間には非表示） -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <div class="cfield"><input type="text" id="bf-name" name="name" autocomplete="name" required></div>
+        <div class="cfield"><input type="email" id="bf-email" name="email" autocomplete="email" required></div>
+        <div class="cfield"><textarea id="bf-msg" name="message" required></textarea></div>
+        <button type="submit" class="csend" id="bf-send">send</button>
+        <p class="cmsg" id="bf-msg-out"></p>
+      </form>
     </section>
 
   </div>
@@ -320,17 +357,61 @@ footer a:hover{color:var(--dim)}
 
 <script>
 (function(){
+  /* フォームのplaceholder/ボタンは属性なのでspan方式が使えない → 言語切替時にJSで差し替える（英日パリティ） */
+  var T = {
+    en: {name:'name', email:'email', msg:'message', send:'send', sending:'sending…', sent:'sent',
+         ok:'Thank you — your message is on its way.',
+         ng:'Something went wrong. Please email <a href="mailto:takahiroizumikawa0@gmail.com?subject=Booking%20inquiry%20-%20Takahiro%20Izumikawa">takahiroizumikawa0@gmail.com</a> instead.'},
+    ja: {name:'お名前', email:'メールアドレス', msg:'ご用件', send:'送信', sending:'送信中…', sent:'送信しました',
+         ok:'送信しました。ありがとうございます。',
+         ng:'送信できませんでした。お手数ですが <a href="mailto:takahiroizumikawa0@gmail.com?subject=Booking%20inquiry%20-%20Takahiro%20Izumikawa">takahiroizumikawa0@gmail.com</a> へ直接お送りください。'}
+  };
+  var lang = 'en';
+  function applyFormLang(l){
+    var t = T[l];
+    document.getElementById('bf-name').placeholder = t.name;
+    document.getElementById('bf-email').placeholder = t.email;
+    document.getElementById('bf-msg').placeholder = t.msg;
+    var b = document.getElementById('bf-send');
+    if(!b.disabled && b.dataset.state !== 'sent') b.textContent = t.send;
+  }
   function setLang(l){
+    lang = l;
     document.documentElement.setAttribute('data-lang', l);
     document.documentElement.setAttribute('lang', l === 'ja' ? 'ja' : 'en');
     try{localStorage.setItem('booking-lang', l);}catch(e){}
     document.getElementById('sw-en').classList.toggle('on', l !== 'ja');
     document.getElementById('sw-ja').classList.toggle('on', l === 'ja');
+    applyFormLang(l);
   }
   /* 初期言語は<head>のブートストラップが適用済み — ここではボタン状態の同期のみ */
   setLang(document.documentElement.getAttribute('data-lang') === 'ja' ? 'ja' : 'en');
   document.getElementById('sw-en').addEventListener('click', function(e){e.preventDefault(); setLang('en');});
   document.getElementById('sw-ja').addEventListener('click', function(e){e.preventDefault(); setLang('ja');});
+
+  /* ブッキング問い合わせフォーム（Web3Forms・送信先=個人Gmail。2026-08-12に実ブラウザで配信実証済み） */
+  document.getElementById('booking-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var form = e.target, t = T[lang];
+    var btn = document.getElementById('bf-send');
+    var out = document.getElementById('bf-msg-out');
+    out.className = 'cmsg'; out.innerHTML = '';
+    btn.disabled = true; btn.textContent = t.sending;
+    fetch('https://api.web3forms.com/submit', {method:'POST', body:new FormData(form)})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d.success) throw new Error(d.message || 'error');
+        form.reset();
+        btn.dataset.state = 'sent'; btn.textContent = T[lang].sent;
+        out.innerHTML = T[lang].ok;
+      })
+      .catch(function(){
+        btn.disabled = false; btn.textContent = T[lang].send;
+        out.className = 'cmsg err';
+        /* 失敗時は必ずメールの逃げ道を出す（Cloudflareのbot判定等で送れない相手を取りこぼさない） */
+        out.innerHTML = T[lang].ng;
+      });
+  });
 })();
 </script>
 
