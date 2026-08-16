@@ -72,9 +72,11 @@ main{flex:1;padding:clamp(40px,8vh,88px) var(--gutter)}
 }
 .csend:hover{border-color:var(--accent);color:var(--accent)}
 .csend:disabled{opacity:.45;cursor:default}
-.cmsg{margin-top:18px;font-size:13px;letter-spacing:.02em;color:var(--dim)}
+.cmsg{margin-top:18px;font-size:13px;letter-spacing:.02em;color:var(--dim);line-height:1.7}
 .cmsg:empty{display:none}
 .cmsg.err{color:#c46b6b}
+.cmsg a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule)}
+.cmsg a:hover{color:var(--accent);border-color:var(--accent)}
 .cnote{margin-top:26px;font-size:12px;color:var(--faint)}
 .cnote a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s}
 .cnote a:hover{color:var(--accent);border-color:var(--accent)}
@@ -109,7 +111,7 @@ footer a:hover{color:var(--dim)}
     <h1 class="name-head">Contact</h1>
     <p class="intro">For booking, press, collaboration, or just to say hello.</p>
 
-    <!-- Web3Forms。access_key を実キーに差し替えるまでは送信できません -->
+    <!-- Web3Forms（稼働中）。通知先=takahiroizumikawa0@gmail.com。2026-08-12に実ブラウザで送信テスト済み（headlessはCloudflareのbot判定で必ず失敗するのでテストはheadfulで行うこと） -->
     <form class="cform" id="contact-form">
       <input type="hidden" name="access_key" value="881a32c7-74e4-4aa2-b9e6-6ced2094defb">
       <input type="hidden" name="subject" value="Contact from takahiroizumikawa.com">
@@ -152,7 +154,8 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
     .catch(function(){
       btn.disabled = false; btn.textContent = 'send';
       msg.className = 'cmsg err';
-      msg.textContent = 'Something went wrong. Please try again in a moment.';
+      /* 失敗時は必ずメールの逃げ道を出す（送れない相手を黙って取りこぼさない） */
+      msg.innerHTML = 'Something went wrong. Please email <a href="mailto:takahiroizumikawa0@gmail.com">takahiroizumikawa0@gmail.com</a> instead.';
     });
 });
 </script>
