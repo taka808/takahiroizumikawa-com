@@ -178,6 +178,8 @@ footer a:hover{color:var(--dim)}
   html,body{background:#fff;color:#111}
   nav.top,.video-frame,.spotify-frame,footer{display:none}
   .caption,.press-grid figcaption{display:none}
+  /* 紙のワンシートに入力欄は無意味（かつ白背景に白文字で潰れる）。mailtoは残す */
+  .book-cta form,.or-line{display:none}
   /* 印刷では音源リンクをURL明記で残す（LISTEN見出しを孤児にしない） */
   .after-link a{color:#111;border:0}
   .after-link a::after{content:" — ffm.to/offsync";letter-spacing:.02em;text-transform:none}
