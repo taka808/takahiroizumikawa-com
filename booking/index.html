@@ -176,7 +176,8 @@ footer a:hover{color:var(--dim)}
 @media print{
   body::before{display:none}
   html,body{background:#fff;color:#111}
-  nav.top,.video-frame,.spotify-frame,footer{display:none}
+  /* 映像は紙に出せないのでセクションごと落とす（見出しだけ残る孤児を防ぐ） */
+  nav.top,.live-block,.spotify-frame,footer{display:none}
   .caption,.press-grid figcaption{display:none}
   /* 紙のワンシートに入力欄は無意味（かつ白背景に白文字で潰れる）。mailtoは残す */
   .book-cta form,.or-line{display:none}
@@ -187,6 +188,10 @@ footer a:hover{color:var(--dim)}
   section.block{border-color:#ddd;margin-top:22px;padding-top:16px}
   .eyebrow,.contact-row .lbl{color:#888}
   .lead,.name-head,.body p,.band-line,.stages li{color:#111}
+  /* 暗色テーマ用のクリーム色が白紙に残ると読めない（実測1.1:1）。紙用に濃い色へ上書き */
+  .body p .ttl,.band-line .who,.stages .up{color:#111}
+  .credits .role{color:#666}
+  .credits .names{color:#222}
   .lead .mark{color:#b51f1f}
   .contact-row a,.body a,.book-cta .big-mail{color:#111;border-color:#bbb}
   .stages li{border-color:#e5e5e5}
@@ -233,7 +238,7 @@ footer a:hover{color:var(--dim)}
     </div>
 
     <!-- ── live video ── -->
-    <section class="block">
+    <section class="block live-block">
       <h2 class="eyebrow"><span class="l-en">Live</span><span class="l-ja">ライブ</span></h2>
       <div class="video-frame">
         <iframe src="https://www.youtube-nocookie.com/embed/cL8hHXlqRPA?rel=0"
@@ -391,7 +396,7 @@ footer a:hover{color:var(--dim)}
   document.getElementById('sw-en').addEventListener('click', function(e){e.preventDefault(); setLang('en');});
   document.getElementById('sw-ja').addEventListener('click', function(e){e.preventDefault(); setLang('ja');});
 
-  /* ブッキング問い合わせフォーム（Web3Forms・送信先=個人Gmail。2026-08-12に実ブラウザで配信実証済み） */
+  /* ブッキング問い合わせフォーム（Web3Forms・送信先=個人Gmail。2026-08-16に実ブラウザで配信実証済み） */
   document.getElementById('booking-form').addEventListener('submit', function(e){
     e.preventDefault();
     var form = e.target, t = T[lang];
