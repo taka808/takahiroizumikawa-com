@@ -18,9 +18,10 @@
 <script>
 /* 言語の初期適用は first paint 前に行う（?lang=ja 入場時の英語フラッシュ防止） */
 (function(){
+  /* 言語はURLだけで決める（localStorageに記憶しない）。素の /booking は誰の端末でも常に英語で、
+     日本語は /booking/jp/ と ?lang=ja のみ — 渡したリンクで相手に何が見えるかを確定させるため */
   var q = new URLSearchParams(location.search).get('lang');
-  var saved = null; try{saved = localStorage.getItem('booking-lang');}catch(e){}
-  var l = (q === 'ja' || q === 'en') ? q : (saved === 'ja' ? 'ja' : 'en');
+  var l = (q === 'ja' || q === 'en') ? q : 'en';
   document.documentElement.setAttribute('data-lang', l);
   document.documentElement.setAttribute('lang', l === 'ja' ? 'ja' : 'en');
 })();
@@ -328,7 +329,6 @@ footer a:hover{color:var(--dim)}
   function setLang(l){
     document.documentElement.setAttribute('data-lang', l);
     document.documentElement.setAttribute('lang', l === 'ja' ? 'ja' : 'en');
-    try{localStorage.setItem('booking-lang', l);}catch(e){}
     document.getElementById('sw-en').classList.toggle('on', l !== 'ja');
     document.getElementById('sw-ja').classList.toggle('on', l === 'ja');
   }
