@@ -69,17 +69,18 @@ main{flex:1;padding:clamp(40px,7vh,72px) var(--gutter)}
 .name-head{font-size:clamp(30px,5vw,52px);font-weight:500;letter-spacing:.08em;line-height:1.1;color:var(--text);margin-bottom:10px}
 .name-head .jp-sub{display:block;font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:clamp(13px,1.8vw,16px);letter-spacing:.62em;color:var(--dim);margin-top:12px}
 /* tagline = 引用（斜体はブランドガイドラインの引用例外・純白より落としたグレー） */
-.tagline{font-style:italic;font-weight:300;font-size:clamp(17px,2.3vw,22px);line-height:1.5;color:var(--dim);margin:clamp(18px,3vh,26px) 0 clamp(18px,3vh,26px)}
+.tagline{font-style:italic;font-weight:300;font-size:clamp(17px,2.3vw,22px);line-height:1.5;color:var(--dim);margin:clamp(18px,3vh,26px) 0 8px}
+/* taglineの和訳（小さく添える。斜体にしない＝引用の斜体例外は原文側のみ） */
+.tagline-ja{font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:clamp(12px,1.5vw,13.5px);line-height:1.7;color:var(--faint);letter-spacing:.04em;margin-bottom:clamp(18px,3vh,26px)}
 .body p{font-size:clamp(14.5px,1.55vw,16px);font-weight:300;line-height:1.85;color:rgba(245,240,232,.86);margin-bottom:1.5em;max-width:60ch}
 .body p .ttl{font-style:normal;color:var(--text);font-weight:400}
 .body a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s}
 .body a:hover{color:var(--accent);border-color:var(--accent)}
 
-/* contact row — 上下2箇所（EPK定石: 連絡先は常に見える位置に） */
-.contact-row{display:flex;gap:clamp(16px,3vw,30px);flex-wrap:wrap;align-items:baseline;margin-bottom:clamp(10px,2vh,16px)}
-.contact-row a{font-size:clamp(13px,1.5vw,15px);letter-spacing:.06em;color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s;font-weight:400}
-.contact-row a:hover{color:var(--accent);border-color:var(--accent)}
-.contact-row .lbl{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+/* 戻り動線（EPK本体へ返す。このページはbookingから来る前提） */
+.back-block .body p{margin-bottom:0}
+.back-link{font-size:clamp(13.5px,1.6vw,15px);letter-spacing:.06em;font-weight:400;border-bottom:1px solid var(--rule)}
+.back-link .arw{color:var(--accent)}
 
 /* sections */
 section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);padding-top:clamp(26px,4.5vh,38px)}
@@ -90,9 +91,6 @@ section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);p
 .demo-head h3{font-size:16px;font-weight:500;letter-spacing:.06em}
 .demo-head .len{font-size:12px;letter-spacing:.14em;color:var(--accent);white-space:nowrap}
 .demo audio{width:100%;margin:10px 0 12px;filter:invert(92%) hue-rotate(180deg);border-radius:2px}
-.demo-meta{display:flex;flex-wrap:wrap;gap:8px 10px;font-size:11.5px;color:var(--dim)}
-.tag{border:1px solid var(--rule);padding:5px 12px;letter-spacing:.05em}
-.demo-note{font-size:12.5px;line-height:1.7;color:var(--dim);margin-top:12px}
 .print-only{display:none}
 
 /* what is yatara — 3セル縦積み */
@@ -112,6 +110,10 @@ section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);p
 
 /* 14小節フォームマップ（制作用LPの .bar 型をスライド・1マス=1小節） */
 .formmap{overflow-x:auto;margin-top:22px;padding-bottom:6px}
+/* 375pxでは9小節目までしか入らず、キャプションが指す赤マス(13-14)が画面外になる。
+   右端フェードは幅が足りる画面で最後のマスを薄くしてしまうので、キャプション側で明示する */
+.map-note .scroll-hint{color:var(--dim)}
+@media(min-width:600px){.map-note .scroll-hint{display:none}}
 .bars{display:flex;gap:3px;width:max-content}
 .bar{flex:0 0 34px;border:1px solid var(--rule);background:rgba(245,240,232,.05);
      padding:9px 2px;text-align:center;font-size:10px;color:var(--faint)}
@@ -120,8 +122,6 @@ section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);p
 .map-note{font-size:11.5px;color:var(--faint);margin-top:10px;letter-spacing:.04em}
 
 /* contact */
-.book-cta .big-mail{display:inline-block;font-size:clamp(17px,2.4vw,23px);font-weight:400;letter-spacing:.02em;color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s;margin-top:6px;word-break:break-all}
-.book-cta .big-mail:hover{color:var(--accent);border-color:var(--accent)}
 
 footer{
   display:flex;justify-content:center;gap:clamp(18px,2.4vw,32px);
@@ -146,20 +146,21 @@ footer a:hover{color:var(--dim)}
   nav.top,footer,.demo audio{display:none}
   .print-only{display:block;font-size:11px;color:#555;letter-spacing:.04em;margin-top:8px}
   section.block{border-color:#ddd;margin-top:22px;padding-top:16px}
-  .eyebrow,.contact-row .lbl{color:#888}
+  .eyebrow{color:#888}
   .tagline,.name-head,.body p,.rules b{color:#111}
+  /* 和訳行は薄いクリームのままだと白紙で読めない（実測: 紙で痕跡程度）→ 紙用の濃色へ */
+  .tagline-ja{color:#555}
   .name-head .jp-sub{color:#666}
   .body p .ttl{color:#111}
   .cells .cell,.demo{border-color:#ddd;background:#fff}
   .cell .no,.demo-head .len{color:#b51f1f}
   .cell h3,.demo-head h3{color:#111}
-  .cell p,.rules span,.demo-meta,.demo-note{color:#333}
-  .tag{border-color:#ccc}
+  .cell p,.rules span{color:#333}
   .bar{border-color:#ccc;background:#fafafa;color:#888}
   .bar.riff-bar{background:#f6e0e0;border-color:#d9a0a0;color:#7a2a2a}
   .bar.grp-start{border-left-color:#b51f1f}
   .map-note{color:#888}
-  .contact-row a,.body a,.book-cta .big-mail{color:#111;border-color:#bbb}
+  .body a{color:#111;border-color:#bbb}
   .body a[href="../booking/"]::after{content:" (takahiroizumikawa.com/booking)"}
 }
 </style>
@@ -186,16 +187,13 @@ footer a:hover{color:var(--dim)}
   <div class="wrap">
 
     <!-- ── header ── -->
-    <p class="eyebrow reveal r-1"><span class="l-en">New Genre — Takahiro Izumikawa</span><span class="l-ja">新ジャンル — 泉川貴広</span></p>
+    <p class="eyebrow reveal r-1"><span class="l-en">New Genre</span><span class="l-ja">新ジャンル</span></p>
     <h1 class="name-head reveal r-1">YATARA<span class="jp-sub">夜　打　楽</span></h1>
     <p class="tagline reveal r-2">"If a jazz pianist lived in 1600s Japan."</p>
+    <p class="tagline-ja reveal r-2">もしジャズピアニストが西暦1600年の日本に住んでいたら？</p>
     <div class="body reveal r-3">
-      <p class="l-en">A new genre that replaces the African rhythms at the deepest foundation of New York's music with the rhythms of 1600s Japan — using the clave as a shared key.</p>
-      <p class="l-ja">NYの音楽スタイルの最も土台になっているアフリカのリズムを、クラーベを基準に日本の1600年代のリズムに置き換えて演奏する、新しいジャンル。</p>
-    </div>
-    <div class="contact-row reveal r-4">
-      <span class="lbl"><span class="l-en">Contact</span><span class="l-ja">お問い合わせ</span></span>
-      <a href="mailto:booking@takahiroizumikawa.com?subject=YATARA%20booking%20inquiry%20-%20Takahiro%20Izumikawa">booking@takahiroizumikawa.com</a>
+      <p class="l-en">A new genre that replaces the African rhythms at the foundation of New York's music with the rhythms of 1600s Japan — using the clave as a shared key.</p>
+      <p class="l-ja">NYの音楽スタイルの土台になっているアフリカのリズムを、クラーベを基準に日本の1600年代のリズムに置き換えて演奏する、新しいジャンル。</p>
     </div>
 
     <!-- ── listen ── -->
@@ -208,11 +206,6 @@ footer a:hover{color:var(--dim)}
           <div class="len">4:14</div>
         </div>
         <audio controls preload="metadata" src="audio/nihon-no-clave-demo-136bpm.mp3"></audio>
-        <div class="demo-meta">
-          <span class="tag">136 BPM</span>
-          <span class="tag"><span class="l-en">2-3 clave</span><span class="l-ja">クラーベ 2-3</span></span>
-          <span class="tag"><span class="l-en">demo</span><span class="l-ja">デモ音源</span></span>
-        </div>
       </div>
 
       <div class="demo">
@@ -221,14 +214,8 @@ footer a:hover{color:var(--dim)}
           <div class="len">1:13</div>
         </div>
         <audio controls preload="metadata" src="audio/nika-sacrifice.mp3"></audio>
-        <div class="demo-meta">
-          <span class="tag">98 BPM</span>
-          <span class="tag"><span class="l-en">with percussion</span><span class="l-ja">パーカッションとの録音</span></span>
-          <span class="tag"><span class="l-en">demo</span><span class="l-ja">デモ音源</span></span>
-        </div>
       </div>
 
-      <p class="demo-note"><span class="l-en">Unreleased demo recordings — shared here for booking.</span><span class="l-ja">未発表のデモ音源です — ブッキング用に公開しています。</span></p>
       <p class="print-only">Listen online — takahiroizumikawa.com/yatara</p>
     </section>
 
@@ -237,31 +224,20 @@ footer a:hover{color:var(--dim)}
       <h2 class="eyebrow"><span class="l-en">What is YATARA</span><span class="l-ja">YATARAとは</span></h2>
       <div class="cells">
         <div class="cell">
-          <div class="no">01 — the base</div>
-          <h3><span class="l-en">The rhythm structure of Bon-odori</span><span class="l-ja">土台：盆踊りのリズム構造</span></h3>
-          <p><span class="l-en">Japan's traditional dance music, danced every summer for centuries. One cycle is 14 bars — 56 beats — and inside it, an independent loop of 11 beats of silence and 3 claps keeps turning. That structure, taken out and fixed as the foundation.</span><span class="l-ja">数百年、毎年夏に踊られてきた日本の伝統的なダンスミュージック。全体は14小節（56拍）で一周し、その中を「11拍の静寂＋3拍の拍手」が独立した周期で回る。この構造を取り出し、固定の土台にしたもの。</span></p>
+          <div class="no">01</div>
+          <h3><span class="l-en">The base — Bon-odori</span><span class="l-ja">土台：盆踊り</span></h3>
+          <p><span class="l-en">A 14-bar loop, 11 beats of rest and 3 claps, odd-numbered melodies over even-numbered drum patterns — that structure is the foundation.</span><span class="l-ja">14小節ループ＋11拍休符3拍手＋奇数メロディ＋偶数ドラムパターンの構造を土台にする。</span></p>
         </div>
         <div class="cell">
-          <div class="no">02 — the system</div>
-          <h3><span class="l-en">Modern systems on top</span><span class="l-ja">その上に、現代のシステム</span></h3>
-          <p><span class="l-en">On that base, systems from today's music are placed — gospel harmony, the Afrobeat clave, the 5-7-5 rhythm of haiku. Each combination becomes a format, and each format becomes songs.</span><span class="l-ja">その土台の上に、現代の音楽のシステム——ゴスペルのコード進行、Afrobeatのクラーベ、俳諧の575——を載せる。組み合わせがフォーマットになり、フォーマットから曲が生まれる。</span></p>
+          <div class="no">02</div>
+          <h3><span class="l-en">The swap — the clave</span><span class="l-ja">差し替え：クラーベ</span></h3>
+          <p><span class="l-en">New York's music stands on the African clave. YATARA keeps everything above it and swaps only that foundation for Bon-odori, using the clave as the key that lines the two up. On top go the modern systems — gospel, jazz, hip-hop.</span><span class="l-ja">NYの音楽の土台にあるのはアフリカのクラーベ。そのクラーベを鍵にして、土台だけを盆踊りに差し替える。その上に、現代の音楽のシステム——ゴスペル、ジャズ、ヒップホップを載せる。</span></p>
         </div>
         <div class="cell">
-          <div class="no">03 — the experience</div>
-          <h3><span class="l-en">Safe intensity</span><span class="l-ja">体験：Safe intensity</span></h3>
-          <p><span class="l-en">Intensity you can experience safely: tension that is beautiful but unaccountable, and a release that lands in the body.</span><span class="l-ja">安全に体験できる強烈さ。「美しいのに脈絡がない」緊張と、「身体で着地する」解放。</span></p>
+          <div class="no">03</div>
+          <h3><span class="l-en">Everyone on the same floor</span><span class="l-ja">全員が対等</span></h3>
+          <p><span class="l-en">In Bon-odori there is no audience — the people watching and the people dancing stand in the same circle. YATARA writes that into the music: the claps and the calls are parts of the arrangement, so the room plays too.</span><span class="l-ja">盆踊りに客席はない。見ている人と踊っている人が同じ輪の中にいる。YATARAはそれを曲の構造に書き込む。手拍子も掛け声もアレンジの一部なので、会場も一緒に演奏する。</span></p>
         </div>
-      </div>
-    </section>
-
-    <!-- ── on stage ── -->
-    <section class="block">
-      <h2 class="eyebrow"><span class="l-en">On Stage</span><span class="l-ja">実演</span></h2>
-      <div class="body">
-        <p class="l-en">YATARA is already on stage. In June 2026 the band premiered the first YATARA piece at Cotton Club, Tokyo — with the audience singing one part and clapping another. The claps are written into the structure of the music itself, so the room becomes part of the ensemble.</p>
-        <p class="l-ja">YATARAはすでにステージの上にある。2026年6月、Cotton Club（東京）でバンド初演奏。客席が歌うパートと手拍子のパートも一緒に演奏した。手拍子は曲の構造そのものに書き込まれているため、会場全体がアンサンブルの一部になる。</p>
-        <p class="l-en">Next: Japan, October–November 2026 — now booking.</p>
-        <p class="l-ja">次は2026年10–11月、日本 — ブッキング受付中。</p>
       </div>
     </section>
 
@@ -282,23 +258,14 @@ footer a:hover{color:var(--dim)}
           <div class="bar riff-bar">13</div><div class="bar riff-bar">14</div>
         </div>
       </div>
-      <p class="map-note"><span class="l-en">1 square = 1 bar · red line = start of each 3-bar melody · red squares = the 2-bar riff.</span><span class="l-ja">1マス＝1小節。赤い縦線＝3小節メロディの頭、赤いマス＝リフ2小節。</span></p>
+      <p class="map-note"><span class="l-en">1 square = 1 bar · red line = start of each 3-bar melody · red squares = the 2-bar riff.<span class="scroll-hint"> (scroll →)</span></span><span class="l-ja">1マス＝1小節。赤い縦線＝3小節メロディの頭、赤いマス＝リフ2小節。<span class="scroll-hint">（横にスクロール →）</span></span></p>
     </section>
 
-    <!-- ── the artist ── -->
-    <section class="block">
-      <h2 class="eyebrow"><span class="l-en">The Artist</span><span class="l-ja">アーティスト</span></h2>
+    <!-- ── back to booking ── -->
+    <section class="block back-block">
       <div class="body">
-        <p class="l-en">Pianist and keyboardist from Japan, based in New York.<br>Latest album: <span class="ttl">Off Sync</span> (2024), made with drummer Chris Dave.</p>
-        <p class="l-ja">日本に生まれ、ニューヨークを拠点に活動するピアニスト／キーボーディスト。<br>最新アルバムはドラマーのChris Daveと制作した『<span class="ttl">Off Sync</span>』(2024)。</p>
-        <p><a href="../booking/"><span class="l-en">Full EPK — live video, album, press photos ↗&#xFE0E;</span><span class="l-ja">EPK本体 — ライブ映像・アルバム・プレス写真 ↗&#xFE0E;</span></a></p>
+        <p><a class="back-link" href="../booking/"><span class="arw" aria-hidden="true">←</span>&nbsp;<span class="l-en">Back to booking</span><span class="l-ja">ブッキングページに戻る</span></a></p>
       </div>
-    </section>
-
-    <!-- ── contact ── -->
-    <section class="block book-cta">
-      <h2 class="eyebrow"><span class="l-en">Contact</span><span class="l-ja">お問い合わせ</span></h2>
-      <a class="big-mail" href="mailto:booking@takahiroizumikawa.com?subject=YATARA%20booking%20inquiry%20-%20Takahiro%20Izumikawa">booking@takahiroizumikawa.com</a>
     </section>
 
   </div>
