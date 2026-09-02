@@ -71,7 +71,8 @@ main{flex:1;padding:clamp(40px,7vh,72px) var(--gutter)}
 /* tagline = 引用（斜体はブランドガイドラインの引用例外・純白より落としたグレー） */
 .tagline{font-style:italic;font-weight:300;font-size:clamp(17px,2.3vw,22px);line-height:1.5;color:var(--dim);margin:clamp(18px,3vh,26px) 0 8px}
 /* taglineの和訳（小さく添える。斜体にしない＝引用の斜体例外は原文側のみ） */
-.tagline-ja{font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:clamp(12px,1.5vw,13.5px);line-height:1.7;color:var(--faint);letter-spacing:.04em;margin-bottom:clamp(18px,3vh,26px)}
+.tagline-ja{font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:clamp(12px,1.5vw,13.5px);line-height:1.7;color:var(--dim);letter-spacing:.04em;margin-bottom:clamp(18px,3vh,26px)}
+.tagline-ja .nb{display:inline-block}
 .body p{font-size:clamp(14.5px,1.55vw,16px);font-weight:300;line-height:1.85;color:rgba(245,240,232,.86);margin-bottom:1.5em;max-width:60ch}
 .body p .ttl{font-style:normal;color:var(--text);font-weight:400}
 .body a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s}
@@ -108,18 +109,6 @@ section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);p
 .rules b{font-weight:500;letter-spacing:.05em;line-height:1.6}
 .rules span{color:var(--dim);line-height:1.8}
 
-/* 14小節フォームマップ（制作用LPの .bar 型をスライド・1マス=1小節） */
-.formmap{overflow-x:auto;margin-top:22px;padding-bottom:6px}
-/* 375pxでは9小節目までしか入らず、キャプションが指す赤マス(13-14)が画面外になる。
-   右端フェードは幅が足りる画面で最後のマスを薄くしてしまうので、キャプション側で明示する */
-.map-note .scroll-hint{color:var(--dim)}
-@media(min-width:600px){.map-note .scroll-hint{display:none}}
-.bars{display:flex;gap:3px;width:max-content}
-.bar{flex:0 0 34px;border:1px solid var(--rule);background:rgba(245,240,232,.05);
-     padding:9px 2px;text-align:center;font-size:10px;color:var(--faint)}
-.bar.grp-start{border-left:2px solid rgba(219,38,38,.55)}
-.bar.riff-bar{background:rgba(219,38,38,.14);border-color:rgba(219,38,38,.4);color:var(--dim)}
-.map-note{font-size:11.5px;color:var(--faint);margin-top:10px;letter-spacing:.04em}
 
 /* contact */
 
@@ -143,6 +132,8 @@ footer a:hover{color:var(--dim)}
   /* 印刷ではアニメ未実行でも全要素を表示（reveal の opacity:0 が紙で残らないように） */
   .reveal{opacity:1;transform:none;animation:none}
   html,body{background:#fff;color:#111}
+  /* カードがページ境界で割れると、次ページが枠なしの「03」から始まって見える */
+  .cells .cell,.demo{break-inside:avoid;page-break-inside:avoid}
   nav.top,footer,.demo audio{display:none}
   .print-only{display:block;font-size:11px;color:#555;letter-spacing:.04em;margin-top:8px}
   section.block{border-color:#ddd;margin-top:22px;padding-top:16px}
@@ -156,12 +147,8 @@ footer a:hover{color:var(--dim)}
   .cell .no,.demo-head .len{color:#b51f1f}
   .cell h3,.demo-head h3{color:#111}
   .cell p,.rules span{color:#333}
-  .bar{border-color:#ccc;background:#fafafa;color:#888}
-  .bar.riff-bar{background:#f6e0e0;border-color:#d9a0a0;color:#7a2a2a}
-  .bar.grp-start{border-left-color:#b51f1f}
-  .map-note{color:#888}
   .body a{color:#111;border-color:#bbb}
-  .body a[href="../booking/"]::after{content:" (takahiroizumikawa.com/booking)"}
+  .body a[href^="../booking/"]::after{content:" (takahiroizumikawa.com/booking)"}
 }
 </style>
 </head>
@@ -190,7 +177,8 @@ footer a:hover{color:var(--dim)}
     <p class="eyebrow reveal r-1"><span class="l-en">New Genre</span><span class="l-ja">新ジャンル</span></p>
     <h1 class="name-head reveal r-1">YATARA<span class="jp-sub">夜　打　楽</span></h1>
     <p class="tagline reveal r-2">"If a jazz pianist lived in 1600s Japan."</p>
-    <p class="tagline-ja reveal r-2">もしジャズピアニストが西暦1600年の日本に住んでいたら？</p>
+    <!-- 和文は文節単位でしか改行させない（375pxで「ら？」の2文字だけ次行に落ちるのを防ぐ） -->
+    <p class="tagline-ja reveal r-2"><span class="nb">もしジャズピアニストが</span><span class="nb">西暦1600年の日本に</span><span class="nb">住んでいたら？</span></p>
     <div class="body reveal r-3">
       <p class="l-en">A new genre that replaces the African rhythms at the foundation of New York's music with the rhythms of 1600s Japan — using the clave as a shared key.</p>
       <p class="l-ja">NYの音楽スタイルの土台になっているアフリカのリズムを、クラーベを基準に日本の1600年代のリズムに置き換えて演奏する、新しいジャンル。</p>
@@ -205,7 +193,7 @@ footer a:hover{color:var(--dim)}
           <h3><span class="l-en">Nihon no Clave 2-3</span><span class="l-ja">日本のクラーベ 2-3</span></h3>
           <div class="len">4:14</div>
         </div>
-        <audio controls preload="metadata" src="audio/nihon-no-clave-demo-136bpm.mp3"></audio>
+        <audio controls preload="metadata" src="audio/nihon-no-clave-demo-136bpm.mp3" aria-label="Nihon no Clave 2-3"></audio>
       </div>
 
       <div class="demo">
@@ -213,10 +201,10 @@ footer a:hover{color:var(--dim)}
           <h3>Sacrifice</h3>
           <div class="len">1:13</div>
         </div>
-        <audio controls preload="metadata" src="audio/nika-sacrifice.mp3"></audio>
+        <audio controls preload="metadata" src="audio/nika-sacrifice.mp3" aria-label="Sacrifice"></audio>
       </div>
 
-      <p class="print-only">Listen online — takahiroizumikawa.com/yatara</p>
+      <p class="print-only"><span class="l-en">Listen online — takahiroizumikawa.com/yatara</span><span class="l-ja">試聴はこちら — takahiroizumikawa.com/yatara/jp/</span></p>
     </section>
 
     <!-- ── what is yatara ── -->
@@ -236,7 +224,7 @@ footer a:hover{color:var(--dim)}
         <div class="cell">
           <div class="no">03</div>
           <h3><span class="l-en">Everyone on the same floor</span><span class="l-ja">全員が対等</span></h3>
-          <p><span class="l-en">In Bon-odori there is no audience — the people watching and the people dancing stand in the same circle. YATARA writes that into the music: the claps and the calls are parts of the arrangement, so the room plays too.</span><span class="l-ja">盆踊りに客席はない。見ている人と踊っている人が同じ輪の中にいる。YATARAはそれを曲の構造に書き込む。手拍子も掛け声もアレンジの一部なので、会場も一緒に演奏する。</span></p>
+          <p><span class="l-en">Just as Bon-odori has no audience, the people who came to watch become part of the music — through claps and voices.</span><span class="l-ja">盆踊りに客席がないように、手拍子や歌で見に来た人も曲の一部となるジャンル。</span></p>
         </div>
       </div>
     </section>
@@ -245,26 +233,16 @@ footer a:hover{color:var(--dim)}
     <section class="block">
       <h2 class="eyebrow"><span class="l-en">The Structure</span><span class="l-ja">仕組み</span></h2>
       <ul class="rules">
-        <li><b>14 bars / 56 beats</b><span><span class="l-en">One cycle is 14 bars (56 beats): a 3-bar melody repeated 4 times, plus a 2-bar riff.</span><span class="l-ja">1周期は14小節（56拍）。3小節メロディ×4回＋リフ2小節。</span></span></li>
-        <li><b>11 + 3</b><span><span class="l-en">11 beats of silence, then 3 claps. This 14-beat loop floats across the bar lines — and comes back to the top exactly every 4 turns.</span><span class="l-ja">11拍の静寂のあと、3拍の拍手。この14拍のループは小節線をまたいで浮遊し、4周でちょうど頭に戻る。</span></span></li>
-        <li><b><span class="l-en">Polyrhythm at the bar level</span><span class="l-ja">小節レベルのポリリズム</span></b><span><span class="l-en">A 3-bar melody rides on music built from 4-bar phrases — so the parts drift not only against the beat, but against the bars themselves.</span><span class="l-ja">4小節フレーズが基準の音楽に、3小節単位のメロディが乗る。拍だけでなく、小節のレベルでもズレが生まれる。</span></span></li>
+        <li><b>14 bars</b><span><span class="l-en">One loop is 14 bars: a 3-bar melody repeated 4 times, plus a 2-bar riff.</span><span class="l-ja">1ループは14小節。3小節メロディ×4回＋リフ2小節。</span></span></li>
+        <li><b>11 + 3</b><span><span class="l-en">11 beats of rest, then 3 claps. This 14-beat loop drifts across the bar lines — and comes back to the top exactly every 4 turns.</span><span class="l-ja">11拍の休みのあと、3拍の拍手。この14拍のループは小節線をまたいでズレていき、4周でちょうど頭に戻る。</span></span></li>
       </ul>
-      <div class="formmap">
-        <div class="bars">
-          <div class="bar grp-start">1</div><div class="bar">2</div><div class="bar">3</div>
-          <div class="bar grp-start">4</div><div class="bar">5</div><div class="bar">6</div>
-          <div class="bar grp-start">7</div><div class="bar">8</div><div class="bar">9</div>
-          <div class="bar grp-start">10</div><div class="bar">11</div><div class="bar">12</div>
-          <div class="bar riff-bar">13</div><div class="bar riff-bar">14</div>
-        </div>
-      </div>
-      <p class="map-note"><span class="l-en">1 square = 1 bar · red line = start of each 3-bar melody · red squares = the 2-bar riff.<span class="scroll-hint"> (scroll →)</span></span><span class="l-ja">1マス＝1小節。赤い縦線＝3小節メロディの頭、赤いマス＝リフ2小節。<span class="scroll-hint">（横にスクロール →）</span></span></p>
     </section>
 
     <!-- ── back to booking ── -->
     <section class="block back-block">
       <div class="body">
-        <p><a class="back-link" href="../booking/"><span class="arw" aria-hidden="true">←</span>&nbsp;<span class="l-en">Back to booking</span><span class="l-ja">ブッキングページに戻る</span></a></p>
+        <!-- 表示言語を引き継いで戻る（booking側の誘導リンクと対。JS不要で言語別に2本） -->
+        <p><a class="back-link l-en" href="../booking/"><span class="arw" aria-hidden="true">←</span>&nbsp;Back to booking</a><a class="back-link l-ja" href="../booking/?lang=ja"><span class="arw" aria-hidden="true">←</span>&nbsp;ブッキングページに戻る</a></p>
       </div>
     </section>
 
