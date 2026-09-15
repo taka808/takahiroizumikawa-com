@@ -66,6 +66,7 @@ main{flex:1;padding:clamp(40px,8vh,88px) var(--gutter)}
 .show .date{flex:0 0 auto;min-width:clamp(110px,12.6vw,128px);font-size:clamp(13px,1.5vw,15px);letter-spacing:.05em;color:var(--dim);white-space:nowrap}
 .show .venue{flex:1 1 auto;min-width:0;font-size:clamp(15px,1.9vw,18px);font-weight:400;color:var(--text)}
 .show .venue .city{color:var(--dim);font-weight:300}
+.show .venue .kind{margin-left:.6em;font-size:11px;letter-spacing:.08em;text-transform:lowercase;color:var(--dim);font-weight:300;white-space:nowrap}
 .show .links{flex:0 0 auto}
 .show .links a,.show .ticket{font-size:11px;letter-spacing:.08em;text-transform:lowercase;color:var(--dim);text-decoration:none;white-space:nowrap;transition:color .4s}
 .show .links a:hover{color:var(--accent)}
@@ -128,20 +129,19 @@ footer a:hover{color:var(--dim)}
     <h1 class="name-head">Shows</h1>
 
     <p class="eyebrow">Upcoming</p>
-    <!-- data-kind (solo|band) is read by the YouTube description tool; every show needs one -->
     <div class="shows-list">
       <a class="show" data-kind="solo" href="https://publictheater.org/buy/?performanceId=55531" target="_blank" rel="noopener">
         <span class="date">Sep 29, 2026</span>
-        <span class="venue">Joe's Pub <span class="city">· New York</span></span>
+        <span class="venue">Joe's Pub <span class="city">· New York</span> <span class="kind">solo piano</span></span>
         <span class="links"><span class="ticket">tickets ↗&#xFE0E;</span></span>
       </a>
       <div class="show" data-kind="solo">
         <span class="date">Oct 26, 2026</span>
-        <span class="venue">BLUE YARD <span class="city">&middot; Osaka</span></span>
+        <span class="venue">BLUE YARD <span class="city">&middot; Osaka</span> <span class="kind">solo piano</span></span>
       </div>
       <div class="show" data-kind="band">
         <span class="date">Oct 30, 2026</span>
-        <span class="venue">晴れたら空に豆まいて <span class="city">&middot; Tokyo</span></span>
+        <span class="venue">晴れたら空に豆まいて <span class="city">&middot; Tokyo</span> <span class="kind">band</span></span>
       </div>
     </div>
 
