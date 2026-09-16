@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crew Log — YATARA</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#161616; --bg-deeper:#0e0e0e; --text:#f5f0e8;
+  --dim:rgba(245,240,232,.55);
+  --accent:#db2626; --rule:rgba(245,240,232,.14);
+  --font-en:'Poppins','Noto Sans JP',sans-serif;
+  --font-jp:'Noto Sans JP','Poppins',sans-serif;
+  --max:1080px; --gutter:clamp(24px,5vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--bg);color:var(--text);font-family:var(--font-jp);font-weight:300;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{min-height:100vh;position:relative;overflow-x:hidden;line-height:1.85;letter-spacing:.04em;font-size:15px}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.08;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.91 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
+}
+
+.reveal{opacity:0;transform:translateY(10px);animation:fade-up 1.4s cubic-bezier(.16,1,.3,1) forwards}
+.r-1{animation-delay:.10s}.r-2{animation-delay:.22s}.r-3{animation-delay:.36s}
+.r-4{animation-delay:.52s}.r-5{animation-delay:.72s}.r-6{animation-delay:.96s}
+@keyframes fade-up{to{opacity:1;transform:translateY(0)}}
+.fade-on-scroll{opacity:0;transform:translateY(10px);transition:opacity 1.4s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1)}
+.fade-on-scroll.is-visible{opacity:1;transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){
+  .reveal,.fade-on-scroll{opacity:1;transform:none;animation:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+section{position:relative;z-index:2;padding-left:var(--gutter);padding-right:var(--gutter)}
+.container{max-width:var(--max);margin:0 auto;width:100%}
+
+/* hero */
+.hero{padding-top:clamp(72px,16vh,160px);padding-bottom:clamp(24px,4vh,40px)}
+.hero-title{font-family:var(--font-en);font-weight:500;font-size:clamp(52px,10vw,120px);line-height:1;letter-spacing:-.005em;color:var(--text)}
+.hero-rule{width:36px;height:1px;background:var(--accent);margin:clamp(28px,4vh,40px) 0 clamp(20px,3vh,28px)}
+.hero-project{font-family:var(--font-en);font-weight:400;font-size:clamp(15px,1.7vw,19px);letter-spacing:.4em;text-transform:uppercase;color:var(--text)}
+.hero-subtitle{font-family:var(--font-en);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-top:10px}
+
+.statement-block{padding-top:clamp(48px,8vh,88px);padding-bottom:clamp(24px,4vh,48px)}
+.statement{max-width:540px;margin:0 0 0 auto;font-size:14px;line-height:2;color:var(--dim)}
+.hero-meta{max-width:540px;margin:clamp(28px,4vh,40px) 0 0 auto;font-family:var(--font-en);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+
+/* entries */
+.stream{padding-top:clamp(80px,14vh,140px);padding-bottom:clamp(80px,14vh,140px)}
+.entry{padding:clamp(64px,14vh,120px) 0;scroll-margin-top:32px}
+.entry:first-of-type{padding-top:8px}
+.entry-meta{display:flex;align-items:baseline;gap:28px;margin-bottom:24px}
+.entry-number{font-family:var(--font-en);font-weight:500;font-size:clamp(20px,2.4vw,28px);letter-spacing:.02em;color:var(--accent)}
+.entry-date{font-family:var(--font-en);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--dim)}
+.entry-title{font-weight:400;font-size:clamp(15px,1.8vw,20px);line-height:1.5;letter-spacing:.08em;color:var(--text);margin-bottom:28px;max-width:720px}
+.entry-video{position:relative;width:100%;max-width:880px;aspect-ratio:16/9;margin:8px 0 36px;background:var(--bg-deeper);overflow:hidden}
+.entry-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.entry-body{font-size:14px;line-height:2;color:var(--dim);max-width:540px;margin-bottom:40px}
+.entry-body p+p{margin-top:1.2em}
+
+/* footer */
+footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) clamp(40px,8vh,80px);border-top:1px solid var(--rule)}
+.footer-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px}
+.footer-name{font-family:var(--font-en);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--text)}
+.footer-org{font-family:var(--font-en);font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+.footer-tag{font-family:var(--font-en);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-top:10px}
+.footer-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(245,240,232,.30);transition:color .4s ease,text-decoration-color .4s ease}
+.footer-link:hover,.footer-link:focus-visible{color:var(--accent);text-decoration-color:var(--accent);outline:none}
+.footer-meta{font-family:var(--font-en);font-size:11px;letter-spacing:.28em;color:var(--dim)}
+
+@media (max-width:768px){
+  body{font-size:14px}
+  .statement,.hero-meta{max-width:100%;margin-left:0}
+  .entry-meta{gap:20px;flex-wrap:wrap}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title reveal r-1">Crew Log</h1>
+    <div class="hero-rule reveal r-2"></div>
+    <p class="hero-project reveal r-2">YATARA</p>
+    <p class="hero-subtitle reveal r-3">Documentation from inside</p>
+  </div>
+</section>
+
+<section class="statement-block">
+  <div class="container">
+    <p class="statement reveal r-4">
+      クルーへ。<br>
+      ここから先は、10月30日に向かう制作の内側です。<br>
+      記録は不定期に追記されます。
+    </p>
+    <p class="hero-meta reveal r-4">Takahiro Izumikawa &middot; Tokyo &middot; October 30, 2026</p>
+  </div>
+</section>
+
+<section class="stream">
+  <div class="container">
+
+
+    <article class="entry" id="log-001">
+      <div class="entry-meta reveal r-5">
+        <span class="entry-number">#001</span>
+        <span class="entry-date">2026-09-16</span>
+      </div>
+
+      <h2 class="entry-title reveal r-6">バンドで鳴らす、その前哨戦</h2>
+
+      <div class="entry-video reveal r-6">
+        <iframe title="#001 バンドで鳴らす、その前哨戦" src="https://player.vimeo.com/video/1227431743?h=bec5697dd7&amp;title=0&amp;byline=0&amp;portrait=0"
+                referrerpolicy="strict-origin"
+                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div class="entry-body reveal r-6">
+        <p>10月30日の東京は、新しいジャンルをバンドで鳴らします。ピアノひとつでも成立する枠に、あえてバンドを入れる選択をしました。</p>
+        <p>大阪はピアノソロで、その音楽がどこから来たのかを話しながら。当日のサウンドチェックも、この場所から覗けます。</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Takahiro Izumikawa</div>
+      <div class="footer-org">Access Art Works</div>
+      <div class="footer-tag"><a href="https://takahiroizumikawa.com/yatara/jp/" class="footer-link" target="_blank" rel="noopener noreferrer">YATARA</a></div>
+    </div>
+    <div class="footer-meta">&copy; 2026</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  var els = document.querySelectorAll('.fade-on-scroll');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
