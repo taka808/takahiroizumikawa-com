@@ -142,8 +142,8 @@ section {
 }
 .hero > img.hero-photo {   /* ライブ写真をヘッダーの背景に（2026-09-19）。`.hero > *` の position:relative に負けないよう子セレクタで指定 */
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: 62% 42%;
-  filter: brightness(.52) contrast(1.06) grayscale(.15);
+  object-fit: cover; object-position: 50% 50%;
+  filter: brightness(.58) contrast(1.06) grayscale(.15);   /* 2026-09-20 HASHIRA〈色のままで〉 */   /* 2026-09-20: 写真を「上から鍵盤」に差し替え。赤はブランド上1色（題字の丸）に保つため完全モノクロ */
   z-index: 0; pointer-events: none;
 }
 .hero::before {          /* Alaya のブランドカードの模様（透過）を右に重ねる */
@@ -614,8 +614,8 @@ footer {
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <img class="hero-photo" src="_assets/live.webp" width="1600" height="1067" alt="ステージで演奏する Takahiro Izumikawa">
-  <h1 class="hero-title hero-title-text reveal r-2"><img class="t-main" src="_assets/title-yatara-redbar.webp" width="1765" height="440" alt="YATARA"><span class="t-sub" lang="ja">夜　打　楽</span></h1>
+  <img class="hero-photo" src="_assets/hero-grand.webp" width="1600" height="1082" alt="グランドピアノを真上から見下ろしたところ。演奏する Takahiro Izumikawa">
+  <h1 class="hero-title hero-title-text reveal r-2"><img class="t-main" src="_assets/title-yatara-redbar-rough.webp" width="1765" height="440" alt="YATARA"><span class="t-sub" lang="ja">夜　打　楽</span></h1>
 </section>
 
 <!-- ===== STATEMENT (HERO直後・タイトル画像と被らない単独セクション) ===== -->
