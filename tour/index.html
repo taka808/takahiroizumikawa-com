@@ -152,7 +152,7 @@ section {
   inset: 0;
   z-index: 1;
   background-image: url("_assets/pattern.png");
-  background-size: auto 92%;
+  background-size: auto 108%;   /* 2026-09-20 HASHIRA〈抽象デザインもう少し大きく〉 92%→108% */
   background-position: right clamp(28px,3.4vw,72px) center;   /* 右端に少し余白（2026-09-19 HASHIRA） */
   background-repeat: no-repeat;
   opacity: 1;
@@ -380,7 +380,13 @@ section {
   gap: 32px;
   align-items: end;
   padding: 36px 0;
+  /* 行全体がリンク（本拠地 music.html の .release と同じ型・2026-09-20） */
+  color: inherit;
+  text-decoration: none;
 }
+.ticket-row:hover .ticket-link { color: var(--accent); border-color: var(--accent); }
+.ticket-row:hover .venue-name { color: #ffffff; }
+.ticket-row:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 .ticket-row:first-child { padding-top: 8px; }
 .ticket-info {
   display: flex;
@@ -427,6 +433,7 @@ section {
   max-width: 460px;
 }
 .ticket-link {
+  display: inline-block;
   color: var(--text);
   text-decoration: none;
   font-family: var(--font-en);
@@ -438,10 +445,7 @@ section {
   transition: color 0.4s ease, border-color 0.4s ease;
   white-space: nowrap;
 }
-.ticket-link:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
+/* ホバーは行全体で効かせる（.ticket-row:hover）。単独指定は残さない */
 
 /* Crew Ticket — accent placement (only on "Crew Ticket" span, not the entire title) */
 .crew-cta {
@@ -545,7 +549,7 @@ footer {
   /* スマホ: 模様は上の右だけに小さく出し、文字が始まる手前で消す（2026-09-19） */
   .hero::before {                      /* スマホは題字（YATARA）の横に置く。多少重なってよい（2026-09-19 HASHIRA） */
     /* スマホは模様を切らずに全体を小さく置く（切ると線が途中で切れて汚くなる・2026-09-19） */
-    background-size: auto 62%;
+    background-size: auto 76%;   /* 2026-09-20 HASHIRA〈もう少し大きく〉 62%→76% */
     background-position: right 6px top 6px;
     opacity: 1;
   }
@@ -583,7 +587,8 @@ footer {
    上の2割は不透明、そこから下端で10%まで＝案 C を採用（画像の上下に余白があるので文字の下端は約25%）。
    夜打楽 は普通の文字で小さく（本拠地 yatara/index.html の .jp-sub と同じ組み方） */
 .hero-title-text img{max-width:none}
-/* 題字 YATARA: Poppins 500 を描き、最初の A の横棒を赤い丸に置き換えた画像（access art studio のロゴの o と同じ考え方）。下へ薄くなるグラデは画像に焼き込み済み（赤い丸は薄くしない） */
+/* 題字 YATARA: Poppins 500 を描き、最初の A の横棒を赤い丸に置き換えた画像（access art studio のロゴの o と同じ考え方）。下へ薄くなるグラデは画像に焼き込み済み（赤い丸は薄くしない）。
+   赤い丸の縁（v2.1）に加えて、Y・T・R の3文字の縁も紙のようにガタつかせてある（v2.6・A 3つは平らなまま＝_prototypes/letter_rough.py） */
 .hero-title-text .t-main{display:block;height:clamp(64px,15vw,220px);width:auto;max-width:none}
 .hero-title-text .t-sub{display:block;font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:clamp(15px,2vw,28px);letter-spacing:.62em;color:rgba(245,240,232,.85);margin-top:clamp(14px,1.8vw,26px)}
 .nb{display:inline-block}
@@ -594,13 +599,14 @@ footer {
 .statement-block .hero-statement{margin-left:0;max-width:620px}
 .ticket-meta .date{font-size:15px;color:rgba(245,240,232,.78)}
 .ticket-row .ease{font-size:14px;color:rgba(245,240,232,.72)}
-.ticket-row .detail{font-family:var(--font-jp);font-size:14px;letter-spacing:.04em;color:var(--text);margin-top:2px}
 .crew-note{font-family:var(--font-jp);font-size:14px;line-height:1.95;color:rgba(245,240,232,.72);max-width:560px;margin:0 0 24px}
 /* hitori-goto: 10月は先客の独り言が無いので、投稿0件のときは欄の高さを0にして空白を出さない */
 .hg-feed:empty{min-height:0}
 /* 320px などの狭い画面で公演日の3列目（Tokyo · YATARA Full Band）が画面外に出ないよう折り返す */
 /* 320px では題字の最後の A が背景の模様に重なるので、狭い画面だけ少し小さくする（2026-09-19） */
 @media (max-width:360px){.hero-title-text .t-main{height:56px}}
+/* 320px 級では模様を 76%→62% に戻す（76% のままだと題字の最後の A に重なって文字が隠れる・2026-09-20 独立レビューと ZA が実測） */
+@media (max-width:360px){.hero::before{background-size:auto 62%}}
 /* スマホ（縦）: 写真の高さと文字を詰めて、紹介文の最後まで最初の画面に入れる（2026-09-19 HASHIRA） */
 @media (max-width:640px){
   .hero{min-height:44svh}
@@ -615,7 +621,7 @@ footer {
 <!-- ===== HERO ===== -->
 <section class="hero">
   <img class="hero-photo" src="_assets/hero-grand.webp" width="1600" height="1082" alt="グランドピアノを真上から見下ろしたところ。演奏する Takahiro Izumikawa">
-  <h1 class="hero-title hero-title-text reveal r-2"><img class="t-main" src="_assets/title-yatara-redbar-rough.webp" width="1765" height="440" alt="YATARA"><span class="t-sub" lang="ja">夜　打　楽</span></h1>
+  <h1 class="hero-title hero-title-text reveal r-2"><img class="t-main" src="_assets/title-yatara-ytr-rough.webp" width="1765" height="440" alt="YATARA"><span class="t-sub" lang="ja">夜　打　楽</span></h1>
 </section>
 
 <!-- ===== STATEMENT (HERO直後・タイトル画像と被らない単独セクション) ===== -->
@@ -665,19 +671,19 @@ footer {
       <h2 class="entry-title reveal r-2"><span class="en">Tickets</span>を取る</h2>
 
       <div class="tickets-grid reveal r-3">
-        <div class="ticket-row">
+        <!-- 1公演 = <a class="ticket-row"> 全体がリンク（本拠地 music.html の .release と同じ型・2026-09-20 HASHIRA〈Ticket リンクは情報全体クリックできるように〉） -->
+        <a class="ticket-row" href="https://blue-yard.jp/" target="_blank" rel="noopener">
           <div class="ticket-info">
             <div class="ticket-meta">
               <span class="city">大阪</span>
               <span class="date">10月26日（月）　ピアノソロ</span>
             </div>
             <div class="venue-name">Blue Yard</div>
-            <div class="ease">テーブル席で、ピアノと向き合う夜。気軽に、近くで。</div>
-            <div class="detail">時間・料金・チケットは会場から近日公開</div>
+            <div class="ease"><span class="nb">ピアノ１台でトーク＆ライブ</span><br><span class="nb">音楽の歴史と</span><span class="nb">秋のジャズスタンダードを</span><span class="nb">聴きながら、</span><br><span class="nb">ジャズがどう</span><span class="nb">日本のリズムと融合し</span><span class="nb">新しいジャンルYATARAになるかを</span><span class="nb">ゆったり体験する。</span></div>
           </div>
-          <a href="https://blue-yard.jp/" target="_blank" rel="noopener" class="ticket-link">Venue</a>
-        </div>
-        <div class="ticket-row">
+          <span class="ticket-link">Venue</span>
+        </a>
+        <a class="ticket-row" href="https://morethanmusicjapan.com/ja/collections/frontpage/products/261030sk" target="_blank" rel="noopener">
           <div class="ticket-info">
             <div class="ticket-meta">
               <span class="city">東京</span>
@@ -686,8 +692,8 @@ footer {
             <div class="venue-name">晴れたら空に豆まいて</div>
             <div class="ease">新しいジャンル YATARA のお披露目。フルバンドで鳴らす夜。</div>
           </div>
-          <a href="https://morethanmusicjapan.com/ja/collections/frontpage/products/261030sk" target="_blank" rel="noopener" class="ticket-link">Tickets</a>
-        </div>
+          <span class="ticket-link">Tickets</span>
+        </a>
       </div>
     </article>
 
@@ -878,7 +884,7 @@ body { padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px)); }
     var u = isUnlocked();
     textEl.disabled = !u; nameEl.disabled = !u; submitEl.disabled = !u;
     gateEl.classList.toggle('hide', u);
-    textEl.placeholder = u ? '独り言を書く' : 'Logを受け取ると、ここに書けます。';
+    textEl.placeholder = '独り言を書く';   /* 2026-09-20 HASHIRA指示で常に同じ文言に */
   }
 
   /* soft-gate解放（blocker対策）: Kitフォームは現在 action:message（遷移なし）のため
