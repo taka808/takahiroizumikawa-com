@@ -20,6 +20,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
 <!-- 題字の下の 夜打楽 だけに使う（本拠地 yatara/index.html の .jp-sub と同じ書体）。3文字だけ読み込む -->
 
+<!-- Kit の「おすすめのニュースレター」画面を出さない（2026-09-21 HASHIRA〈ログを受け取るときにkitのサジェスチョンが出てしまいます〉）。
+     仕組み: Kit は登録成功の JSON に recommendations:<URL> を載せて返し、ck.5.js の afterSubscribe が
+     それを全画面の白いモーダル（.formkit-overlay = Creator Network の guard 画面）で開く。6月は Creator プラン
+     課金で消していた（6月 運用メモ/進行ログ.md 2026-05-08「Free プラン強制 Recommendations」）ので、
+     Free に戻ると再発する → プランに依存しない形でここで止める。
+     ⚠️ 送信そのもの（POST 先・本文・ヘッダ・Kit 側の記録）は一字も変えない。応答から1項目を外すだけ。
+        2026-05-08 に「カスタム fetch で送信経路ごと差し替え → Welcome メールが Gmail の Promotions に落ちた」
+        失敗をしているので、送信側には触らない。ここが効かなくなった場合はモーダルが戻るだけ（登録は通る）。 -->
+<script>
+(function () {
+  var orig = window.fetch;
+  if (typeof orig !== 'function') return;
+  var KIT_SUBSCRIBE = /app\.kit\.com\/forms\/\d+\/subscriptions/;
+  window.fetch = function (input) {
+    var url = typeof input === 'string' ? input : (input && input.url) || '';
+    var res = orig.apply(this, arguments);
+    if (!KIT_SUBSCRIBE.test(url)) return res;
+    return res.then(function (r) {
+      try {
+        var json = r.json.bind(r);
+        r.json = function () {
+          return json().then(function (data) {
+            if (data && data.recommendations) { delete data.recommendations; }
+            return data;
+          });
+        };
+      } catch (e) { /* 失敗しても登録は通す（Kit の既定動作に戻るだけ） */ }
+      return r;
+    });
+  };
+})();
+</script>
 <!-- Kit form handler: フォーム送信を AJAX で処理（LP内で完結） -->
 <script src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
 <!-- hitori-goto（みんなの独り言）: Supabase client -->
@@ -302,7 +334,12 @@ section {
   font-family: var(--font-jp);
   letter-spacing: 0.08em;
 }
-.log-form input:focus { color: var(--accent); }
+/* 入力中の文字は本文色のまま（2026-09-21 HASHIRA〈Eメールを入力するときに、入力欄が赤くなってしまう〉）。
+   赤 #e22229 は「新たな世界への入口の一点」に取ってある色で、入力欄に当てると
+   ①面積の少なさという条件を外れる ②赤＝エラーの合図に読まれる。フォーカスが分かる印は
+   欄そのもの（上下の罫）を少し明るくして出す。独り言の入力欄（.hg-input:focus）と同じ扱い。 */
+.log-form input:focus { color: var(--text); }
+.log-form-inner:focus-within { border-top-color: rgba(245, 240, 232, 0.34); border-bottom-color: rgba(245, 240, 232, 0.34); }
 .log-form button {
   background: transparent;
   border: none;
