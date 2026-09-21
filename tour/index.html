@@ -662,6 +662,54 @@ footer {
   .catch{font-size:clamp(19px,5.2vw,24px);line-height:1.62;margin-bottom:14px}
   .hero-statement{font-size:13.5px;line-height:1.85}
 }
+/* ===== v3.0（2026-09-21）Tickets を「押せる塊」にする =====
+   HASHIRA 逐語〈会場チケットのリンクをクリックするところがちょっと分かりにくい〉
+   〈スマホで見ると…どこが会場の情報なのかが伝わりにくい〉〈全体の色が変わるとか？〉
+   外の既知解（2026-09-21 調査・Inclusive Components / Nielsen 系）: 行全体をリンクにする型は
+   ①塊の境目（面）②押せる印（枠・矢印）を静止状態で見せる ③指の当たり 44px 以上、が前提。
+   触る画面にホバーは無いので、押す前に「押せる」が分かっていないといけない。
+   変更前の実測（375px）: ボタンの当たり 56x27px（基準未満）・公演2つの間に区切りなし・ラベルは VENUE。 */
+.tickets-grid{ gap:16px; margin-top:22px; }
+.ticket-row{
+  border:1px solid rgba(245,240,232,.10);
+  background:var(--bg-deeper);
+  padding:clamp(22px,3.4vw,30px);
+  gap:24px;
+  transition:background .35s ease, border-color .35s ease;
+}
+.ticket-row:first-child{ padding-top:clamp(22px,3.4vw,30px); }
+.ticket-row:hover{ background:#0a0a0a; border-color:rgba(245,240,232,.22); }
+.ticket-row:active{ background:#080808; }   /* 触る画面の「押した」合図 */
+.ticket-link{
+  display:inline-flex; align-items:center; justify-content:center; gap:.7em;
+  min-height:52px; padding:0 24px; padding-bottom:0; box-sizing:border-box;
+  font-family:var(--font-jp); font-size:14px; letter-spacing:.20em; text-transform:none; font-weight:500;
+  background:var(--text); color:var(--bg); border:1px solid var(--text);
+  transition:background .35s ease, color .35s ease, border-color .35s ease;
+}
+/* 赤（--accent）はここでは使わない＝Crew のために取ってある（HASHIRA 2026-09-21〈赤いボタンは crew 用に取っておいて。前も決めたように〉）。
+   2公演は同じ見た目にする（HASHIRA〈会場とチケットは、そんなに厳密に分けなくていい。すぐ新しいリンクを入れるので〉） */
+.ticket-row:hover .ticket-link{ background:#ffffff; border-color:#ffffff; color:var(--bg); }
+/* スマホ: 帯を画面の端まで伸ばす。枠を内側に置くと説明文の欄が狭くなり、1行に入らなくなるため */
+@media (max-width:768px){
+  .ticket-row{
+    grid-template-columns:1fr; gap:20px; align-items:stretch;
+    padding:26px var(--gutter);
+    margin-left:calc(var(--gutter) * -1); margin-right:calc(var(--gutter) * -1);
+    border-left:0; border-right:0;
+  }
+  .ticket-link{ width:auto; justify-self:start; min-width:168px; }
+}
+/* スマホの説明文は6月と同じ 13px に戻す（10月で 14px にしたため、
+   『音楽の歴史と秋のジャズスタンダードを聴きながら、』が実測 353px＞欄 327px で溢れ、
+   『聴きながら、』だけが次の行に落ちていた＝HASHIRA〈ブルーヤードの説明文の改行がおかしい〉） */
+@media (max-width:480px){
+  .ticket-row .ease{ font-size:13px; letter-spacing:.03em; }
+}
+/* 360px 級（Android の多数派）は欄が 312px しかなく 13px でも同じ行が溢れるので、もう一段だけ落とす */
+@media (max-width:374px){
+  .ticket-row .ease{ font-size:12.5px; letter-spacing:.02em; }
+}
 </style>
 </head>
 <body>
@@ -727,20 +775,20 @@ footer {
               <span class="date">10月26日（月）　ピアノソロ</span>
             </div>
             <div class="venue-name">Blue Yard</div>
-            <div class="ease"><span class="nb">ピアノ１台でトーク＆ライブ</span><br><span class="nb">音楽の歴史と</span><span class="nb">秋のジャズスタンダードを</span><span class="nb">聴きながら、</span><br><span class="nb">ジャズがどう</span><span class="nb">日本のリズムと融合し</span><span class="nb">新しいジャンルYATARAになるかを</span><span class="nb">ゆったり体験する。</span></div>
+            <div class="ease"><span class="nb">ピアノ１台でトーク＆ライブ</span><br><span class="nb">音楽の歴史と</span><span class="nb">秋のジャズスタンダードを</span><span class="nb">聴きながら、</span><br><span class="nb">ジャズがどう</span><span class="nb">日本のリズムと融合し</span><span class="nb">新しいジャンル</span><span class="nb">YATARAになるかを</span><span class="nb">ゆったり体験する。</span></div>
           </div>
-          <span class="ticket-link">Venue</span>
+          <span class="ticket-link">会場サイト</span>
         </a>
         <a class="ticket-row" href="https://morethanmusicjapan.com/ja/collections/frontpage/products/261030sk" target="_blank" rel="noopener">
           <div class="ticket-info">
             <div class="ticket-meta">
               <span class="city">東京</span>
-              <span class="date">10月30日（金）　YATARA フルバンド</span>
+              <span class="date">10月30日（金）　フルバンド</span>
             </div>
             <div class="venue-name">晴れたら空に豆まいて</div>
-            <div class="ease">新しいジャンル YATARA のお披露目。フルバンドで鳴らす夜。</div>
+            <div class="ease">新しいジャンル YATARA のお披露目。</div>
           </div>
-          <span class="ticket-link">Tickets</span>
+          <span class="ticket-link">チケット</span>
         </a>
       </div>
     </article>
@@ -750,7 +798,7 @@ footer {
       <h2 class="entry-title reveal r-2"><span class="en accent">Crew</span>に加わる</h2>
       <p class="entry-jp reveal r-3">クルーとして、制作の内側から目撃する。</p>
       <p class="entry-body reveal r-3">
-        <span class="nb">10月30日 晴れたら空に豆まいて</span><span class="nb">公演当日のサウンドチェック見学や</span><br>
+        <span class="nb">10月30日 晴れたら空に豆まいて公演</span><span class="nb">当日のサウンドチェック見学や</span><br>
         <span class="nb">舞台裏・リハ動画・演奏動画など、</span><br>
         <span class="nb">クルーにだけ届くデジタルコンテンツ。</span>
       </p>
