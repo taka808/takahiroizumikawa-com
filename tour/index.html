@@ -24,7 +24,11 @@
      仕組み: Kit は登録成功の JSON に recommendations:<URL> を載せて返し、ck.5.js の afterSubscribe が
      それを全画面の白いモーダル（.formkit-overlay = Creator Network の guard 画面）で開く。6月は Creator プラン
      課金で消していた（6月 運用メモ/進行ログ.md 2026-05-08「Free プラン強制 Recommendations」）ので、
-     Free に戻ると再発する → プランに依存しない形でここで止める。
+     **2026-09-21 訂正**: 当初ここに「Free に戻ったから再発した」と書いたが、HASHIRA 確認で
+     プランは Creator $39/月のままと判明。よって原因はプランではなく **Kit アカウント側で
+     Creator Network の Recommendations が有効になっていること**（有料プランでは
+     Settings → Creator Network → Recommendations で切れる／フォーム単位の除外も可）。
+     Kit 側の設定は人が変えられるので、ここは設定がどちらでも崩れない形にしている。
      ⚠️ 送信そのもの（POST 先・本文・ヘッダ・Kit 側の記録）は一字も変えない。応答から1項目を外すだけ。
         2026-05-08 に「カスタム fetch で送信経路ごと差し替え → Welcome メールが Gmail の Promotions に落ちた」
         失敗をしているので、送信側には触らない。ここが効かなくなった場合はモーダルが戻るだけ（登録は通る）。 -->
