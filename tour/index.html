@@ -710,6 +710,28 @@ footer {
 @media (max-width:374px){
   .ticket-row .ease{ font-size:12.5px; letter-spacing:.02em; }
 }
+/* ===== v3.4（2026-09-24）LINE スタンプ＝誘うときの道具（Tickets の2公演の下） =====
+   HASHIRA〈LINEスタンプの購入リンクを10月のLPのどこかに出したい〉→ 見本（_prototypes/2026-09-24_LINEスタンプ/）→〈実装〉。
+   チケットより一段静かに: 枠なし・塗りなし・下線の文字リンク。赤は使わない（Crew 用）。行全体がリンク（.ticket-row と同じ型）。
+   上に線は引かない（チケットの枠の下端と二重線になる）。PC は左右をチケットの枠の内側の余白に揃える */
+.stamp-row{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;margin-top:32px;padding:0 clamp(22px,3.4vw,30px);color:inherit;text-decoration:none}
+.stamp-row img{display:block;width:96px;height:auto}
+.stamp-copy{font-family:var(--font-jp);line-height:1.8}
+.stamp-lead{display:block;font-size:15px;letter-spacing:.06em;color:var(--text)}
+.stamp-sub{display:block;font-size:13px;letter-spacing:.04em;color:rgba(245,240,232,.72)}
+.stamp-link{font-family:var(--font-jp);font-size:13px;letter-spacing:.20em;color:var(--text);border-bottom:1px solid var(--text);padding:6px 0;white-space:nowrap}
+.stamp-row:hover .stamp-link{color:#fff;border-color:#fff}
+.stamp-row:focus-visible{outline:2px solid var(--text);outline-offset:6px}
+@media (max-width:768px){
+  .stamp-row{grid-template-columns:80px 1fr;gap:16px;padding:0}
+  .stamp-row img{width:80px}
+  .stamp-link{grid-column:2;justify-self:start}
+}
+/* 320px 級は文の欄が 176px しかなく『ツアー記念スタンプで。』が収まりきらないので、絵を一段小さくする */
+@media (max-width:360px){
+  .stamp-row{grid-template-columns:64px 1fr}
+  .stamp-row img{width:64px}
+}
 </style>
 </head>
 <body>
@@ -791,6 +813,16 @@ footer {
           <span class="ticket-link">チケット</span>
         </a>
       </div>
+
+      <!-- v3.4 LINE スタンプ（誘うときの道具）。行全体がリンク（.ticket-row と同じ型）。URL は HASHIRA 2026-09-24 受領のまま。文言は HASHIRA 2026-09-24 指定 -->
+      <a class="stamp-row reveal r-4" href="https://line.me/S/sticker/36785673?_from=lcm" target="_blank" rel="noopener">
+        <img src="_assets/stamp-live.webp" width="288" height="249" alt="LINEスタンプ「ライブ行く？」" loading="lazy">
+        <span class="stamp-copy">
+          <span class="stamp-lead"><span class="nb">誘うときは、</span><span class="nb">ツアー記念スタンプで。</span></span>
+          <span class="stamp-sub"><span class="nb">会場には、</span><span class="nb">同じデザインの</span><span class="nb">ステッカーがあります。</span></span>
+        </span>
+        <span class="stamp-link">LINEスタンプ</span>
+      </a>
     </article>
 
     <!-- iii. The Crew -->
