@@ -2,80 +2,34 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Takahiro Izumikawa Japan Tour 2026 — 10.26 大阪 / 10.30 東京</title>
 <meta name="description" content="分からなくていい。ただ心を揺さぶられること。2026年10月、大阪（ピアノソロ）・東京（YATARA フルバンド）の2公演。">
 
 
-<!-- OGP -->
+
 <meta property="og:title" content="Takahiro Izumikawa Japan Tour 2026 — 10.26 大阪 / 10.30 東京">
 <meta property="og:description" content="分からなくていい。ただ心を揺さぶられること。大阪はピアノソロ、東京は YATARA のフルバンドで。">
 <meta property="og:type" content="website">
-<!-- TODO[v2]: og:image にフライヤー画像（Alaya Phase 3完成後）を差し込む -->
-<!-- <meta property="og:image" content="_assets/og.jpg"> -->
 
-<!-- Google Fonts: Poppins (Alaya 02Design欧文書体) + Shippori Mincho（和文） -->
+
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
-<!-- 題字の下の 夜打楽 だけに使う（本拠地 yatara/index.html の .jp-sub と同じ書体）。3文字だけ読み込む -->
 
-<!-- Kit の「おすすめのニュースレター」画面を出さない（2026-09-21 HASHIRA〈ログを受け取るときにkitのサジェスチョンが出てしまいます〉）。
-     仕組み: Kit は登録成功の JSON に recommendations:<URL> を載せて返し、ck.5.js の afterSubscribe が
-     それを全画面の白いモーダル（.formkit-overlay = Creator Network の guard 画面）で開く。6月は Creator プラン
-     課金で消していた（6月 運用メモ/進行ログ.md 2026-05-08「Free プラン強制 Recommendations」）ので、
-     **2026-09-21 訂正**: 当初ここに「Free に戻ったから再発した」と書いたが、HASHIRA 確認で
-     プランは Creator $39/月のままと判明。よって原因はプランではなく **Kit アカウント側で
-     Creator Network の Recommendations が有効になっていること**（有料プランでは
-     Settings → Creator Network → Recommendations で切れる／フォーム単位の除外も可）。
-     Kit 側の設定は人が変えられるので、ここは設定がどちらでも崩れない形にしている。
-     ⚠️ 送信そのもの（POST 先・本文・ヘッダ・Kit 側の記録）は一字も変えない。応答から1項目を外すだけ。
-        2026-05-08 に「カスタム fetch で送信経路ごと差し替え → Welcome メールが Gmail の Promotions に落ちた」
-        失敗をしているので、送信側には触らない。ここが効かなくなった場合はモーダルが戻るだけ（登録は通る）。 -->
-<script>
-(function () {
-  var orig = window.fetch;
-  if (typeof orig !== 'function') return;
-  var KIT_SUBSCRIBE = /app\.kit\.com\/forms\/\d+\/subscriptions/;
-  window.fetch = function (input) {
-    var url = typeof input === 'string' ? input : (input && input.url) || '';
-    var res = orig.apply(this, arguments);
-    if (!KIT_SUBSCRIBE.test(url)) return res;
-    return res.then(function (r) {
-      try {
-        var json = r.json.bind(r);
-        r.json = function () {
-          return json().then(function (data) {
-            if (data && data.recommendations) { delete data.recommendations; }
-            return data;
-          });
-        };
-      } catch (e) { /* 失敗しても登録は通す（Kit の既定動作に戻るだけ） */ }
-      return r;
-    }, function () {
-      /* 送れなかったとき（回線・社内ネットワークでの遮断など）に日本語で伝える。
-         2026-09-21 HASHIRA〈日本語向けのものは日本語なんじゃないの？〉。
-         ck.5.js は catch した値をそのまま innerText に入れるので、Error ではなく
-         文字列を返すと『TypeError: Failed to fetch』ではなくこの一文がそのまま出る。
-         文面は同じページの独り言の『いま接続できませんでした。少し時間をおいて。』に揃えた。 */
-      return Promise.reject('いま送れませんでした。少し時間をおいて、もう一度。');
-    });
-  };
-})();
-</script>
-<!-- Kit form handler: フォーム送信を AJAX で処理（LP内で完結） -->
-<script src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
-<!-- hitori-goto（みんなの独り言）: Supabase client -->
+
+
+<script>(function(){var orig=window.fetch;if(typeof orig!=="function")return;var KIT_SUBSCRIBE=/app\.kit\.com\/forms\/\d+\/subscriptions/;window.fetch=function(input){var url=typeof input==="string"?input:input&&input.url||"";var res=orig.apply(this,arguments);if(!KIT_SUBSCRIBE.test(url))return res;return res.then(function(r){try{var json=r.json.bind(r);r.json=function(){return json().then(function(data){if(data&&data.recommendations){delete data.recommendations}return data})}}catch(e){}return r},function(){return Promise.reject("いま送れませんでした。少し時間をおいて、もう一度。")})}})()</script>
+
+<script src="https://f.convertkit.com/ckjs/ck.5.js" defer="defer"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- GA4 (G-CWCXDYQ4EF) — ga4_admin.py inject 2026-09-24 -->
+
 <script async data-ga4="ga4_admin-inject" src="https://www.googletagmanager.com/gtag/js?id=G-CWCXDYQ4EF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-CWCXDYQ4EF');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date);gtag("config","G-CWCXDYQ4EF")</script>
 
 <style>
 :root {
@@ -118,7 +72,7 @@ body {
   font-feature-settings: "palt";
 }
 
-/* ===== グレイン: SVG noise overlay ===== */
+
 body::before {
   content: '';
   position: fixed;
@@ -131,7 +85,7 @@ body::before {
 }
 
 
-/* ===== Page-load staggered reveal ===== */
+
 .reveal {
   opacity: 0;
   transform: translateY(10px);
@@ -158,7 +112,7 @@ body::before {
   }
 }
 
-/* ===== Section base ===== */
+
 section {
   position: relative;
   z-index: 2;
@@ -171,35 +125,35 @@ section {
   width: 100%;
 }
 
-/* ===== HERO ===== */
+
 .hero {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: clamp(520px, 80vh, 900px);   /* 写真を見せる高さ（2026-09-19） */
+  min-height: clamp(520px, 80vh, 900px);   
   padding: 0;
   overflow: hidden;
 }
-.hero > img.hero-photo {   /* ライブ写真をヘッダーの背景に（2026-09-19）。`.hero > *` の position:relative に負けないよう子セレクタで指定 */
+.hero > img.hero-photo {   
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: 50% 50%;
-  filter: brightness(.58) contrast(1.06) grayscale(.15);   /* 2026-09-20 HASHIRA〈色のままで〉 */   /* 2026-09-20: 写真を「上から鍵盤」に差し替え。赤はブランド上1色（題字の丸）に保つため完全モノクロ */
+  filter: brightness(.58) contrast(1.06) grayscale(.15);      
   z-index: 0; pointer-events: none;
 }
-.hero::before {          /* Alaya のブランドカードの模様（透過）を右に重ねる */
+.hero::before {          
   content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
   background-image: url("_assets/pattern.png");
-  background-size: auto 108%;   /* 2026-09-20 HASHIRA〈抽象デザインもう少し大きく〉 92%→108% */
-  background-position: right clamp(28px,3.4vw,72px) center;   /* 右端に少し余白（2026-09-19 HASHIRA） */
+  background-size: auto 108%;   
+  background-position: right clamp(28px,3.4vw,72px) center;   
   background-repeat: no-repeat;
   opacity: 1;
   pointer-events: none;
 }
-.hero::after {           /* 文字の可読性のための暗幕 */
+.hero::after {           
   content: '';
   position: absolute;
   inset: 0;
@@ -210,7 +164,7 @@ section {
 }
 .hero > * { position: relative; z-index: 2; }
 
-/* Title: Alaya 02Design 'for colored.png' をフル幅で配置（sequential flow） */
+
 .hero-title {
   position: relative;
   z-index: 2;
@@ -253,7 +207,7 @@ section {
   text-decoration-color: var(--accent);
 }
 
-/* ===== ENTRIES (3-tier structure) ===== */
+
 .entries {
   padding-top: clamp(24px, 4vh, 48px);
   padding-bottom: clamp(80px, 14vh, 140px);
@@ -273,7 +227,7 @@ section {
   color: var(--text-faint);
   margin-bottom: 28px;
 }
-/* Title: 英字主役 + 日本語動詞は説明的に控えめ */
+
 .entry-title {
   font-family: var(--font-jp);
   font-style: normal;
@@ -313,7 +267,7 @@ section {
   margin-bottom: 40px;
 }
 
-/* Log form */
+
 .log-form {
   max-width: 520px;
   margin-top: 8px;
@@ -343,10 +297,7 @@ section {
   font-family: var(--font-jp);
   letter-spacing: 0.08em;
 }
-/* 入力中の文字は本文色のまま（2026-09-21 HASHIRA〈Eメールを入力するときに、入力欄が赤くなってしまう〉）。
-   赤 #e22229 は「新たな世界への入口の一点」に取ってある色で、入力欄に当てると
-   ①面積の少なさという条件を外れる ②赤＝エラーの合図に読まれる。フォーカスが分かる印は
-   欄そのもの（上下の罫）を少し明るくして出す。独り言の入力欄（.hg-input:focus）と同じ扱い。 */
+
 .log-form input:focus { color: var(--text); }
 .log-form-inner:focus-within { border-top-color: rgba(245, 240, 232, 0.34); border-bottom-color: rgba(245, 240, 232, 0.34); }
 .log-form button {
@@ -370,7 +321,7 @@ section {
   margin-top: 20px;
   letter-spacing: 0.08em;
 }
-/* Kit form integration — Layer 1 styled error/success states */
+
 .log-form .formkit-alert {
   list-style: none;
   margin: 0 0 12px 0;
@@ -388,7 +339,7 @@ section {
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
-/* Kit が送信成功時に注入する success message を Layer 1 に統一 */
+
 .log-form [data-element="success"],
 .log-form .seva-custom-content {
   font-family: var(--font-jp);
@@ -399,7 +350,7 @@ section {
   border-bottom: 1px solid var(--rule);
   letter-spacing: 0.06em;
 }
-/* Redirect 経由（?subscribed=true）の成功メッセージ — JS インターセプト失敗時のフォールバック */
+
 .log-success {
   max-width: 520px;
   margin-top: 8px;
@@ -413,7 +364,7 @@ section {
 }
 .log-success p { margin: 0; }
 
-/* Tickets grid */
+
 .tickets-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -426,7 +377,7 @@ section {
   gap: 32px;
   align-items: end;
   padding: 36px 0;
-  /* 行全体がリンク（本拠地 music.html の .release と同じ型・2026-09-20） */
+  
   color: inherit;
   text-decoration: none;
 }
@@ -491,9 +442,9 @@ section {
   transition: color 0.4s ease, border-color 0.4s ease;
   white-space: nowrap;
 }
-/* ホバーは行全体で効かせる（.ticket-row:hover）。単独指定は残さない */
 
-/* Crew Ticket — accent placement (only on "Crew Ticket" span, not the entire title) */
+
+
 .crew-cta {
   display: inline-block;
   font-family: var(--font-en);
@@ -512,7 +463,7 @@ section {
   color: var(--bg);
 }
 
-/* ===== FOOTER ===== */
+
 footer {
   position: relative;
   z-index: 2;
@@ -566,36 +517,34 @@ footer {
   color: var(--accent);
 }
 
-/* ===== Print: 長尺1ページPDF（Alaya Illustrator編集用）=====
-   ブラウザ標準ビューポート（1440×900）と同じレイアウトを保つため、
-   vh ベースの値を固定px化する */
+
 @media print {
   @page { size: 1440px 3600px; margin: 0; }
   body { font-size: 14px; }
 
-  /* Hero: 100vh → 標準ビューポート900px固定 */
+  
   .hero {
     min-height: 900px;
     padding-top: 40px;
     padding-bottom: 64px;
   }
 
-  /* Sections: vh含むclamp値の代わりに固定px */
+  
   .entries { padding-top: 200px; padding-bottom: 140px; }
   .entry { padding: 100px 0; }
 
-  /* Footer */
+  
   footer { padding-top: 140px; padding-bottom: 80px; }
 }
 
-/* ===== Responsive ===== */
+
 @media (max-width: 768px) {
   body { font-size: 14px; }
 
-  /* スマホ: 模様は上の右だけに小さく出し、文字が始まる手前で消す（2026-09-19） */
-  .hero::before {                      /* スマホは題字（YATARA）の横に置く。多少重なってよい（2026-09-19 HASHIRA） */
-    /* スマホは模様を切らずに全体を小さく置く（切ると線が途中で切れて汚くなる・2026-09-19） */
-    background-size: auto 76%;   /* 2026-09-20 HASHIRA〈もう少し大きく〉 62%→76% */
+  
+  .hero::before {                      
+    
+    background-size: auto 76%;   
     background-position: right 6px top 6px;
     opacity: 1;
   }
@@ -625,16 +574,11 @@ footer {
   }
 }
 
-/* ===== 2026-10 追加（6月の型に足したもの） ===== */
+
 .hero-title-text{line-height:1;display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,6vw,96px) var(--gutter) 0}
-/* 題字: YATARA = Alaya のブランドカードの模様と同じ、端の粗い紙の質感に加工した画像（Poppins 500 を描画→端を加工）。
-   下に行くほど薄く消える＝ヘッダーの模様（.hero::after：上はそのまま、下へ行くほど暗くなる）と同じ見え方。
-   模様と同じ数値（55%まで不透明→下端15%）を当てると、文字は高さが220pxしかないので中ほどに上下2色の境目が出た（2026-09-19 4案比較 A）。
-   上の2割は不透明、そこから下端で10%まで＝案 C を採用（画像の上下に余白があるので文字の下端は約25%）。
-   夜打楽 は普通の文字で小さく（本拠地 yatara/index.html の .jp-sub と同じ組み方） */
+
 .hero-title-text img{max-width:none}
-/* 題字 YATARA: Poppins 500 を描き、最初の A の横棒を赤い丸に置き換えた画像（access art studio のロゴの o と同じ考え方）。下へ薄くなるグラデは画像に焼き込み済み（赤い丸は薄くしない）。
-   赤い丸の縁（v2.1）に加えて、Y・T・R の3文字の縁も紙のようにガタつかせてある（v2.6・A 3つは平らなまま＝_prototypes/letter_rough.py） */
+
 .hero-title-text .t-main{display:block;height:clamp(64px,15vw,220px);width:auto;max-width:none}
 .hero-title-text .t-sub{display:block;font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:clamp(15px,2vw,28px);letter-spacing:.62em;color:rgba(245,240,232,.85);margin-top:clamp(14px,1.8vw,26px)}
 .nb{display:inline-block}
@@ -646,27 +590,21 @@ footer {
 .ticket-meta .date{font-size:15px;color:rgba(245,240,232,.78)}
 .ticket-row .ease{font-size:14px;color:rgba(245,240,232,.72)}
 .crew-note{font-family:var(--font-jp);font-size:14px;line-height:1.95;color:rgba(245,240,232,.72);max-width:560px;margin:0 0 24px}
-/* hitori-goto: 10月は先客の独り言が無いので、投稿0件のときは欄の高さを0にして空白を出さない */
+
 .hg-feed:empty{min-height:0}
-/* 320px などの狭い画面で公演日の3列目（Tokyo · YATARA Full Band）が画面外に出ないよう折り返す */
-/* 320px では題字の最後の A が背景の模様に重なるので、狭い画面だけ少し小さくする（2026-09-19） */
+
+
 @media (max-width:360px){.hero-title-text .t-main{height:56px}}
-/* 320px 級では模様を 76%→62% に戻す（76% のままだと題字の最後の A に重なって文字が隠れる・2026-09-20 独立レビューと ZA が実測） */
+
 @media (max-width:360px){.hero::before{background-size:auto 62%}}
-/* スマホ（縦）: 写真の高さと文字を詰めて、紹介文の最後まで最初の画面に入れる（2026-09-19 HASHIRA） */
+
 @media (max-width:640px){
   .hero{min-height:44svh}
   .statement-block{padding-top:clamp(18px,2.6vh,28px);padding-bottom:10px}
   .catch{font-size:clamp(19px,5.2vw,24px);line-height:1.62;margin-bottom:14px}
   .hero-statement{font-size:13.5px;line-height:1.85}
 }
-/* ===== v3.0（2026-09-21）Tickets を「押せる塊」にする =====
-   HASHIRA 逐語〈会場チケットのリンクをクリックするところがちょっと分かりにくい〉
-   〈スマホで見ると…どこが会場の情報なのかが伝わりにくい〉〈全体の色が変わるとか？〉
-   外の既知解（2026-09-21 調査・Inclusive Components / Nielsen 系）: 行全体をリンクにする型は
-   ①塊の境目（面）②押せる印（枠・矢印）を静止状態で見せる ③指の当たり 44px 以上、が前提。
-   触る画面にホバーは無いので、押す前に「押せる」が分かっていないといけない。
-   変更前の実測（375px）: ボタンの当たり 56x27px（基準未満）・公演2つの間に区切りなし・ラベルは VENUE。 */
+
 .tickets-grid{ gap:16px; margin-top:22px; }
 .ticket-row{
   border:1px solid rgba(245,240,232,.10);
@@ -677,7 +615,7 @@ footer {
 }
 .ticket-row:first-child{ padding-top:clamp(22px,3.4vw,30px); }
 .ticket-row:hover{ background:#0a0a0a; border-color:rgba(245,240,232,.22); }
-.ticket-row:active{ background:#080808; }   /* 触る画面の「押した」合図 */
+.ticket-row:active{ background:#080808; }   
 .ticket-link{
   display:inline-flex; align-items:center; justify-content:center; gap:.7em;
   min-height:52px; padding:0 24px; padding-bottom:0; box-sizing:border-box;
@@ -685,10 +623,9 @@ footer {
   background:var(--text); color:var(--bg); border:1px solid var(--text);
   transition:background .35s ease, color .35s ease, border-color .35s ease;
 }
-/* 赤（--accent）はここでは使わない＝Crew のために取ってある（HASHIRA 2026-09-21〈赤いボタンは crew 用に取っておいて。前も決めたように〉）。
-   2公演は同じ見た目にする（HASHIRA〈会場とチケットは、そんなに厳密に分けなくていい。すぐ新しいリンクを入れるので〉） */
+
 .ticket-row:hover .ticket-link{ background:#ffffff; border-color:#ffffff; color:var(--bg); }
-/* スマホ: 帯を画面の端まで伸ばす。枠を内側に置くと説明文の欄が狭くなり、1行に入らなくなるため */
+
 @media (max-width:768px){
   .ticket-row{
     grid-template-columns:1fr; gap:20px; align-items:stretch;
@@ -698,20 +635,15 @@ footer {
   }
   .ticket-link{ width:auto; justify-self:start; min-width:168px; }
 }
-/* スマホの説明文は6月と同じ 13px に戻す（10月で 14px にしたため、
-   『音楽の歴史と秋のジャズスタンダードを聴きながら、』が実測 353px＞欄 327px で溢れ、
-   『聴きながら、』だけが次の行に落ちていた＝HASHIRA〈ブルーヤードの説明文の改行がおかしい〉） */
+
 @media (max-width:480px){
   .ticket-row .ease{ font-size:13px; letter-spacing:.03em; }
 }
-/* 360px 級（Android の多数派）は欄が 312px しかなく 13px でも同じ行が溢れるので、もう一段だけ落とす */
+
 @media (max-width:374px){
   .ticket-row .ease{ font-size:12.5px; letter-spacing:.02em; }
 }
-/* ===== v3.4（2026-09-24）LINE スタンプ＝誘うときの道具（Tickets の2公演の下） =====
-   HASHIRA〈LINEスタンプの購入リンクを10月のLPのどこかに出したい〉→ 見本（_prototypes/2026-09-24_LINEスタンプ/）→〈実装〉。
-   チケットより一段静かに: 枠なし・塗りなし・下線の文字リンク。赤は使わない（Crew 用）。行全体がリンク（.ticket-row と同じ型）。
-   上に線は引かない（チケットの枠の下端と二重線になる）。PC は左右をチケットの枠の内側の余白に揃える */
+
 .stamp-row{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;margin-top:32px;padding:0 clamp(22px,3.4vw,30px);color:inherit;text-decoration:none}
 .stamp-row img{display:block;width:96px;height:auto}
 .stamp-copy{font-family:var(--font-jp);line-height:1.8}
@@ -725,7 +657,7 @@ footer {
   .stamp-row img{width:80px}
   .stamp-link{grid-column:2;justify-self:start}
 }
-/* 320px 級は文の欄が 176px しかなく『ツアー記念スタンプで。』が収まりきらないので、絵を一段小さくする */
+
 @media (max-width:360px){
   .stamp-row{grid-template-columns:64px 1fr}
   .stamp-row img{width:64px}
@@ -734,13 +666,13 @@ footer {
 </head>
 <body>
 
-<!-- ===== HERO ===== -->
+
 <section class="hero">
   <img class="hero-photo" src="_assets/hero-grand.webp" width="1600" height="1082" alt="グランドピアノを真上から見下ろしたところ。演奏する Takahiro Izumikawa">
   <h1 class="hero-title hero-title-text reveal r-2"><img class="t-main" src="_assets/title-yatara-ytr-rough.webp" width="1765" height="440" alt="YATARA"><span class="t-sub" lang="ja">夜　打　楽</span></h1>
 </section>
 
-<!-- ===== STATEMENT (HERO直後・タイトル画像と被らない単独セクション) ===== -->
+
 <section class="statement-block">
   <div class="container">
     <p class="catch reveal r-4"><span class="nb">分からなくていい。</span><span class="nb">ただ心を揺さぶられること。</span></p>
@@ -751,27 +683,19 @@ footer {
   </div>
 </section>
 
-<!-- ===== 3-TIER ENTRIES ===== -->
+
 <section class="entries">
   <div class="container">
 
-    <!-- i. The Log -->
+    
     <article class="entry log">
       <h2 class="entry-title reveal r-2"><span class="en">Log</span>を受け取る</h2>
       <p class="entry-body reveal r-3">
         ツアー当日までの記録を、無料の便りでお届けします。当日へ向かう時間と空気感を共有します。
       </p>
 
-      <!-- Kit接続済み: Form ID 9416227 / data-uid e02d89247b / 流入元はKitが自動でフォーム名で記録（タグ不要・Free プラン対応） -->
-      <form
-        class="log-form formkit-form reveal r-4"
-        action="https://app.kit.com/forms/9416227/subscriptions"
-        method="post"
-        data-sv-form="9416227"
-        data-uid="e02d89247b"
-        data-format="inline"
-        data-version="5"
-        data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Logにようこそ。Emailで当日までの様子をお届けします。","redirect_url":""}}}'>
+      
+      <form class="log-form formkit-form reveal r-4" action="https://app.kit.com/forms/9416227/subscriptions" method="post" data-sv-form="9416227" data-uid="e02d89247b" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Logにようこそ。Emailで当日までの様子をお届けします。","redirect_url":""}}}'>
         <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
         <div class="log-form-inner" data-element="fields" data-stacked="false">
           <input type="email" name="email_address" placeholder="メールアドレス" required aria-label="メールアドレス">
@@ -782,12 +706,12 @@ footer {
       </form>
     </article>
 
-    <!-- ii. The Tickets -->
+    
     <article class="entry tickets">
       <h2 class="entry-title reveal r-2"><span class="en">Tickets</span>を取る</h2>
 
       <div class="tickets-grid reveal r-3">
-        <!-- 1公演 = <a class="ticket-row"> 全体がリンク（本拠地 music.html の .release と同じ型・2026-09-20 HASHIRA〈Ticket リンクは情報全体クリックできるように〉） -->
+        
         <a class="ticket-row" href="https://blue-yard.jp/" target="_blank" rel="noopener">
           <div class="ticket-info">
             <div class="ticket-meta">
@@ -812,7 +736,7 @@ footer {
         </a>
       </div>
 
-      <!-- v3.4 LINE スタンプ（誘うときの道具）。行全体がリンク（.ticket-row と同じ型）。URL は HASHIRA 2026-09-24 受領のまま。文言は HASHIRA 2026-09-24 指定 -->
+      
       <a class="stamp-row reveal r-4" href="https://line.me/S/sticker/36785673?_from=lcm" target="_blank" rel="noopener">
         <img src="_assets/stamp-live.webp" width="288" height="249" alt="LINEスタンプ「ライブ行く？」" loading="lazy">
         <span class="stamp-copy">
@@ -823,7 +747,7 @@ footer {
       </a>
     </article>
 
-    <!-- iii. The Crew -->
+    
     <article class="entry crew">
       <h2 class="entry-title reveal r-2"><span class="en accent">Crew</span>に加わる</h2>
       <p class="entry-jp reveal r-3">クルーとして、制作の内側から目撃する。</p>
@@ -838,10 +762,9 @@ footer {
   </div>
 </section>
 
-<!-- ===== 桟橋（みんなの独り言）統合 2026-06-06 / 正本: 桟橋_section.html ===== -->
+
 <style>
-/* フッター被り回避: ページ最下部に compose 高さ分を「静的に」確保（Crew index.html L75 と同じ静的CSS方式）。
-   ※JSで動的に body padding を変えるとスマホのアドレスバー開閉で resize 連発→フッターが動く・スクロールがガクつくため、必ず静的にする（2026-06-07）。 */
+
 body { padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px)); }
 .pier {
   --pier-bg:        #161616;
@@ -850,7 +773,7 @@ body { padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px)); }
   --pier-text:      #f5f0e8;
   --pier-dim:       rgba(245,240,232,0.55);
   --pier-faint:     rgba(245,240,232,0.32);
-  --pier-accent:    #f5f0e8;   /* 赤(#e22229)はCrewと被るため白(cream)に変更（2026-06-06 HASHIRA）＝近接層の色差別化 */
+  --pier-accent:    #f5f0e8;   
   --pier-rule:      rgba(245,240,232,0.14);
   --pier-rule-faint:rgba(245,240,232,0.07);
   --pier-font-en:   'Poppins','Shippori Mincho',sans-serif;
@@ -861,22 +784,22 @@ body { padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px)); }
 .pier section { position:relative; z-index:2; padding-left:var(--pier-gutter); padding-right:var(--pier-gutter); }
 .pier .pier-container { max-width:var(--pier-max); margin:0 auto; width:100%; }
 
-/* 敷居（threshold）: 明→暗グラデ + 赤 wordmark（Crew D4 型スライド） */
+
 .pier-threshold { min-height:50vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(180deg, var(--pier-bg) 0%, var(--pier-bg) 18%, var(--pier-lifted) 100%); text-align:center; }
 .pier-threshold-mark { font-family:var(--pier-font-en); font-weight:500; font-style:normal; font-size:clamp(22px,3vw,32px); letter-spacing:0.05em; color:var(--pier-accent); }
 .pier-threshold-sub { margin-top:12px; font-family:var(--pier-font-jp); font-size:13px; letter-spacing:0.10em; color:var(--pier-faint); }
 .pier-threshold-rule { width:36px; height:1px; background:var(--pier-rule); margin:20px auto 0; }
 .pier-threshold-hint { margin-top:26px; font-family:var(--pier-font-en); font-size:10px; letter-spacing:0.30em; text-transform:uppercase; color:var(--pier-faint); }
 
-/* 部屋（room） */
+
 .pier-room { background:var(--pier-lifted); padding-top:clamp(20px,3vh,36px); padding-bottom:24px; }
-.hg-feed { max-height:65vh; min-height:320px; overflow-y:auto; -webkit-overflow-scrolling:touch; padding-right:4px; }   /* Crew方式: 一定サイズで内部スクロール（投稿が増えてもページは膨張しない・新着は自動下スクロール / 進行ログ2026-05-?? L3873） */
+.hg-feed { max-height:65vh; min-height:320px; overflow-y:auto; -webkit-overflow-scrolling:touch; padding-right:4px; }   
 .hg-murmur { margin-bottom:34px; max-width:600px; }
 .hg-text { font-family:var(--pier-font-jp); font-size:15px; line-height:1.95; letter-spacing:0.04em; color:rgba(245,240,232,0.85); white-space:pre-wrap; word-break:break-word; }
 .hg-by { font-family:var(--pier-font-en); font-size:11px; letter-spacing:0.16em; color:var(--pier-faint); margin-top:8px; }
 
-/* 下固定 compose（Crew D5 型スライド）+ soft-gate */
-/* compose = Crew方式の下からせり上がる固定ポップアップ。room表示中のみ出し、footerが視界に入ったら隠す＝フッター被り解消 */
+
+
 .hg-compose { position:fixed; left:0; right:0; bottom:0; z-index:50; background:var(--pier-deeper); border-top:1px solid var(--pier-rule); padding:14px var(--pier-gutter) max(14px, env(safe-area-inset-bottom)); transform:translateY(120%); transition:transform .55s cubic-bezier(.16,1,.3,1); }
 .hg-compose.show { transform:translateY(0); }
 @media (prefers-reduced-motion: reduce){ .hg-compose{ transition:none; } }
@@ -884,7 +807,7 @@ body { padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px)); }
 .hg-affirm { position:absolute; bottom:100%; left:0; right:0; padding:10px 0 14px; font-family:var(--pier-font-jp); font-size:13px; color:var(--pier-dim); background:linear-gradient(transparent, var(--pier-deeper) 60%); opacity:0; transition:opacity .8s ease; pointer-events:none; }
 .hg-affirm.show { opacity:1; }
 .hg-affirm.err { color:var(--pier-accent); }
-/* compose: 「Logを受け取る」フォームと同じ作り（上下の罫線で囲む横帯・入力左フレックス＋ボタン右） */
+
 .hg-compose-row { display:flex; align-items:flex-end; gap:0; border-top:1px solid var(--pier-rule); border-bottom:1px solid var(--pier-rule); padding:0; }
 .hg-input { flex:1; min-width:0; background:transparent; border:0; color:var(--pier-text); font-family:var(--pier-font-jp); font-size:15px; line-height:1.9; letter-spacing:0.04em; padding:16px 0; resize:none; outline:none; max-height:120px; }
 .hg-input::placeholder { color:var(--pier-faint); font-family:var(--pier-font-jp); letter-spacing:0.08em; }
@@ -902,7 +825,7 @@ body { padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px)); }
 .hg-gate.hide { display:none; }
 </style>
 
-<!-- ===== 桟橋（みんなの独り言）===== -->
+
 <div class="pier">
   <section class="pier-threshold">
     <div class="pier-threshold-mark">hitori-goto</div>
@@ -925,178 +848,17 @@ body { padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px)); }
         登録済の方ももう一度入力で書き込めます。
       </div>
       <div class="hg-compose-row">
-        <textarea class="hg-input" id="hg-text" rows="1" maxlength="500" placeholder="独り言を書く" disabled></textarea>
-        <button class="hg-submit" id="hg-submit" type="button" disabled>書く</button>
+        <textarea class="hg-input" id="hg-text" rows="1" maxlength="500" placeholder="独り言を書く" disabled="disabled"></textarea>
+        <button class="hg-submit" id="hg-submit" type="button" disabled="disabled">書く</button>
       </div>
-      <input class="hg-name" id="hg-name" type="text" maxlength="20" placeholder="名前（任意）" disabled>
+      <input class="hg-name" id="hg-name" type="text" maxlength="20" placeholder="名前（任意）" disabled="disabled">
     </div>
   </div>
 </div>
 
-<script>
-/* =====================================================================
-   桟橋（みんなの独り言）— 本番ロジック（Supabase版）
-   読む=全員 / 書く=The Log登録者のみ(soft-gate)。返信/いいね/数字/通知なし(傷つかない設計)。
-   ===================================================================== */
-(function () {
-  var SUPABASE_URL      = 'https://skqrnxiuzggkeyifsyuw.supabase.co';
-  var SUPABASE_ANON_KEY = 'sb_publishable_yzBxsz0uzZw4mxzh58Ddag_--KmaN-w';
-  // Crew越境防止（blocker）: 桟橋はCrewと別Supabaseプロジェクト必須。
-  //   同居すると公開anon keyで Crew の hitorigoto(RLS=anon全件可) を越境読み取りできる＝Crew独り言が流出する。
-  if (SUPABASE_URL.indexOf('abivdafsebrjsuduhdto') !== -1) {
-    throw new Error('桟橋はCrewと別Supabaseプロジェクト必須（同居するとanon keyでCrewの独り言を越境読み取り可能）');
-  }
-  var sb = (window.supabase
-            && SUPABASE_URL.indexOf('__') === -1
-            && SUPABASE_ANON_KEY.indexOf('__') === -1)
-             ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+<script>(function(){var SUPABASE_URL="https://skqrnxiuzggkeyifsyuw.supabase.co";var SUPABASE_ANON_KEY="sb_publishable_yzBxsz0uzZw4mxzh58Ddag_--KmaN-w";if(SUPABASE_URL.indexOf("abivdafsebrjsuduhdto")!==-1){throw new Error("桟橋はCrewと別Supabaseプロジェクト必須（同居するとanon keyでCrewの独り言を越境読み取り可能）")}var sb=window.supabase&&SUPABASE_URL.indexOf("__")===-1&&SUPABASE_ANON_KEY.indexOf("__")===-1?window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;var SEEDS=[];var GATE_KEY="tour202610_pier_unlocked";var LAST_KEY="tour202610_pier_last";var COOLDOWN_MS=60*1e3;var NG=["http://","https://","www.","稼げる","副業","ビットコイン","アダルト"];var feedEl=document.getElementById("hg-feed");var textEl=document.getElementById("hg-text");var nameEl=document.getElementById("hg-name");var submitEl=document.getElementById("hg-submit");var affirmEl=document.getElementById("hg-affirm");var composeEl=document.getElementById("hg-compose");var gateEl=document.getElementById("hg-gate");var unlockEl=document.getElementById("hg-unlock");var roomEl=document.querySelector(".pier-room");var affirmTimer=null;var dbRows=[];function isUnlocked(){try{if(localStorage.getItem(GATE_KEY)==="1")return true;var p=new URLSearchParams(window.location.search);if(p.get("subscribed")==="true"){localStorage.setItem(GATE_KEY,"1");return true}}catch(e){}return false}function looksLikeNG(s){var low=s.toLowerCase();return NG.some(function(w){return low.indexOf(w.toLowerCase())!==-1})}function allRows(){return SEEDS.concat(dbRows)}function render(){feedEl.innerHTML="";allRows().forEach(function(m){if(m.is_hidden)return;if(m.body&&looksLikeNG(m.body))return;var wrap=document.createElement("div");wrap.className="hg-murmur";var p=document.createElement("p");p.className="hg-text";p.textContent=m.body;wrap.appendChild(p);if(m.name){var by=document.createElement("div");by.className="hg-by";by.textContent="— "+m.name;wrap.appendChild(by)}feedEl.appendChild(wrap)});feedEl.scrollTop=feedEl.scrollHeight}function notice(msg,isErr){affirmEl.textContent=msg;affirmEl.className="hg-affirm show"+(isErr?" err":"");if(affirmTimer)clearTimeout(affirmTimer);if(!isErr)affirmTimer=setTimeout(function(){affirmEl.classList.remove("show")},4200)}function affirm(){notice("独り言が記録されました。",false)}function autosize(){textEl.style.height="auto";textEl.style.height=Math.min(textEl.scrollHeight,120)+"px"}function applyGate(){var u=isUnlocked();textEl.disabled=!u;nameEl.disabled=!u;submitEl.disabled=!u;gateEl.classList.toggle("hide",u);textEl.placeholder="独り言を書く"}function unlock(){try{localStorage.setItem(GATE_KEY,"1")}catch(e){}applyGate();notice("Log を受け取りました。独り言を残せます。",false)}function logSuccessSeen(){if(document.querySelector(".log-success"))return true;var fs=document.querySelector(".formkit-alert-success");if(fs&&(fs.textContent||"").trim().length>0)return true;var de=document.querySelector('[data-element="success"]');if(de&&de.offsetParent!==null&&(de.textContent||"").trim().length>0)return true;return false}function watchLogSuccess(){if(isUnlocked())return;if(logSuccessSeen()){unlock();return}if(!("MutationObserver"in window))return;var mo=new MutationObserver(function(){if(logSuccessSeen()){unlock();mo.disconnect()}});mo.observe(document.body,{childList:true,subtree:true,characterData:true})}function load(){if(!sb)return;sb.from("hitorigoto_pier").select("name,body,created_at").gte("created_at","2026-09-19T00:00:00Z").order("created_at",{ascending:true}).then(function(res){if(res.error){return}dbRows=res.data||[];render()})}function submit(){if(!isUnlocked()){notice("読むのは自由です。書くには、まず Log を受け取ってから。",true);return}var body=(textEl.value||"").trim();if(!body){textEl.focus();return}if(body.length>500){notice("長すぎます（500字まで）。",true);return}var last=0;try{last=parseInt(localStorage.getItem(LAST_KEY)||"0",10)}catch(e){}if(Date.now()-last<COOLDOWN_MS){notice("少し、間をおいて。",true);return}if(looksLikeNG(body)){notice("ここには、宣伝やリンクは置けません。",true);return}if(!sb){notice("いま接続できませんでした。少し時間をおいて。",true);return}var name=(nameEl.value||"").trim().slice(0,20);submitEl.disabled=true;sb.from("hitorigoto_pier").insert({body:body,name:name||null}).then(function(res){submitEl.disabled=false;if(res.error){notice("うまく届きませんでした。もう一度。",true);return}try{localStorage.setItem(LAST_KEY,String(Date.now()))}catch(e){}textEl.value="";autosize();affirm();load()})}unlockEl.addEventListener("click",function(e){e.preventDefault();var logInput=document.querySelector(".log-form input[type=email]");var logEntry=document.querySelector(".entry.log")||document.querySelector(".log-form");if(logEntry&&logEntry.scrollIntoView)logEntry.scrollIntoView({behavior:"smooth",block:"center"});if(logInput)setTimeout(function(){try{logInput.focus()}catch(e){}},400)});submitEl.addEventListener("click",submit);textEl.addEventListener("input",autosize);textEl.addEventListener("keydown",function(e){if((e.metaKey||e.ctrlKey)&&e.key==="Enter"){e.preventDefault();submit()}});if("IntersectionObserver"in window&&roomEl){new IntersectionObserver(function(es){es.forEach(function(e){composeEl.classList.toggle("show",e.isIntersecting)})},{threshold:.01}).observe(roomEl)}else{composeEl.classList.add("show")}applyGate();watchLogSuccess();render();load();if(sb){try{sb.channel("pier-rt").on("postgres_changes",{event:"INSERT",schema:"public",table:"hitorigoto_pier"},function(){load()}).subscribe()}catch(e){}}})()</script>
 
-  /* seed（先客の独り言）= HASHIRA確定13本（Taka 8 + 17LIVE実5・匿名）。
-     HTMLハードコードで常時先頭表示＝過疎防止（DBは訪問者の書き込みのみ保持）。
-     新着が下＝上から下へ読むと航海の弧。出典: 桟橋_SPEC §5。 */
-  var SEEDS = [];   /* 2026-10: 6月の先客13本は6月ツアー固有のため外した（10月の最初の一言で空でなくなる） */
 
-  var GATE_KEY = 'tour202610_pier_unlocked';
-  var LAST_KEY = 'tour202610_pier_last';
-  var COOLDOWN_MS = 60 * 1000;
-  /* 簡易NGワード（クライアント即時非表示。サーバ側 is_hidden モデレーションと二重）。本番の実NGリストは別管理。 */
-  var NG = ['http://', 'https://', 'www.', '稼げる', '副業', 'ビットコイン', 'アダルト'];
-
-  var feedEl   = document.getElementById('hg-feed');
-  var textEl   = document.getElementById('hg-text');
-  var nameEl   = document.getElementById('hg-name');
-  var submitEl = document.getElementById('hg-submit');
-  var affirmEl = document.getElementById('hg-affirm');
-  var composeEl= document.getElementById('hg-compose');
-  var gateEl   = document.getElementById('hg-gate');
-  var unlockEl = document.getElementById('hg-unlock');
-  var roomEl   = document.querySelector('.pier-room');
-  var affirmTimer = null;
-  var dbRows = [];
-
-  function isUnlocked(){
-    try {
-      if (localStorage.getItem(GATE_KEY) === '1') return true;
-      var p = new URLSearchParams(window.location.search);
-      if (p.get('subscribed') === 'true') { localStorage.setItem(GATE_KEY, '1'); return true; }
-    } catch(e){}
-    return false;
-  }
-  function looksLikeNG(s){ var low = s.toLowerCase(); return NG.some(function(w){ return low.indexOf(w.toLowerCase()) !== -1; }); }
-  function allRows(){ return SEEDS.concat(dbRows); }   // seedが構造的に常に先頭＝空状態を出さない
-
-  function render(){
-    feedEl.innerHTML = '';
-    allRows().forEach(function(m){
-      if (m.is_hidden) return;               // 実防御はRLS(SELECT is_hidden=false)が唯一。これは保険（DBrowはis_hidden列未取得で通常undefined）
-      if (m.body && looksLikeNG(m.body)) return; // クライアント側NG即時非表示
-      var wrap = document.createElement('div'); wrap.className = 'hg-murmur';
-      var p = document.createElement('p'); p.className = 'hg-text'; p.textContent = m.body; wrap.appendChild(p); // textContent=XSS安全
-      if (m.name) { var by = document.createElement('div'); by.className = 'hg-by'; by.textContent = '— ' + m.name; wrap.appendChild(by); }
-      feedEl.appendChild(wrap);
-    });
-    feedEl.scrollTop = feedEl.scrollHeight;
-  }
-  function notice(msg, isErr){
-    affirmEl.textContent = msg;
-    affirmEl.className = 'hg-affirm show' + (isErr ? ' err' : '');
-    if (affirmTimer) clearTimeout(affirmTimer);
-    if (!isErr) affirmTimer = setTimeout(function(){ affirmEl.classList.remove('show'); }, 4200);
-  }
-  function affirm(){ notice('独り言が記録されました。', false); }
-  function autosize(){ textEl.style.height = 'auto'; textEl.style.height = Math.min(textEl.scrollHeight, 120) + 'px'; }
-
-  function applyGate(){
-    var u = isUnlocked();
-    textEl.disabled = !u; nameEl.disabled = !u; submitEl.disabled = !u;
-    gateEl.classList.toggle('hide', u);
-    textEl.placeholder = '独り言を書く';   /* 2026-09-20 HASHIRA指示で常に同じ文言に */
-  }
-
-  /* soft-gate解放（blocker対策）: Kitフォームは現在 action:message（遷移なし）のため
-     ?subscribed=true が発火しない＝正規登録者が永久に書けない。Kitの成功DOM出現を
-     MutationObserverで掴んで解放する（Kit設定変更不要）。?subscribed=true 経路
-     （リダイレクト運用に切替えた場合）は isUnlocked() が拾う。
-     ⚠️ 本番ローンチ前に必ず実機スモーク（テストemail登録→composeが解放されるか）。
-        不発なら Kitフォームを redirect_url=本番URL+?subscribed=true に切替（桟橋_SPEC §4-3）。 */
-  function unlock(){ try { localStorage.setItem(GATE_KEY, '1'); } catch(e){} applyGate(); notice('Log を受け取りました。独り言を残せます。', false); }
-  function logSuccessSeen(){
-    if (document.querySelector('.log-success')) return true;                     // ?subscribed=true 経路（index.html L747-750が生成）
-    var fs = document.querySelector('.formkit-alert-success');
-    if (fs && (fs.textContent || '').trim().length > 0) return true;             // Kit in-place 成功メッセージ
-    var de = document.querySelector('[data-element="success"]');
-    if (de && de.offsetParent !== null && (de.textContent || '').trim().length > 0) return true;
-    return false;
-  }
-  function watchLogSuccess(){
-    if (isUnlocked()) return;
-    if (logSuccessSeen()) { unlock(); return; }
-    if (!('MutationObserver' in window)) return;
-    var mo = new MutationObserver(function(){ if (logSuccessSeen()) { unlock(); mo.disconnect(); } });
-    mo.observe(document.body, { childList: true, subtree: true, characterData: true });
-  }
-
-  function load(){
-    if (!sb) return;   // 未接続（プレースホルダのまま）＝seedのみ表示
-    sb.from('hitorigoto_pier').select('name,body,created_at').gte('created_at', '2026-09-19T00:00:00Z').order('created_at', { ascending: true }).then(function(res){
-      if (res.error) { /* 読み込み失敗時はseedのみ＝空にしない */ return; }
-      dbRows = res.data || [];
-      render();
-    });
-  }
-  function submit(){
-    if (!isUnlocked()) { notice('読むのは自由です。書くには、まず Log を受け取ってから。', true); return; }
-    var body = (textEl.value || '').trim();
-    if (!body) { textEl.focus(); return; }
-    if (body.length > 500) { notice('長すぎます（500字まで）。', true); return; }
-    var last = 0; try { last = parseInt(localStorage.getItem(LAST_KEY) || '0', 10); } catch(e){}
-    if (Date.now() - last < COOLDOWN_MS) { notice('少し、間をおいて。', true); return; }
-    if (looksLikeNG(body)) { notice('ここには、宣伝やリンクは置けません。', true); return; }
-    if (!sb) { notice('いま接続できませんでした。少し時間をおいて。', true); return; }
-    var name = (nameEl.value || '').trim().slice(0, 20);
-    submitEl.disabled = true;
-    sb.from('hitorigoto_pier').insert({ body: body, name: name || null }).then(function(res){
-      submitEl.disabled = false;
-      if (res.error) { notice('うまく届きませんでした。もう一度。', true); return; }
-      try { localStorage.setItem(LAST_KEY, String(Date.now())); } catch(e){}
-      textEl.value = ''; autosize(); affirm();
-      load();   // realtimeが無い環境でも自分の投稿を反映
-    });
-  }
-
-  // soft-gate解放リンク → The Logフォームへ誘導（登録成功で ?subscribed=true → 次回isUnlocked）
-  unlockEl.addEventListener('click', function(e){
-    e.preventDefault();
-    var logInput = document.querySelector('.log-form input[type=email]');
-    var logEntry = document.querySelector('.entry.log') || document.querySelector('.log-form');
-    if (logEntry && logEntry.scrollIntoView) logEntry.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    if (logInput) setTimeout(function(){ try { logInput.focus(); } catch(e){} }, 400);
-  });
-
-  submitEl.addEventListener('click', submit);
-  textEl.addEventListener('input', autosize);
-  textEl.addEventListener('keydown', function(e){ if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); submit(); } });
-
-  // ===== Crew方式（hitori-goto と全く同じ）=====
-  // room（部屋）が見えている間だけ compose をせり上げる。footer検出もJSによるpadding操作もしない。
-  // フッター被りは CSS の静的 body padding-bottom（下記 <style>）で compose 高さ分を確保（Crew index.html L75 と同じ静的方式）。
-  // ※JSで body padding を動的変更すると、スマホのアドレスバー開閉で resize が連発→再計算→layout変化で
-  //   フッターが動く・スクロールがガクつく（2026-06-07 ユーザー報告で修正）。だからJSでは一切paddingを触らない。
-  if ('IntersectionObserver' in window && roomEl) {
-    new IntersectionObserver(function(es){ es.forEach(function(e){ composeEl.classList.toggle('show', e.isIntersecting); }); }, { threshold: 0.01 }).observe(roomEl);
-  } else { composeEl.classList.add('show'); }
-
-  applyGate();
-  watchLogSuccess();   // The Log登録成功を監視して soft-gate を解放（blocker対策）
-  render();   // seedを即描画（空にしない）
-  load();     // DBの訪問者投稿を追って反映
-  if (sb) {
-    try { sb.channel('pier-rt').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'hitorigoto_pier' }, function(){ load(); }).subscribe(); } catch(e){}
-  }
-})();
-</script>
-
-<!-- ===== FOOTER ===== -->
 <footer>
   <div class="footer-inner">
     <div>
@@ -1111,19 +873,8 @@ body { padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px)); }
   </div>
 </footer>
 
-<!-- Redirect 経由の成功メッセージ表示（?subscribed=true 検出時にフォームを置き換え） -->
-<script>
-(function(){
-  var p = new URLSearchParams(window.location.search);
-  if (p.get('subscribed') !== 'true') return;
-  var f = document.querySelector('.log-form');
-  if (!f) return;
-  var m = document.createElement('div');
-  m.className = 'log-success reveal r-1';
-  m.innerHTML = '<p>Logにようこそ。Emailで当日までの様子をお届けします。</p>';
-  f.parentNode.replaceChild(m, f);
-})();
-</script>
+
+<script>(function(){var p=new URLSearchParams(window.location.search);if(p.get("subscribed")!=="true")return;var f=document.querySelector(".log-form");if(!f)return;var m=document.createElement("div");m.className="log-success reveal r-1";m.innerHTML="<p>Logにようこそ。Emailで当日までの様子をお届けします。</p>";f.parentNode.replaceChild(m,f)})()</script>
 
 </body>
 </html>

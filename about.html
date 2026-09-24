@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>About — Takahiro Izumikawa</title>
 <meta name="description" content="Takahiro Izumikawa — pianist and keyboardist from Japan, based in New York. Jazz harmony, hip-hop rhythm, and a Japanese sense of impermanence.">
 <meta property="og:title" content="About — Takahiro Izumikawa">
@@ -29,7 +29,7 @@ body::before{
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.91 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
 }
 
-/* ── watermark portrait (透かし・右／フェードは画像に焼込み・縞なし) ── */
+
 .watermark{
   position:fixed;inset:0;
   background:url('assets/about-portrait-fade.webp') no-repeat right center;
@@ -41,26 +41,26 @@ body::before{
 }
 main,.signup,footer{position:relative;z-index:1}
 
-/* ── shared top nav (music.html と一致) ── */
+
 nav.top{
   position:relative;z-index:3;
   display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
   padding:clamp(18px,2.6vh,28px) var(--gutter)
 }
-/* 左上=機能スロット（©表記・Alaya提案1） */
+
 nav.top .wordmark{font-size:12px;letter-spacing:.14em;color:var(--dim);font-weight:400;text-decoration:none}
 nav.top .links{display:flex;gap:clamp(14px,2.4vw,26px)}
-/* navはTitle Case+高コントラスト（Alaya提案2） */
+
 nav.top .links a{font-size:12px;letter-spacing:.1em;color:rgba(245,240,232,.85);text-decoration:none;transition:color .4s}
 nav.top .links a:hover{color:var(--accent)}
 nav.top .links a[aria-current="page"]{color:var(--text)}
 
-/* ── editorial body ── */
+
 main{flex:1;padding:clamp(40px,8vh,88px) var(--gutter)}
 .wrap{max-width:600px;margin-right:auto;margin-left:0;width:100%}
 .eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:26px}
 
-/* optional portrait slot (HASHIRA提供時に有効化) */
+
 .portrait{
   width:100%;aspect-ratio:4/5;max-height:54vh;object-fit:cover;object-position:center 28%;
   display:block;margin:0 0 clamp(30px,5vh,44px);
@@ -82,14 +82,14 @@ main{flex:1;padding:clamp(40px,8vh,88px) var(--gutter)}
 .body a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s}
 .body a:hover{color:var(--accent);border-color:var(--accent)}
 
-/* selected credits — 静かにグループ化（brag-wall化を避ける） */
+
 .credits{margin-top:clamp(34px,6vh,52px);border-top:1px solid var(--rule);padding-top:clamp(24px,4vh,32px)}
 .credits .ctitle{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--faint);margin-bottom:20px}
 .credits .grp{display:flex;gap:clamp(12px,3vw,28px);margin-bottom:14px;flex-wrap:wrap}
 .credits .role{flex:0 0 84px;font-size:11px;letter-spacing:.06em;color:var(--faint);padding-top:2px}
 .credits .names{flex:1 1 280px;font-size:13px;line-height:1.7;color:var(--dim)}
 
-/* quiet onward links */
+
 .more{display:flex;gap:clamp(20px,4vw,36px);margin-top:clamp(34px,6vh,52px);flex-wrap:wrap}
 .more a{font-size:12px;letter-spacing:.14em;text-transform:lowercase;color:var(--dim);text-decoration:none;transition:color .4s}
 .more a:hover{color:var(--accent)}
@@ -110,7 +110,7 @@ main{flex:1;padding:clamp(40px,8vh,88px) var(--gutter)}
 .signup .form-error{margin:12px 0 0;font-size:12px;letter-spacing:.04em;color:#c46b6b}
 .signup .form-error:empty{display:none}
 
-/* ── shared footer (music.html と一致) ── */
+
 footer{
   display:flex;justify-content:center;gap:clamp(18px,2.4vw,32px);
   padding:clamp(16px,2.5vh,24px) var(--gutter) clamp(28px,4vh,40px);
@@ -138,9 +138,7 @@ footer a:hover{color:var(--dim)}
 <main>
   <div class="wrap">
 
-    <!-- portrait slot（HASHIRA提供の暗め/グレイン処理ポートレートを入れる場合のみ有効化）
-    <img class="portrait" src="assets/portrait.jpg" alt="Takahiro Izumikawa" loading="eager">
-    -->
+    
 
     <h1 class="name-head">About</h1>
 
@@ -178,13 +176,13 @@ footer a:hover{color:var(--dim)}
         <input type="email" name="email_address" placeholder="email address" aria-label="email address" required>
       </div>
       <div class="lang-btns">
-        <button type="button" class="lang-btn" onclick="submitWithLang('website EN')">subscribe in english</button>
-        <button type="button" class="lang-btn" onclick="submitWithLang('website JP')">日本語で登録</button>
+        <button type="button" class="lang-btn" onclick='submitWithLang("website EN")'>subscribe in english</button>
+        <button type="button" class="lang-btn" onclick='submitWithLang("website JP")'>日本語で登録</button>
       </div>
       <input type="hidden" name="fields[language]" id="field-language" value="">
-      <input type="hidden" name="fields[country]"  id="field-country"  value="">
-      <input type="hidden" name="fields[source]"   id="field-source"   value="about">
-      <input type="hidden" name="tags[]"           id="field-tag"      value="">
+      <input type="hidden" name="fields[country]" id="field-country" value="">
+      <input type="hidden" name="fields[source]" id="field-source" value="about">
+      <input type="hidden" name="tags[]" id="field-tag" value="">
       <p class="form-error" id="form-error"></p>
     </form>
     <p class="note">First word on new shows and recordings. Unsubscribe anytime.</p>
@@ -199,38 +197,7 @@ footer a:hover{color:var(--dim)}
 
 <p style="position:fixed;right:clamp(12px,2vw,22px);bottom:clamp(9px,1.6vh,15px);z-index:4;margin:0;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:.1em;color:rgba(245,240,232,.3);pointer-events:none">photo · Alaya Lee</p>
 
-<script>
-(function(){
-  var src = new URLSearchParams(location.search).get('src');
-  if(!src){ try{ src = sessionStorage.getItem('ren_src') || ''; }catch(e){} }  // /yt・/ig 経由（2026-08-13追加）
-  if(src) document.getElementById('field-source').value = src;
-  fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(d){
-    document.getElementById('field-country').value = d.country_code || '';
-  }).catch(function(){});
-})();
-function submitWithLang(lang){
-  var form = document.getElementById('kit-form');
-  var emailEl = form.querySelector('input[type="email"]');
-  if(!emailEl.checkValidity()){emailEl.reportValidity();return;}
-  document.getElementById('field-language').value = lang;
-  document.getElementById('field-tag').value = (lang === 'website JP') ? '20632889' : '19430794';
-  var errEl = document.getElementById('form-error'); errEl.textContent = '';
-  var btns = form.querySelectorAll('.lang-btn'); btns.forEach(function(b){b.disabled = true;});
-  var body = new URLSearchParams(new FormData(form)).toString();
-  fetch(form.action, {method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded','Accept':'application/json'},body: body})
-  .then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json().catch(function(){return {};}); })
-  .then(function(){ showSuccess(lang); })
-  .catch(function(){
-    btns.forEach(function(b){b.disabled = false;});
-    errEl.textContent = (lang === 'website JP') ? '送信できませんでした。少し時間をおいて再度お試しください。' : 'Something went wrong. Please try again in a moment.';
-  });
-}
-function showSuccess(lang){
-  var jp = (lang === 'website JP');
-  var b = jp ? '確認のメールをお送りしました。受信箱をご確認ください。' : 'Check your email to confirm. New shows and recordings will come straight to you.';
-  document.getElementById('capture-inner').innerHTML = '<p class="statement">' + b + '</p>';
-}
-</script>
+<script>(function(){var src=new URLSearchParams(location.search).get("src");if(!src){try{src=sessionStorage.getItem("ren_src")||""}catch(e){}}if(src)document.getElementById("field-source").value=src;fetch("https://ipapi.co/json/").then(function(r){return r.json()}).then(function(d){document.getElementById("field-country").value=d.country_code||""}).catch(function(){})})();function submitWithLang(lang){var form=document.getElementById("kit-form");var emailEl=form.querySelector('input[type="email"]');if(!emailEl.checkValidity()){emailEl.reportValidity();return}document.getElementById("field-language").value=lang;document.getElementById("field-tag").value=lang==="website JP"?"20632889":"19430794";var errEl=document.getElementById("form-error");errEl.textContent="";var btns=form.querySelectorAll(".lang-btn");btns.forEach(function(b){b.disabled=true});var body=new URLSearchParams(new FormData(form)).toString();fetch(form.action,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded",Accept:"application/json"},body:body}).then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.json().catch(function(){return{}})}).then(function(){showSuccess(lang)}).catch(function(){btns.forEach(function(b){b.disabled=false});errEl.textContent=lang==="website JP"?"送信できませんでした。少し時間をおいて再度お試しください。":"Something went wrong. Please try again in a moment."})}function showSuccess(lang){var jp=lang==="website JP";var b=jp?"確認のメールをお送りしました。受信箱をご確認ください。":"Check your email to confirm. New shows and recordings will come straight to you.";document.getElementById("capture-inner").innerHTML='<p class="statement">'+b+"</p>"}</script>
 
 </body>
 </html>

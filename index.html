@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Takahiro Izumikawa</title>
 <meta name="description" content="Made up in the moment. You don't need to know it — come to be moved.">
-<!-- OGP / Twitter Card -->
+
 <meta property="og:title" content="Takahiro Izumikawa">
 <meta property="og:description" content="Made up in the moment. You don't need to know it — come to be moved.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://takahiroizumikawa.com/">
 <meta property="og:image" content="https://takahiroizumikawa.com/assets/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<!-- font: Poppins 1書体統一（斜体は引用/ステートメントのみ可・装飾体禁止 — Alayaフィードバック2026-07-26） -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -27,13 +27,13 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:300;-webkit-font-smoothing:antialiased}
 body{min-height:100vh;overflow-x:hidden;letter-spacing:.02em}
-/* grain overlay */
+
 body::before{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.08;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.91 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
 }
 
-/* ── full-bleed hero: 写真1枚に全テキストを重ねる（2026-07-27 HASHIRA mockup 12627） ── */
+
 .hero{
   position:relative;min-height:100svh;overflow:hidden;
   display:flex;flex-direction:column;justify-content:flex-start;
@@ -44,25 +44,25 @@ body::before{
   object-fit:cover;object-position:center 60%;
   filter:brightness(.72) contrast(1.05);z-index:0;display:block
 }
-/* 可読性のための暗幕（上・下・左を落とす。写真の主役=右の演奏者は残す） */
+
 .hero::after{
   content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
     linear-gradient(180deg,rgba(22,22,22,.55) 0%,rgba(22,22,22,.12) 20%,rgba(22,22,22,.12) 58%,rgba(22,22,22,.74) 100%),
     linear-gradient(90deg,rgba(22,22,22,.55) 0%,rgba(22,22,22,0) 44%)
 }
-/* コンテンツ3ブロックのみ暗幕(::after)の上へ。nav/背景の position は各自の指定を尊重 */
+
 .name-block,.quote-block,.form-block{position:relative;z-index:2}
 
-/* 左上ワードマーク(©)は廃止 → 名前ブロックが左上に立つ（2026-07-27 HASHIRA mockup 12628） */
 
-/* ── side nav (写真右上・縦積み) ── */
+
+
 .side-nav{
   position:absolute;right:clamp(28px,5vw,64px);top:clamp(96px,15vh,150px);
   z-index:4;display:flex;flex-direction:column;gap:clamp(14px,2vh,22px);
   text-align:right
 }
-/* navはTitle Case+高コントラスト（全小文字はロゴ/ワードマークの法則でUIラベルは対象外） */
+
 .side-nav a{
   font-size:14px;letter-spacing:.1em;
   color:rgba(245,240,232,.92);text-decoration:none;transition:color .4s;
@@ -70,20 +70,19 @@ body::before{
 }
 .side-nav a:hover{color:var(--accent)}
 
-/* スクリム箱は廃止（mockupの黒四角はレイアウト参照マークでデザインではない・2026-07-27 HASHIRA）。
-   文字は写真に直接。可読性は .hero::after 暗幕グラデ + 各テキストの text-shadow で担保 */
 
-/* name block（左上・左寄せ。©ワードマークの跡地。箱なし＝写真に直接） */
+
+
 .name-block{align-self:flex-start;margin:0;text-align:left;max-width:min(92vw,880px)}
 .name-line{
   font-size:clamp(30px,4.6vw,52px);font-weight:500;letter-spacing:.005em;
   margin:0 0 10px;line-height:1.05;text-shadow:0 2px 16px rgba(0,0,0,.85)
 }
-/* 肩書きは名前ブロック(=名前幅に収縮)内で中央寄せ＝名前の中心に揃う（2026-07-27 HASHIRA） */
+
 .role{font-size:13px;font-weight:300;letter-spacing:.3em;color:rgba(245,240,232,.72);text-shadow:0 1px 8px rgba(0,0,0,.75);text-align:center}
 .role b{color:var(--accent);font-weight:500}
 
-/* quote block: 箱なし・写真に直接。PC=顔を避け下部（Join the mailing list の直上）へ margin-top:auto で下寄せ、left/right auto で横中央 */
+
 .quote-block{margin:auto auto clamp(22px,3.4vh,42px);max-width:760px;text-align:center}
 .quote{
   font-size:clamp(16px,1.9vw,21px);font-weight:300;font-style:italic;line-height:1.7;
@@ -91,7 +90,7 @@ body::before{
 }
 .divider{width:34px;height:2px;background:var(--accent);margin:clamp(18px,2.4vh,26px) auto 0}
 
-/* form block: PC=人物(中央右)を避け左下へ左寄せ（2026-07-27 HASHIRA「人物と被って見づらい」）。モバイルは中央下（後述） */
+
 .form-block{text-align:left;align-self:flex-start}
 .offer{
   font-size:13px;color:var(--accent);font-weight:500;
@@ -120,7 +119,7 @@ body::before{
 }
 .lang-btn:hover{border-color:var(--accent);color:var(--accent)}
 .note{margin-top:12px;font-size:11px;color:rgba(245,240,232,.55);text-align:left;text-shadow:0 1px 6px rgba(0,0,0,.5)}
-/* form error / submitting */
+
 .form-error{margin:12px 0 0;font-size:12px;letter-spacing:.04em;color:#e08a8a;text-align:center}
 .form-error:empty{display:none}
 .lang-btn:disabled{opacity:.45;cursor:default}
@@ -130,7 +129,7 @@ body::before{
   color:var(--text);max-width:47ch;margin:0 auto
 }
 
-/* photo credit（フッター線の直上・右寄せ） */
+
 .credit{
   margin:0;text-align:right;padding:10px var(--gutter);
   font-family:'Poppins',sans-serif;
@@ -138,14 +137,14 @@ body::before{
   color:rgba(245,240,232,.3)
 }
 
-/* ── footer（ヒーロー下・スクロールで到達） ── */
+
 footer{
   display:flex;justify-content:center;gap:clamp(18px,2.4vw,32px);
   padding:clamp(16px,2.5vh,24px) var(--gutter) clamp(28px,4vh,40px);
   border-top:1px solid var(--rule);
   flex-wrap:wrap
 }
-/* SNSはモノクロ・ロゴアイコン（会社色=赤単一/ミニマル準拠。IGグラデ・YT赤塗りは使わない）。淡色→ホバーで赤（赤は最小面積・ホバーのみ・ガイドライン§2.1準拠） */
+
 footer a{
   color:var(--dim);text-decoration:none;transition:color .4s;
   display:inline-flex;align-items:center;justify-content:center
@@ -153,15 +152,15 @@ footer a{
 footer a:hover{color:var(--accent)}
 footer a svg{width:23px;height:23px;fill:currentColor;display:block}
 
-/* ── mobile: 全面写真の上にテキストを重ねたまま1画面に収める ── */
+
 @media (max-width:640px){
-  /* モバイル: 引用を「Join the mailing list」の直上（下部）へ＝quote margin-top:autoで引用+フォームを下部にまとめる。これで学ぶとも完全に離れる（2026-07-27 HASHIRA「引用はJoin直上」） */
+  
   .hero{padding:clamp(26px,4.5vh,40px) var(--gutter) clamp(22px,3vh,32px);justify-content:flex-start}
   .quote-block{margin:auto auto clamp(16px,2.4vh,26px)}
   .form-block{align-self:center;text-align:center}
   .form{margin:0 auto}
   .hero-bg{object-position:center 58%}
-  /* スマホ: 名前=左上大きく → その直下に縦積みナビを左寄せ（mockup 12628） */
+  
   .side-nav{
     position:absolute;left:var(--gutter);right:auto;
     top:clamp(102px,17vh,132px);
@@ -182,13 +181,7 @@ footer a svg{width:23px;height:23px;fill:currentColor;display:block}
 <body>
 
 <section class="hero">
-  <img
-    class="hero-bg"
-    src="assets/hero.jpg"
-    alt="Takahiro Izumikawa performing live at the piano"
-    loading="eager"
-    fetchpriority="high"
-  >
+  <img class="hero-bg" src="assets/hero.jpg" alt="Takahiro Izumikawa performing live at the piano" loading="eager" fetchpriority="high">
 
   <nav class="side-nav">
     <a href="about.html">About</a>
@@ -198,37 +191,36 @@ footer a svg{width:23px;height:23px;fill:currentColor;display:block}
     <a href="https://mubo.taka808.com/about/" target="_blank" rel="noopener">学ぶ ↗&#xFE0E;</a>
   </nav>
 
-  <!-- ① 名前ブロック（上） -->
+  
   <div class="name-block">
     <h1 class="name-line">Takahiro Izumikawa</h1>
     <p class="role">Pianist&nbsp;&nbsp;/&nbsp;&nbsp;Composer&nbsp;&nbsp;/&nbsp;&nbsp;Producer</p>
   </div>
 
-  <!-- ② 引用ブロック（中央） -->
+  
   <div class="quote-block">
     <p class="quote">&ldquo;Made up in the moment.<br>You don't need to know it&nbsp;&mdash; come to be moved.&rdquo;</p>
     <div class="divider" aria-hidden="true"></div>
   </div>
 
-  <!-- ③ 登録フォーム（下） -->
+  
   <div class="form-block" id="capture">
     <div id="capture-inner">
       <p class="offer">Join the mailing list</p>
 
-      <!-- Kit form（fetch送信＝ページ遷移なし。Kit側の成功画面/広告は出ない）
-           form ID = 9606457。変更時は action URL の数字を差し替える。 -->
+      
       <form class="form" id="kit-form" action="https://app.kit.com/forms/9606457/subscriptions" method="post">
         <div class="email-row">
           <input type="email" name="email_address" placeholder="email address" aria-label="email address" required>
         </div>
         <div class="lang-btns">
-          <button type="button" class="lang-btn" onclick="submitWithLang('website EN')">subscribe in english</button>
-          <button type="button" class="lang-btn" onclick="submitWithLang('website JP')">日本語で登録</button>
+          <button type="button" class="lang-btn" onclick='submitWithLang("website EN")'>subscribe in english</button>
+          <button type="button" class="lang-btn" onclick='submitWithLang("website JP")'>日本語で登録</button>
         </div>
         <input type="hidden" name="fields[language]" id="field-language" value="">
-        <input type="hidden" name="fields[country]"  id="field-country"  value="">
-        <input type="hidden" name="fields[source]"   id="field-source"   value="">
-        <input type="hidden" name="tags[]"           id="field-tag"      value="">
+        <input type="hidden" name="fields[country]" id="field-country" value="">
+        <input type="hidden" name="fields[source]" id="field-source" value="">
+        <input type="hidden" name="tags[]" id="field-tag" value="">
         <p class="form-error" id="form-error"></p>
       </form>
       <p class="note">First word on new shows and recordings. Unsubscribe anytime.</p>
@@ -246,65 +238,7 @@ footer a svg{width:23px;height:23px;fill:currentColor;display:block}
   </a>
 </footer>
 
-<script>
-(function(){
-  // 流入元タグ: ?src= → Kit fields[source]
-  // 短縮リンク（/yt・/ig）経由の場合は ?src= が付かないので sessionStorage を見る（2026-08-13追加）
-  var src = new URLSearchParams(location.search).get('src');
-  if(!src){ try{ src = sessionStorage.getItem('ren_src') || ''; }catch(e){} }
-  if(src) document.getElementById('field-source').value = src;
-
-  // 国情報: ipapi.co silent fetch → Kit fields[country]
-  fetch('https://ipapi.co/json/')
-    .then(function(r){return r.json();})
-    .then(function(d){
-      document.getElementById('field-country').value = d.country_code || '';
-    })
-    .catch(function(){});
-})();
-
-// 言語ボタン押下: "website EN"/"website JP" → fields[language] → fetch送信（ページ遷移なし＝Kit広告画面が出ない）
-function submitWithLang(lang){
-  var form = document.getElementById('kit-form');
-  var emailEl = form.querySelector('input[type="email"]');
-  if(!emailEl.checkValidity()){emailEl.reportValidity();return;}
-
-  document.getElementById('field-language').value = lang;
-  // 言語タグID: Website EN=19430794 / Website JP=20632889（Kit Tag ID・正本 kit-email-operations.md）
-  document.getElementById('field-tag').value = (lang === 'website JP') ? '20632889' : '19430794';
-  var errEl = document.getElementById('form-error');
-  errEl.textContent = '';
-
-  var btns = form.querySelectorAll('.lang-btn');
-  btns.forEach(function(b){b.disabled = true;});
-
-  var body = new URLSearchParams(new FormData(form)).toString();
-  fetch(form.action, {
-    method:'POST',
-    headers:{'Content-Type':'application/x-www-form-urlencoded','Accept':'application/json'},
-    body: body
-  })
-  .then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json().catch(function(){return {};}); })
-  .then(function(){ showSuccess(lang); })
-  .catch(function(){
-    btns.forEach(function(b){b.disabled = false;});
-    errEl.textContent = (lang === 'website JP')
-      ? '送信できませんでした。少し時間をおいて再度お試しください。'
-      : 'Something went wrong. Please try again in a moment.';
-  });
-}
-
-// 成功表示: CTA+フォーム部分（#capture-inner）のみ言語別メッセージへ差し替え
-function showSuccess(lang){
-  var jp = (lang === 'website JP');
-  var h = jp ? 'ありがとうございます' : 'thank you';
-  var b = jp
-    ? '確認のメールをお送りしました。受信箱をご確認ください。'
-    : 'Check your email to confirm. New shows and recordings will come straight to you.';
-  document.getElementById('capture-inner').innerHTML =
-    '<p class="offer">' + h + '</p><p class="statement">' + b + '</p>';
-}
-</script>
+<script>(function(){var src=new URLSearchParams(location.search).get("src");if(!src){try{src=sessionStorage.getItem("ren_src")||""}catch(e){}}if(src)document.getElementById("field-source").value=src;fetch("https://ipapi.co/json/").then(function(r){return r.json()}).then(function(d){document.getElementById("field-country").value=d.country_code||""}).catch(function(){})})();function submitWithLang(lang){var form=document.getElementById("kit-form");var emailEl=form.querySelector('input[type="email"]');if(!emailEl.checkValidity()){emailEl.reportValidity();return}document.getElementById("field-language").value=lang;document.getElementById("field-tag").value=lang==="website JP"?"20632889":"19430794";var errEl=document.getElementById("form-error");errEl.textContent="";var btns=form.querySelectorAll(".lang-btn");btns.forEach(function(b){b.disabled=true});var body=new URLSearchParams(new FormData(form)).toString();fetch(form.action,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded",Accept:"application/json"},body:body}).then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.json().catch(function(){return{}})}).then(function(){showSuccess(lang)}).catch(function(){btns.forEach(function(b){b.disabled=false});errEl.textContent=lang==="website JP"?"送信できませんでした。少し時間をおいて再度お試しください。":"Something went wrong. Please try again in a moment."})}function showSuccess(lang){var jp=lang==="website JP";var h=jp?"ありがとうございます":"thank you";var b=jp?"確認のメールをお送りしました。受信箱をご確認ください。":"Check your email to confirm. New shows and recordings will come straight to you.";document.getElementById("capture-inner").innerHTML='<p class="offer">'+h+'</p><p class="statement">'+b+"</p>"}</script>
 
 </body>
 </html>

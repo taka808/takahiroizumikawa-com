@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Crew Log — YATARA</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -41,7 +41,7 @@ body::before{
 section{position:relative;z-index:2;padding-left:var(--gutter);padding-right:var(--gutter)}
 .container{max-width:var(--max);margin:0 auto;width:100%}
 
-/* hero: 写真は白黒で背景、模様は右に重ねる */
+
 .hero{position:relative;overflow:hidden;min-height:clamp(440px,70vh,760px);padding-top:clamp(72px,16vh,160px);padding-bottom:clamp(24px,4vh,40px)}
 .hero > img.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:grayscale(1) brightness(.58) contrast(1.06);z-index:0;pointer-events:none}
 .hero::before{content:'';position:absolute;inset:0;z-index:1;background-image:url("_assets/pattern.png");background-size:auto 108%;background-position:right clamp(28px,3.4vw,72px) center;background-repeat:no-repeat;pointer-events:none}
@@ -57,7 +57,7 @@ section{position:relative;z-index:2;padding-left:var(--gutter);padding-right:var
 .statement{max-width:540px;margin:0 0 0 auto;font-size:14px;line-height:2;color:var(--dim)}
 .hero-meta{max-width:540px;margin:clamp(28px,4vh,40px) 0 0 auto;font-family:var(--font-en);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
 
-/* LINE スタンプの行（行全体がリンク）。エントリの本文と同じ左寄せ 540px の欄 */
+
 .stamp-row{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;max-width:540px;margin:0;color:inherit;text-decoration:none}
 .stamp-row img{display:block;width:96px;height:auto}
 .stamp-copy{font-family:var(--font-jp);font-weight:400;line-height:1.8}
@@ -67,7 +67,7 @@ section{position:relative;z-index:2;padding-left:var(--gutter);padding-right:var
 .stamp-row:hover .stamp-link{color:#fff;border-color:#fff}
 .stamp-row:focus-visible{outline:2px solid var(--text);outline-offset:6px}
 
-/* entries */
+
 .stream{padding-top:clamp(80px,14vh,140px);padding-bottom:clamp(80px,14vh,140px)}
 .entry{padding:clamp(64px,14vh,120px) 0;scroll-margin-top:32px}
 .entry:first-of-type{padding-top:8px}
@@ -81,7 +81,7 @@ section{position:relative;z-index:2;padding-left:var(--gutter);padding-right:var
 .entry-body p+p{margin-top:1.2em}
 
 
-/* hitori-goto */
+
 :root{--bg-lifted:#1c1c1c;--text-dim:rgba(245,240,232,.55);--text-faint:rgba(245,240,232,.32);--rule-faint:rgba(245,240,232,.07);--max-width:1080px}
 .threshold { min-height: 50vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(180deg, var(--bg) 0%, var(--bg) 18%, var(--bg-lifted) 100%); text-align:center; }
 .threshold-mark { font-family:var(--font-en); font-weight:500; font-style:normal; font-size:clamp(22px,3vw,32px); letter-spacing:0.05em; color:var(--accent); }
@@ -110,7 +110,7 @@ section{position:relative;z-index:2;padding-left:var(--gutter);padding-right:var
 .hg-submit { font-family:var(--font-en); font-size:12px; letter-spacing:0.20em; text-transform:uppercase; color:var(--text); background:none; border:0; cursor:pointer; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; text-decoration-color:rgba(245,240,232,0.30); transition:color .4s ease, text-decoration-color .4s ease; }
 .hg-submit:hover, .hg-submit:focus-visible { color:var(--accent); text-decoration-color:var(--accent); outline:none; }
 
-/* footer */
+
 footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) calc(150px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule)}
 .footer-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px}
 .footer-name{font-family:var(--font-en);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--text)}
@@ -132,7 +132,7 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
   .entry-meta{gap:20px;flex-wrap:wrap}
   .footer-inner{flex-direction:column;align-items:flex-start}
 }
-/* 360px 以下は文の欄が狭いので、スタンプの絵を一段小さくする */
+
 @media (max-width:360px){
   .stamp-row{grid-template-columns:64px 1fr}
   .stamp-row img{width:64px}
@@ -175,9 +175,7 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
       <h2 class="entry-title reveal r-6">バンドで鳴らす、その前哨戦</h2>
 
       <div class="entry-video reveal r-6">
-        <iframe title="#001 バンドで鳴らす、その前哨戦" src="https://player.vimeo.com/video/1227431743?h=bec5697dd7&amp;title=0&amp;byline=0&amp;portrait=0"
-                referrerpolicy="strict-origin"
-                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <iframe title="#001 バンドで鳴らす、その前哨戦" src="https://player.vimeo.com/video/1227431743?h=bec5697dd7&amp;title=0&amp;byline=0&amp;portrait=0" referrerpolicy="strict-origin" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
 
       <div class="entry-body reveal r-6">
@@ -195,9 +193,7 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
       <h2 class="entry-title reveal r-6">二つ目のリズムを作る</h2>
 
       <div class="entry-video reveal r-6">
-        <iframe title="#002 二つ目のリズムを作る" src="https://player.vimeo.com/video/1230027800?h=64f5db3e49&amp;title=0&amp;byline=0&amp;portrait=0"
-                referrerpolicy="strict-origin" loading="lazy"
-                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <iframe title="#002 二つ目のリズムを作る" src="https://player.vimeo.com/video/1230027800?h=64f5db3e49&amp;title=0&amp;byline=0&amp;portrait=0" referrerpolicy="strict-origin" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
 
       <div class="entry-body reveal r-6">
@@ -206,7 +202,7 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
       </div>
     </article>
 
-    <!-- 新しいエントリはこの行より上に足す -->
+    
     <a class="stamp-row reveal r-6" href="https://line.me/S/sticker/36785673?_from=lcm" target="_blank" rel="noopener">
       <img src="_assets/stamp-live.webp" width="288" height="249" alt="LINEスタンプ「ライブ行く？」" loading="lazy">
       <span class="stamp-copy">
@@ -219,7 +215,7 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
   </div>
 </section>
 
-<!-- ===== hitori-goto（Crew向け独り言／チャット） ===== -->
+
 <section class="threshold">
   <div class="threshold-mark">hitori-goto</div>
   <div class="threshold-sub">みんなの独り言</div>
@@ -244,7 +240,7 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
   </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
+
 
 <footer>
   <div class="footer-inner">
@@ -257,83 +253,9 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
   </div>
 </footer>
 
-<script>
-(function () {
-  if (!('IntersectionObserver' in window)) return;
-  var els = document.querySelectorAll('.fade-on-scroll');
-  if (!els.length) return;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
-  els.forEach(function (el) { io.observe(el); });
-})();
-</script>
+<script>(function(){if(!("IntersectionObserver"in window))return;var els=document.querySelectorAll(".fade-on-scroll");if(!els.length)return;var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("is-visible");io.unobserve(e.target)}})},{threshold:.15,rootMargin:"0px 0px -10% 0px"});els.forEach(function(el){io.observe(el)})})()</script>
 
-<script>
-// ===== hitori-goto =====
-(function () {
-  var SUPABASE_URL      = 'https://abivdafsebrjsuduhdto.supabase.co';
-  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFiaXZkYWZzZWJyanN1ZHVoZHRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MjM2MDksImV4cCI6MjA5NTQ5OTYwOX0.2_YLIyV7EIR5cPYoZGg1xZZlEFhQrLRaWLh0Sko8b1w';
-  var sb = (window.supabase) ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-  var feedEl=document.getElementById('hg-feed');
-  var textEl=document.getElementById('hg-text');
-  var nameEl=document.getElementById('hg-name');
-  var submitEl=document.getElementById('hg-submit');
-  var affirmEl=document.getElementById('hg-affirm');
-  var composeEl=document.getElementById('hg-compose');
-  var roomEl=document.querySelector('.room');
-  var affirmTimer=null;
-  function render(rows){
-    feedEl.innerHTML='';
-    if(!rows || !rows.length){ var e=document.createElement('div'); e.className='hg-empty'; e.textContent='まだ、誰の独り言もありません。'; feedEl.appendChild(e); return; }
-    rows.forEach(function(m){
-      var wrap=document.createElement('div'); wrap.className='hg-murmur';
-      var p=document.createElement('p'); p.className='hg-text'; p.textContent=m.body; wrap.appendChild(p);
-      if(m.name){ var by=document.createElement('div'); by.className='hg-by'; by.textContent='— '+m.name; wrap.appendChild(by); }
-      feedEl.appendChild(wrap);
-    });
-    feedEl.scrollTop = feedEl.scrollHeight;
-  }
-  function notice(msg, isErr){
-    affirmEl.textContent=msg;
-    affirmEl.className='hg-affirm show'+(isErr?' err':'');
-    if(affirmTimer)clearTimeout(affirmTimer);
-    if(!isErr) affirmTimer=setTimeout(function(){affirmEl.classList.remove('show');},4200);
-  }
-  function affirm(){ notice('独り言が記録されました。', false); }
-  function autosize(){ textEl.style.height='auto'; textEl.style.height=Math.min(textEl.scrollHeight,120)+'px'; }
-  function scrollBottom(){ feedEl.scrollTop = feedEl.scrollHeight; }
-  function load(){
-    if(!sb) return;
-    sb.from('hitorigoto').select('name,body,created_at').gte('created_at', '2026-09-15T00:00:00Z').order('created_at',{ascending:true}).then(function(res){
-      if(res.error){ notice('読み込みエラー: '+res.error.message, true); return; }
-      render(res.data||[]);
-    });
-  }
-  function submit(){
-    var body=(textEl.value||'').trim(); if(!body){textEl.focus();return;}
-    var name=(nameEl.value||'').trim();
-    if(!sb){ notice('未接続', true); return; }
-    sb.from('hitorigoto').insert({ body: body, name: name||null }).then(function(res){
-      if(res.error){ notice('送信エラー: '+res.error.message, true); return; }
-      load(); textEl.value=''; autosize(); affirm(); scrollBottom();
-    });
-  }
-  submitEl.addEventListener('click',submit);
-  textEl.addEventListener('input',autosize);
-  textEl.addEventListener('keydown',function(e){ if((e.metaKey||e.ctrlKey)&&e.key==='Enter'){e.preventDefault();submit();} });
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(entries){ entries.forEach(function(en){ composeEl.classList.toggle('show', en.isIntersecting); }); }, { threshold:0.01 });
-    io.observe(roomEl);
-  } else { composeEl.classList.add('show'); }
-  load();
-  if(sb){
-    try{ sb.channel('hitorigoto-rt').on('postgres_changes', { event:'INSERT', schema:'public', table:'hitorigoto' }, function(){ load(); }).subscribe(); }catch(e){}
-  }
-})();
-</script>
+<script>(function(){var SUPABASE_URL="https://abivdafsebrjsuduhdto.supabase.co";var SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFiaXZkYWZzZWJyanN1ZHVoZHRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MjM2MDksImV4cCI6MjA5NTQ5OTYwOX0.2_YLIyV7EIR5cPYoZGg1xZZlEFhQrLRaWLh0Sko8b1w";var sb=window.supabase?window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;var feedEl=document.getElementById("hg-feed");var textEl=document.getElementById("hg-text");var nameEl=document.getElementById("hg-name");var submitEl=document.getElementById("hg-submit");var affirmEl=document.getElementById("hg-affirm");var composeEl=document.getElementById("hg-compose");var roomEl=document.querySelector(".room");var affirmTimer=null;function render(rows){feedEl.innerHTML="";if(!rows||!rows.length){var e=document.createElement("div");e.className="hg-empty";e.textContent="まだ、誰の独り言もありません。";feedEl.appendChild(e);return}rows.forEach(function(m){var wrap=document.createElement("div");wrap.className="hg-murmur";var p=document.createElement("p");p.className="hg-text";p.textContent=m.body;wrap.appendChild(p);if(m.name){var by=document.createElement("div");by.className="hg-by";by.textContent="— "+m.name;wrap.appendChild(by)}feedEl.appendChild(wrap)});feedEl.scrollTop=feedEl.scrollHeight}function notice(msg,isErr){affirmEl.textContent=msg;affirmEl.className="hg-affirm show"+(isErr?" err":"");if(affirmTimer)clearTimeout(affirmTimer);if(!isErr)affirmTimer=setTimeout(function(){affirmEl.classList.remove("show")},4200)}function affirm(){notice("独り言が記録されました。",false)}function autosize(){textEl.style.height="auto";textEl.style.height=Math.min(textEl.scrollHeight,120)+"px"}function scrollBottom(){feedEl.scrollTop=feedEl.scrollHeight}function load(){if(!sb)return;sb.from("hitorigoto").select("name,body,created_at").gte("created_at","2026-09-15T00:00:00Z").order("created_at",{ascending:true}).then(function(res){if(res.error){notice("読み込みエラー: "+res.error.message,true);return}render(res.data||[])})}function submit(){var body=(textEl.value||"").trim();if(!body){textEl.focus();return}var name=(nameEl.value||"").trim();if(!sb){notice("未接続",true);return}sb.from("hitorigoto").insert({body:body,name:name||null}).then(function(res){if(res.error){notice("送信エラー: "+res.error.message,true);return}load();textEl.value="";autosize();affirm();scrollBottom()})}submitEl.addEventListener("click",submit);textEl.addEventListener("input",autosize);textEl.addEventListener("keydown",function(e){if((e.metaKey||e.ctrlKey)&&e.key==="Enter"){e.preventDefault();submit()}});if("IntersectionObserver"in window){var io=new IntersectionObserver(function(entries){entries.forEach(function(en){composeEl.classList.toggle("show",en.isIntersecting)})},{threshold:.01});io.observe(roomEl)}else{composeEl.classList.add("show")}load();if(sb){try{sb.channel("hitorigoto-rt").on("postgres_changes",{event:"INSERT",schema:"public",table:"hitorigoto"},function(){load()}).subscribe()}catch(e){}}})()</script>
 
 </body>
 </html>

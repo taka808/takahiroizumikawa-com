@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>YATARA — Takahiro Izumikawa</title>
 <meta name="description" content="YATARA — a new genre by Takahiro Izumikawa. What it is, how it works, and demos, for booking.">
 <meta name="robots" content="noindex, nofollow">
@@ -13,17 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-<script>
-/* 言語の初期適用は first paint 前に行う（?lang=ja 入場時の英語フラッシュ防止） */
-(function(){
-  /* 言語はURLだけで決める（localStorageに記憶しない）。素の /yatara は誰の端末でも常に英語で、
-     日本語は /yatara/jp/ と ?lang=ja のみ — 渡したリンクで相手に何が見えるかを確定させるため */
-  var q = new URLSearchParams(location.search).get('lang');
-  var l = (q === 'ja' || q === 'en') ? q : 'en';
-  document.documentElement.setAttribute('data-lang', l);
-  document.documentElement.setAttribute('lang', l === 'ja' ? 'ja' : 'en');
-})();
-</script>
+<script>(function(){var q=new URLSearchParams(location.search).get("lang");var l=q==="ja"||q==="en"?q:"en";document.documentElement.setAttribute("data-lang",l);document.documentElement.setAttribute("lang",l==="ja"?"ja":"en")})()</script>
 <style>
 :root{
   --bg:#161616; --text:#f5f0e8;
@@ -41,7 +31,7 @@ body::before{
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.91 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
 }
 
-/* ── language switch: default EN / html[data-lang="ja"] で日本語 ── */
+
 .l-ja{display:none}
 html[data-lang="ja"] .l-ja{display:revert}
 html[data-lang="ja"] .l-en{display:none}
@@ -68,9 +58,9 @@ main{flex:1;padding:clamp(40px,7vh,72px) var(--gutter)}
 .eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:22px;font-weight:300}
 .name-head{font-size:clamp(30px,5vw,52px);font-weight:500;letter-spacing:.08em;line-height:1.1;color:var(--text);margin-bottom:10px}
 .name-head .jp-sub{display:block;font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:clamp(13px,1.8vw,16px);letter-spacing:.62em;color:var(--dim);margin-top:12px}
-/* tagline = 引用（斜体はブランドガイドラインの引用例外・純白より落としたグレー） */
+
 .tagline{font-style:italic;font-weight:300;font-size:clamp(17px,2.3vw,22px);line-height:1.5;color:var(--dim);margin:clamp(18px,3vh,26px) 0 8px}
-/* taglineの和訳（小さく添える。斜体にしない＝引用の斜体例外は原文側のみ） */
+
 .tagline-ja{font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:clamp(12px,1.5vw,13.5px);line-height:1.7;color:var(--dim);letter-spacing:.04em;margin-bottom:clamp(18px,3vh,26px)}
 .tagline-ja .nb{display:inline-block}
 .body p{font-size:clamp(14.5px,1.55vw,16px);font-weight:300;line-height:1.85;color:rgba(245,240,232,.86);margin-bottom:1.5em;max-width:60ch}
@@ -78,15 +68,15 @@ main{flex:1;padding:clamp(40px,7vh,72px) var(--gutter)}
 .body a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s}
 .body a:hover{color:var(--accent);border-color:var(--accent)}
 
-/* 戻り動線（EPK本体へ返す。このページはbookingから来る前提） */
+
 .back-block .body p{margin-bottom:0}
 .back-link{font-size:clamp(13.5px,1.6vw,15px);letter-spacing:.06em;font-weight:400;border-bottom:1px solid var(--rule)}
 .back-link .arw{color:var(--accent)}
 
-/* sections */
+
 section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);padding-top:clamp(26px,4.5vh,38px)}
 
-/* demos（制作用LPの .demo 型をスライド） */
+
 .demo{border:1px solid var(--rule);background:var(--card);padding:20px 22px;margin-bottom:14px}
 .demo-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:4px}
 .demo-head h3{font-size:16px;font-weight:500;letter-spacing:.06em}
@@ -94,13 +84,13 @@ section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);p
 .demo audio{width:100%;margin:10px 0 12px;filter:invert(92%) hue-rotate(180deg);border-radius:2px}
 .print-only{display:none}
 
-/* what is yatara — 3セル縦積み */
+
 .cells .cell{background:var(--card);border:1px solid var(--rule);padding:24px 22px;margin-bottom:14px}
 .cell .no{font-size:11px;letter-spacing:.3em;color:var(--accent);margin-bottom:10px;text-transform:lowercase}
 .cell h3{font-size:15.5px;font-weight:500;letter-spacing:.06em;margin-bottom:10px}
 .cell p{font-size:13.5px;line-height:1.85;color:var(--dim)}
 
-/* structure rules（制作用LPの .rules 型をスライド） */
+
 .rules{list-style:none;margin-top:6px}
 .rules li{border-top:1px solid var(--rule);padding:17px 0;display:grid;
           grid-template-columns:minmax(140px,190px) 1fr;gap:6px 22px;font-size:13.5px}
@@ -110,7 +100,7 @@ section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);p
 .rules span{color:var(--dim);line-height:1.8}
 
 
-/* contact */
+
 
 footer{
   display:flex;justify-content:center;gap:clamp(18px,2.4vw,32px);
@@ -120,26 +110,26 @@ footer{
 footer a{font-size:10px;letter-spacing:.28em;text-transform:lowercase;color:var(--faint);text-decoration:none;transition:color .4s}
 footer a:hover{color:var(--dim)}
 
-/* reveal (booking と同パターン) */
+
 .reveal{opacity:0;transform:translateY(10px);animation:fade-up 1.4s cubic-bezier(0.16,1,0.3,1) forwards}
 .r-1{animation-delay:.10s}.r-2{animation-delay:.24s}.r-3{animation-delay:.40s}.r-4{animation-delay:.58s}
 @keyframes fade-up{to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;animation:none}}
 
-/* PDF書き出し（booking の型: 紙に出せないものを落とし、暗色テーマ用クリーム色を紙用の濃色へ上書き） */
+
 @media print{
   body::before{display:none}
-  /* 印刷ではアニメ未実行でも全要素を表示（reveal の opacity:0 が紙で残らないように） */
+  
   .reveal{opacity:1;transform:none;animation:none}
   html,body{background:#fff;color:#111}
-  /* カードがページ境界で割れると、次ページが枠なしの「03」から始まって見える */
+  
   .cells .cell,.demo{break-inside:avoid;page-break-inside:avoid}
   nav.top,footer,.demo audio{display:none}
   .print-only{display:block;font-size:11px;color:#555;letter-spacing:.04em;margin-top:8px}
   section.block{border-color:#ddd;margin-top:22px;padding-top:16px}
   .eyebrow{color:#888}
   .tagline,.name-head,.body p,.rules b{color:#111}
-  /* 和訳行は薄いクリームのままだと白紙で読めない（実測: 紙で痕跡程度）→ 紙用の濃色へ */
+  
   .tagline-ja{color:#555}
   .name-head .jp-sub{color:#666}
   .body p .ttl{color:#111}
@@ -173,18 +163,18 @@ footer a:hover{color:var(--dim)}
 <main>
   <div class="wrap">
 
-    <!-- ── header ── -->
+    
     <p class="eyebrow reveal r-1"><span class="l-en">New Genre</span><span class="l-ja">新ジャンル</span></p>
     <h1 class="name-head reveal r-1">YATARA<span class="jp-sub">夜　打　楽</span></h1>
     <p class="tagline reveal r-2">"If a jazz pianist lived in 1600s Japan."</p>
-    <!-- 和文は文節単位でしか改行させない（375pxで「ら？」の2文字だけ次行に落ちるのを防ぐ） -->
+    
     <p class="tagline-ja reveal r-2"><span class="nb">もしジャズピアニストが</span><span class="nb">西暦1600年の日本に</span><span class="nb">住んでいたら？</span></p>
     <div class="body reveal r-3">
       <p class="l-en">A new genre that replaces the African rhythms at the foundation of New York's music with the rhythms of 1600s Japan — using the clave as a shared key.</p>
       <p class="l-ja">NYの音楽スタイルの土台になっているアフリカのリズムを、クラーベを基準に日本の1600年代のリズムに置き換えて演奏する、新しいジャンル。</p>
     </div>
 
-    <!-- ── listen ── -->
+    
     <section class="block">
       <h2 class="eyebrow"><span class="l-en">Listen</span><span class="l-ja">音源</span></h2>
 
@@ -207,7 +197,7 @@ footer a:hover{color:var(--dim)}
       <p class="print-only"><span class="l-en">Listen online — takahiroizumikawa.com/yatara</span><span class="l-ja">試聴はこちら — takahiroizumikawa.com/yatara/jp/</span></p>
     </section>
 
-    <!-- ── what is yatara ── -->
+    
     <section class="block">
       <h2 class="eyebrow"><span class="l-en">What is YATARA</span><span class="l-ja">YATARAとは</span></h2>
       <div class="cells">
@@ -229,7 +219,7 @@ footer a:hover{color:var(--dim)}
       </div>
     </section>
 
-    <!-- ── the structure ── -->
+    
     <section class="block">
       <h2 class="eyebrow"><span class="l-en">The Structure</span><span class="l-ja">仕組み</span></h2>
       <ul class="rules">
@@ -238,10 +228,10 @@ footer a:hover{color:var(--dim)}
       </ul>
     </section>
 
-    <!-- ── back to booking ── -->
+    
     <section class="block back-block">
       <div class="body">
-        <!-- 表示言語を引き継いで戻る（booking側の誘導リンクと対。JS不要で言語別に2本） -->
+        
         <p><a class="back-link l-en" href="../booking/"><span class="arw" aria-hidden="true">←</span>&nbsp;Back to booking</a><a class="back-link l-ja" href="../booking/?lang=ja"><span class="arw" aria-hidden="true">←</span>&nbsp;ブッキングページに戻る</a></p>
       </div>
     </section>
@@ -255,20 +245,7 @@ footer a:hover{color:var(--dim)}
   <a href="https://takahiroizumikawa.com" target="_blank" rel="noopener">takahiroizumikawa.com</a>
 </footer>
 
-<script>
-(function(){
-  function setLang(l){
-    document.documentElement.setAttribute('data-lang', l);
-    document.documentElement.setAttribute('lang', l === 'ja' ? 'ja' : 'en');
-    document.getElementById('sw-en').classList.toggle('on', l !== 'ja');
-    document.getElementById('sw-ja').classList.toggle('on', l === 'ja');
-  }
-  /* 初期言語は<head>のブートストラップが適用済み — ここではボタン状態の同期のみ */
-  setLang(document.documentElement.getAttribute('data-lang') === 'ja' ? 'ja' : 'en');
-  document.getElementById('sw-en').addEventListener('click', function(e){e.preventDefault(); setLang('en');});
-  document.getElementById('sw-ja').addEventListener('click', function(e){e.preventDefault(); setLang('ja');});
-})();
-</script>
+<script>(function(){function setLang(l){document.documentElement.setAttribute("data-lang",l);document.documentElement.setAttribute("lang",l==="ja"?"ja":"en");document.getElementById("sw-en").classList.toggle("on",l!=="ja");document.getElementById("sw-ja").classList.toggle("on",l==="ja")}setLang(document.documentElement.getAttribute("data-lang")==="ja"?"ja":"en");document.getElementById("sw-en").addEventListener("click",function(e){e.preventDefault();setLang("en")});document.getElementById("sw-ja").addEventListener("click",function(e){e.preventDefault();setLang("ja")})})()</script>
 
 </body>
 </html>
