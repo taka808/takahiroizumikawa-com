@@ -644,6 +644,10 @@ footer {
   .ticket-row .ease{ font-size:12.5px; letter-spacing:.02em; }
 }
 
+.ticket-action{ display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+.ticket-row .ticket-note{ font-family:var(--font-jp); font-size:12px; line-height:1.8; letter-spacing:.06em; color:rgba(245,240,232,.72); }
+@media (max-width:768px){ .ticket-action{ justify-self:start; } }
+
 .stamp-row{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;margin-top:32px;padding:0 clamp(22px,3.4vw,30px);color:inherit;text-decoration:none}
 .stamp-row img{display:block;width:96px;height:auto}
 .stamp-copy{font-family:var(--font-jp);line-height:1.8}
@@ -721,7 +725,10 @@ footer {
             <div class="venue-name">Blue Yard</div>
             <div class="ease"><span class="nb">ピアノ１台でトーク＆ライブ</span><br><span class="nb">音楽の歴史と</span><span class="nb">秋のジャズスタンダードを</span><span class="nb">聴きながら、</span><br><span class="nb">ジャズがどう</span><span class="nb">日本のリズムと融合し</span><span class="nb">新しいジャンル</span><span class="nb">YATARAになるかを</span><span class="nb">ゆったり体験する。</span></div>
           </div>
-          <span class="ticket-link">会場サイト</span>
+          <div class="ticket-action">
+            <span class="ticket-note">*予約は近日開始</span>
+            <span class="ticket-link">会場サイト</span>
+          </div>
         </a>
         <a class="ticket-row" href="https://morethanmusicjapan.com/ja/collections/frontpage/products/261030sk" target="_blank" rel="noopener">
           <div class="ticket-info">
