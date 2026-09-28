@@ -666,6 +666,10 @@ footer {
   .stamp-row{grid-template-columns:64px 1fr}
   .stamp-row img{width:64px}
 }
+
+.origin-block{padding-top:clamp(14px,2vh,24px);padding-bottom:0}
+.origin-video{display:block;width:min(100%,360px);height:auto;aspect-ratio:9/16;background:var(--bg)}
+@media (max-width:640px){.origin-video{width:min(100%,calc(90svh * 9 / 16))}}
 </style>
 </head>
 <body>
@@ -684,6 +688,13 @@ footer {
       <span class="nb">ニューヨークを拠点にするピアニスト、</span><span class="nb">Takahiro Izumikawa の日本公演。</span><br>
       <span class="nb">10月26日、大阪はピアノ一台で。</span><span class="nb">30日東京はフルバンドで、</span><span class="nb">新しいジャンル <a href="https://takahiroizumikawa.com/yatara/?lang=ja" target="_blank" rel="noopener">YATARA</a> のお披露目。</span>
     </p>
+  </div>
+</section>
+
+
+<section class="origin-block">
+  <div class="container">
+    <video class="origin-video reveal r-4" src="_assets/yatara-origin.mp4" poster="_assets/yatara-origin-poster.webp" width="1080" height="1920" controls playsinline preload="none" aria-label="YATARA の成り立ち（動画・73秒）"></video>
   </div>
 </section>
 
