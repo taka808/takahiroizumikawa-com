@@ -76,6 +76,8 @@ a.show .date{transition:color .4s}
 a.show:hover .ticket{color:var(--accent)}
 a.show:hover .date{color:var(--text)}
 a.show:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
+
+.show .ticket.soldout{color:var(--text)}
 @media (max-width:560px){
   .show{flex-wrap:wrap;gap:3px 16px}
   .show .date{flex-basis:100%}
@@ -135,15 +137,16 @@ footer a:hover{color:var(--dim)}
         <span class="venue">Joe's Pub <span class="city">· New York</span> <span class="kind">solo piano</span></span>
         <span class="links"><span class="ticket">tickets ↗&#xFE0E;</span></span>
       </a>
-      <a class="show" data-kind="solo" href="https://blue-yard.jp/" target="_blank" rel="noopener">
+      <a class="show" data-kind="solo" href="https://blue-yard.jp/news/event-261026/" target="_blank" rel="noopener">
         <span class="date">Oct 26, 2026</span>
         <span class="venue">BLUE YARD <span class="city">&middot; Osaka</span> <span class="kind">solo piano</span></span>
-        <span class="links"><span class="ticket">venue ↗&#xFE0E;</span></span>
+        <span class="links"><span class="ticket">tickets ↗&#xFE0E;</span></span>
       </a>
+      
       <a class="show" data-kind="band" href="https://morethanmusicjapan.com/ja/collections/frontpage/products/261030sk" target="_blank" rel="noopener">
         <span class="date">Oct 30, 2026</span>
         <span class="venue">晴れたら空に豆まいて <span class="city">&middot; Tokyo</span> <span class="kind">band</span></span>
-        <span class="links"><span class="ticket">tickets ↗&#xFE0E;</span></span>
+        <span class="links"><span class="ticket soldout">sold out</span></span>
       </a>
       <div class="show" data-kind="mubo">
         <span class="date">Oct 31, 2026</span>
@@ -178,7 +181,7 @@ footer a:hover{color:var(--dim)}
 
 <footer>
   <a href="contact.html">contact</a>
-  <a href="https://www.instagram.com/takahiro_izumikawa/" target="_blank" rel="noopener">instagram&nbsp;↗&#xFE0E;</a>
+  <a href="https://www.instagram.com/taka808/" target="_blank" rel="noopener">instagram&nbsp;↗&#xFE0E;</a>
   <a href="https://mubo.taka808.com/about/" target="_blank" rel="noopener">mubo&nbsp;↗&#xFE0E;</a>
 </footer>
 

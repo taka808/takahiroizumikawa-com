@@ -670,6 +670,13 @@ footer {
 .origin-block{padding-top:clamp(14px,2vh,24px);padding-bottom:0}
 .origin-video{display:block;width:min(100%,360px);height:auto;aspect-ratio:9/16;background:var(--bg)}
 @media (max-width:640px){.origin-video{width:min(100%,calc(90svh * 9 / 16))}}
+
+.soldout{
+  font-family:var(--font-en); font-weight:500;
+  font-size:clamp(30px,4.2vw,48px); line-height:1; letter-spacing:.12em;
+  color:var(--text); white-space:nowrap;
+}
+@media (max-width:768px){ .soldout{ justify-self:start; } }
 </style>
 </head>
 <body>
@@ -727,7 +734,8 @@ footer {
 
       <div class="tickets-grid reveal r-3">
         
-        <a class="ticket-row" href="https://blue-yard.jp/" target="_blank" rel="noopener">
+        
+        <a class="ticket-row" href="https://blue-yard.jp/news/event-261026/" target="_blank" rel="noopener">
           <div class="ticket-info">
             <div class="ticket-meta">
               <span class="city">大阪</span>
@@ -737,11 +745,11 @@ footer {
             <div class="ease"><span class="nb">ピアノ１台でトーク＆ライブ</span><br><span class="nb">音楽の歴史と</span><span class="nb">秋のジャズスタンダードを</span><span class="nb">聴きながら、</span><br><span class="nb">ジャズがどう</span><span class="nb">日本のリズムと融合し</span><span class="nb">新しいジャンル</span><span class="nb">YATARAになるかを</span><span class="nb">ゆったり体験する。</span></div>
           </div>
           <div class="ticket-action">
-            <span class="ticket-note">*予約は近日開始</span>
-            <span class="ticket-link">会場サイト</span>
+            <span class="ticket-link">チケット</span>
           </div>
         </a>
-        <a class="ticket-row" href="https://morethanmusicjapan.com/ja/collections/frontpage/products/261030sk" target="_blank" rel="noopener">
+        
+        <a class="ticket-row is-soldout" href="https://morethanmusicjapan.com/ja/collections/frontpage/products/261030sk" target="_blank" rel="noopener">
           <div class="ticket-info">
             <div class="ticket-meta">
               <span class="city">東京</span>
@@ -750,7 +758,7 @@ footer {
             <div class="venue-name">晴れたら空に豆まいて</div>
             <div class="ease">新しいジャンル YATARA のお披露目。</div>
           </div>
-          <span class="ticket-link">チケット</span>
+          <span class="soldout" lang="en">SOLD OUT</span>
         </a>
       </div>
 
