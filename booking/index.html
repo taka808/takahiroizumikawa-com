@@ -123,6 +123,10 @@ section.block{border-top:1px solid var(--rule);margin-top:clamp(34px,6vh,52px);p
 .photo-credit{font-size:10px;letter-spacing:.1em;color:var(--faint);margin-top:10px}
 
 
+.yatara-video{display:block;width:min(100%,360px);height:auto;aspect-ratio:9/16;background:var(--bg);border:1px solid var(--rule)}
+@media (max-width:640px){.yatara-video{width:min(100%,calc(90svh * 9 / 16))}}
+
+
 .book-cta .big-mail{display:inline-block;font-size:clamp(17px,2.4vw,23px);font-weight:400;letter-spacing:.02em;color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);transition:color .4s,border-color .4s;margin-top:6px;word-break:break-all}
 .book-cta .big-mail:hover{color:var(--accent);border-color:var(--accent)}
 
@@ -148,10 +152,11 @@ footer a:hover{color:var(--dim)}
   nav.top,.live-block,.spotify-frame,footer{display:none}
   .caption,.press-grid figcaption{display:none}
   
+  .yatara-media{display:none}
+  
   .after-link a{color:#111;border:0}
   .after-link a::after{content:" — ffm.to/offsync";letter-spacing:.02em;text-transform:none}
   .body a[href^="https://takahiroizumikawa.com/about"]::after{content:" (takahiroizumikawa.com/about)"}
-  .body a[href^="../yatara/"]::after{content:" (takahiroizumikawa.com/yatara)"}
   section.block{border-color:#ddd;margin-top:22px;padding-top:16px}
   .eyebrow,.contact-row .lbl{color:#888}
   .lead,.name-head,.body p,.band-line,.stages li{color:#111}
@@ -295,8 +300,11 @@ footer a:hover{color:var(--dim)}
       <div class="body">
         <p class="l-en">If a jazz pianist lived in 1600s Japan. Takahiro is researching a new genre — <span class="ttl">YATARA</span> — that replaces the African rhythms at the deepest foundation of New York's music with the rhythms of 1600s Japan, using the clave as a shared key. It is already on stage: the band premiered the first YATARA piece at Cotton Club, Tokyo in June 2026, with the audience singing one part and clapping another.</p>
         <p class="l-ja">If a jazz pianist lived in 1600s Japan. NYの音楽スタイルの最も土台になっているアフリカのリズムを、クラーベを基準に日本の1600年代のリズムに置き換えて演奏する新しいジャンル『<span class="ttl">YATARA</span>』を研究し、ライブで少しずつ形にし始めている。2026年6月、Cotton Club（東京）でバンド初演奏。客席が歌うパートと手拍子のパートも一緒に演奏した。</p>
-        
-        <p><a class="l-en" href="../yatara/">YATARA — demos &amp; how it works ↗&#xFE0E;</a><a class="l-ja" href="../yatara/?lang=ja">YATARA — デモ音源と仕組み ↗&#xFE0E;</a></p>
+      </div>
+      
+      <div class="yatara-media">
+        <div class="l-en"><video class="yatara-video" src="yatara-en.mp4" poster="yatara-en-poster.webp" width="1080" height="1920" controls playsinline preload="none" aria-label="YATARA — how it works (video, 73 seconds)"></video></div>
+        <div class="l-ja"><video class="yatara-video" src="yatara-ja.mp4" poster="yatara-ja-poster.webp" width="1080" height="1920" controls playsinline preload="none" aria-label="YATARA の成り立ち（動画・73秒）"></video></div>
       </div>
     </section>
 
