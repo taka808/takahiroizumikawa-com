@@ -67,6 +67,8 @@ section{position:relative;z-index:2;padding-left:var(--gutter);padding-right:var
 .stamp-row:hover .stamp-link{color:#fff;border-color:#fff}
 .stamp-row:focus-visible{outline:2px solid var(--text);outline-offset:6px}
 
+.survey-row{grid-template-columns:1fr auto;margin-bottom:40px}
+
 
 .stream{padding-top:clamp(80px,14vh,140px);padding-bottom:clamp(80px,14vh,140px)}
 .entry{padding:clamp(64px,14vh,120px) 0;scroll-margin-top:32px}
@@ -130,6 +132,8 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
   .stamp-row{grid-template-columns:80px 1fr;gap:16px;max-width:100%;margin-left:0}
   .stamp-row img{width:80px}
   .stamp-link{grid-column:2;justify-self:start}
+  .survey-row{grid-template-columns:1fr}
+  .survey-row .stamp-link{grid-column:1}
   .entry-meta{gap:20px;flex-wrap:wrap}
   .footer-inner{flex-direction:column;align-items:flex-start}
 }
@@ -137,6 +141,7 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
 @media (max-width:360px){
   .stamp-row{grid-template-columns:64px 1fr}
   .stamp-row img{width:64px}
+  .survey-row{grid-template-columns:1fr}
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -455,7 +460,33 @@ footer{position:relative;z-index:2;padding:clamp(24px,3vh,40px) var(--gutter) ca
       </div>
     </article>
 
+    <article class="entry" id="log-017">
+      <div class="entry-meta reveal r-6">
+        <span class="entry-number">#017</span>
+        <span class="entry-date">2026-11-06</span>
+      </div>
+
+      <h2 class="entry-title reveal r-6">ツアーを終えて、来年5月のバンドについて</h2>
+
+      <div class="entry-video reveal r-6">
+        <iframe title="#017 ツアーを終えて、来年5月のバンドについて" src="https://player.vimeo.com/video/1243780227?h=aa0c9a8434&amp;title=0&amp;byline=0&amp;portrait=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div class="entry-body reveal r-6">
+        <p>Crew は過去最高の15人になりました。皆さんのおかげで、東京公演にバンドを入れることができました。最低限のルールで、今まで聞いたことのないようなグルーヴになりそうだと分かり、希望がすごく見えました。今回のテストはおおむね大成功だったと思います。</p>
+        <p>来年の5月までにニューヨークのミュージシャンともう少し詰めて、ニューヨークからバンドを日本に連れて行くつもりです。皆さんに応援してもらった気持ちを思い出して、来年もまたリスクを取ってやっていこうと思います。アンケートにもご協力ください。</p>
+      </div>
+    </article>
+
     
+    <a class="survey-row stamp-row reveal r-6" href="https://docs.google.com/forms/d/e/1FAIpQLSfuNXaiKdhAvLf2cjzjI34wMx5tPZxnuEO81LkGoFdhUwKM2Q/viewform" target="_blank" rel="noopener">
+      <span class="stamp-copy">
+        <span class="stamp-lead"><span class="nb">⭐️アンケートに</span><span class="nb">ご協力ください。⭐️</span></span>
+        <span class="stamp-sub"><span class="nb">次の Crew を</span><span class="nb">より良くするために。</span><span class="nb">3分ほどです。</span></span>
+      </span>
+      <span class="stamp-link">アンケート</span>
+    </a>
+
     <a class="stamp-row reveal r-6" href="https://line.me/S/sticker/36785673?_from=lcm" target="_blank" rel="noopener">
       <img src="_assets/stamp-live.webp" width="288" height="249" alt="LINEスタンプ「ライブ行く？」" loading="lazy">
       <span class="stamp-copy">
